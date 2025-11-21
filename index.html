@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Expertronics – Next-Generation Industrial Automation & Maintenance. Precision. Performance. 24/7." />
+  <meta property="og:title" content="Expertronics | Future of Industrial Automation" />
+  <meta property="og:description" content="Engineered for zero downtime. Powered by innovation." />
+  <title>Expertronics | Industrial Automation & Maintenance</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a1d56',      // Deep Cosmic Blue
+            accent: '#00f5ff',       // Electric Cyan
+            steel: '#94a3b8',
+            darkbg: '#0f172a',
+            surface: '#1e293b',
+          },
+          fontFamily: { display: ['"Space Grotesk"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+          animation: { 
+            'float': 'float 6s ease-in-out infinite', 
+            'glow': 'glow 2s ease-in-out infinite alternate',
+            'scroll': 'scroll 30s linear infinite'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+            glow: { from: { boxShadow: '0 0 20px rgba(0,245,255,0.3)' }, to: { boxShadow: '0 0 40px rgba(0,245,255,0.6)' } },
+            scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+    
+    .video-bg { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; z-index: 0; }
+    .glass { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(0, 245, 255, 0.1); }
+    
+    /* Button Effects */
+    .magnetic-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .magnetic-btn:hover { transform: scale(1.05) translateY(-4px); box-shadow: 0 10px 30px -10px rgba(0, 245, 255, 0.5); }
+    
+    /* 3D Presets */
+    .preserve-3d { transform-style: preserve-3d; perspective: 1000px; }
+    
+    /* Scroller Utility */
+    .logo-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+    .logo-track:hover { animation-play-state: paused; }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00f5ff; }
+
+    /* Scroller Utility */
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite; /* Adjusted speed */
+}
+
+.logo-track:hover {
+  animation-play-state: paused;
+}
+
+/* Ensure seamless loop */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+  </style>
+</head>
+<body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
+
+  <button id="theme-toggle" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary/80 backdrop-blur flex items-center justify-center text-2xl hover:bg-accent hover:text-black transition-all shadow-2xl border border-accent/30">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <nav class="fixed top-0 w-full z-40 glass border-b border-white/5 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+        <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain">
+      </a>
+      
+      <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+        <a href="#home" class="hover:text-accent transition">Home</a>
+        <a href="#why" class="hover:text-accent transition">À propos</a>
+        <a href="#services" class="hover:text-accent transition">Services</a>
+        <a href="#Projets" class="hover:text-accent transition">Projets</a>
+        <a href="#contact" class="px-6 py-2 border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition">Contact</a>
+      </div>
+
+      <button id="mobile-btn" class="md:hidden text-2xl text-accent focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="absolute top-full left-0 w-full bg-darkbg/95 backdrop-blur-xl border-b border-accent/20 p-6 hidden flex-col space-y-4 text-center md:hidden">
+      <a href="#home" class="block text-lg py-2 hover:text-accent">Home</a>
+      <a href="#why" class="block text-lg py-2 hover:text-accent">À propos</a>
+      <a href="#services" class="block text-lg py-2 hover:text-accent">Services</a>
+      <a href="#Projets" class="block text-lg py-2 hover:text-accent">Projets</a>
+      <a href="#contact" class="block text-lg py-2 text-accent font-bold">Contact Us</a>
+    </div>
+  </nav>
+
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <video autoplay muted loop playsinline class="video-bg opacity-60">
+      <source src="C:\Users\VIET\Documents\Programming\Expertronics\assets\videos/Mechanical_Intro.mp4" type="video/mp4">
+    </video>
+    
+    <div class="absolute inset-0 bg-gradient-to-b from-darkbg/90 via-darkbg/40 to-darkbg"></div>
+
+    <div class="relative text-center px-6 max-w-5xl z-10 pt-20">
+      <div class="inline-block px-4 py-1 border border-accent/30 rounded-full bg-accent/10 text-accent text-sm mb-6 animate-bounce">
+        Currently serving 500+ plants worldwide
+      </div>
+      <h1 class="text-5xl md:text-8xl font-bold leading-tight mb-6">
+        <span class="bg-gradient-to-r from-white to-steel bg-clip-text text-transparent">Conçu pour une</span><br>
+        <span class="text-accent drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]">Production Sans Arrêt</span>
+      </h1>
+      <p class="mt-6 text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto">
+        Solutions de maintenance industrielle, automatisation, réparation électronique et assistance technique 24/7.
+      </p>
+      <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+        <a href="#contact" class="magnetic-btn px-10 py-4 bg-accent text-black font-bold rounded-full text-lg shadow-[0_0_20px_rgba(0,245,255,0.4)]">
+          Get Instant Quote
+        </a>
+        <a href="#services" class="px-10 py-4 border border-white/20 bg-white/5 backdrop-blur text-white font-bold rounded-full text-lg hover:bg-white/10 transition">
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="py-32 relative bg-darkbg">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="text-5xl md:text-6xl font-bold mb-4">Why Leaders <span class="text-accent">Trust Us</span></h2>
+        <p class="text-steel text-xl max-w-2xl mx-auto">Nous améliorons et optimisons votre performance industrielle.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Expertise Confirmée</h3>
+          <p class="text-steel text-sm leading-relaxed">Plus de 10 ans d’expérience en maintenance, diagnostic, réparation électronique et automatisation.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Haute Performance</h3>
+          <p class="text-steel text-sm leading-relaxed">Optimisation des machines, réduction des temps d’arrêt et amélioration de l’efficacité globale.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">24/7 Support</h3>
+          <p class="text-steel text-sm leading-relaxed">Support technique rapide, interventions urgentes et diagnostic à distance.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Sécurité & Fiabilité</h3>
+          <p class="text-steel text-sm leading-relaxed">Méthodes de travail rigoureuses et projets livrés avec précision et conformité industrielle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-32 bg-gradient-to-b from-darkbg to-primary/20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="order-2 md:order-1">
+        <h2 class="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+          Construit pour <br>
+          <span class="text-accent">l’Industrie de Demain</span>
+        </h2>
+        <p class="text-lg text-steel leading-relaxed mb-8">
+          Depuis 10 ans, Expertronics développe des solutions industrielles complètes :
+maintenance, automatisation, programmation API, modernisation des installations et réparation électronique de cartes complexes.
+
+De la mise à niveau de machines à la création de solutions sur mesure, nous accompagnons les entreprises vers une production plus performante et durable.
+        </p>
+        
+        <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+          <div>
+            <h4 class="text-4xl font-bold text-white">150+</h4>
+            <p class="text-accent text-sm mt-1">Machines Modernisées</p>
+          </div>
+          <div>
+            <h4 class="text-4xl font-bold text-white">99%</h4>
+            <p class="text-accent text-sm mt-1">Taux de Fiabilité Après Intervention</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="relative order-1 md:order-2 group">
+        <div class="absolute inset-0 bg-accent/20 rounded-3xl transform rotate-6 transition group-hover:rotate-3"></div>
+        <img src="https://plus.unsplash.com/premium_photo-1726769179669-dcca21be64ac?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Industrial Engineer" class="relative rounded-3xl shadow-2xl z-10 grayscale group-hover:grayscale-0 transition duration-700 object-cover h-[500px] w-full">
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-32 bg-darkbg relative">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#444 1px, transparent 1px); background-size: 30px 30px;"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <h2 class="text-5xl md:text-7xl font-bold text-center mb-20">Nos <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Compétences</span></h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-microchip text-8xl"></i></div>
+          <i class="fas fa-microchip text-5xl text-accent mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">Réparation Électronique</h3>
+          <p class="text-steel mb-6">Diagnostic, réparation et remise à neuf de cartes électroniques industrielles (alimentation, commande, moteurs, I/O).</p>
+          <a href="#contact" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block">Learn more &rarr;</a>
+        </div>
+
+        <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-robot text-8xl"></i></div>
+          <i class="fas fa-robot text-5xl text-accent mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">Automatisation & Programmation</h3>
+          <p class="text-steel mb-6">Développement API (Siemens, Schneider…), intégration de capteurs, optimisation de ligne, modification de programmes.</p>
+          <a href="#contact" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block">Learn more &rarr;</a>
+        </div>
+
+        <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-chart-line text-8xl"></i></div>
+          <i class="fas fa-chart-line text-5xl text-accent mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4">Conception de Machines</h3>
+          <p class="text-steel mb-6">Nous fabriquons notre propre machine professionnelle :
+Machine de Pesage Expertronics
+Robuste, précise et adaptée aux lignes de production.</p>
+          <a href="#contact" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block">Learn more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="Projets" class="py-32 bg-darkbg/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-16">
+        <h2 class="text-5xl md:text-6xl font-bold">Projets <span class="text-accent">Réalisés</span></h2>
+        <a href="#contact" class="hidden md:block text-steel hover:text-white transition">View all case studies &rarr;</a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1581093577422-9d08e0673c58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Automotive Line" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+            <span class="text-accent text-sm font-bold uppercase tracking-wider">Automotive</span>
+            <h3 class="text-2xl font-bold text-white mt-2">Robotic Assembly Line</h3>
+            <p class="text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition delay-100">Reduced cycle time by 45% using Siemens TIA Portal.</p>
+          </div>
+        </div>
+
+        <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1590502593747-42a996133562?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Processing" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+            <span class="text-accent text-sm font-bold uppercase tracking-wider">Food & Bev</span>
+            <h3 class="text-2xl font-bold text-white mt-2">Bottling Plant SCADA</h3>
+            <p class="text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition delay-100">Full Wonderware integration handling 20k units/hour.</p>
+          </div>
+        </div>
+
+        <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Energy Grid" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+            <span class="text-accent text-sm font-bold uppercase tracking-wider">Energy</span>
+            <h3 class="text-2xl font-bold text-white mt-2">Smart Grid Control</h3>
+            <p class="text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition delay-100">IoT sensors for predictive substation maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="clients" class="py-20 bg-surface border-y border-white/5 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+      <p class="text-steel uppercase tracking-widest text-sm font-bold">NOS CLIENTS</p>
+    </div>
+    
+    <div class="flex overflow-hidden relative w-full">
+      <div class="logo-track flex gap-16 md:gap-24 px-10 items-center">
+        
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" a lt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-darkbg z-0"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid md:grid-cols-2 gap-16">
+        
+        <div>
+          <h2 class="text-5xl font-bold mb-6">Boostez votre <br><span class="text-accent">productivité</span></h2>
+          <p class="text-steel text-lg mb-10">Nous sommes prêts à intervenir, diagnostiquer ou moderniser vos machines.</p>
+          
+          <div class="space-y-8">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mt-1">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white">Adresse</h4>
+                <p class="text-steel">Les Amicales, Agadir, Maroc</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mt-1">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white">Assistance & Support</h4>
+                <p class="text-steel">+212 727771900 (24/7 Line)</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mt-1">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white">Email</h4>
+                <p class="text-steel">expertronics.ma@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="glass p-8 rounded-3xl border border-white/10 shadow-2xl">
+          <div class="space-y-6">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-bold text-steel">Nom</label>
+                <input type="text" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="John Doe">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-bold text-steel">Entreprise</label>
+                <input type="text" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="Acme Industries">
+              </div>
+            </div>
+            
+            <div class="flex flex-col gap-2">
+              <label class="text-sm font-bold text-steel">Email</label>
+              <input type="email" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="john@company.com">
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label class="text-sm font-bold text-steel">Description du projet</label>
+              <textarea rows="4" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="Parlez-nous de vos besoins..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-accent text-black font-bold rounded-lg hover:bg-white transition duration-300 shadow-lg">
+              Envoyer Message <i class="fas fa-paper-plane ml-2"></i>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black pt-20 pb-10 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="col-span-1 md:col-span-1">
+          <a href="#" class="text-2xl font-bold text-white mb-6 block">EXPERTRONICS</a>
+          <p class="text-steel text-sm leading-relaxed mb-6">
+            Votre partenaire en maintenance industrielle, électronique et automatisation.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-6">Company</h4>
+          <ul class="space-y-3 text-steel text-sm">
+            <li><a href="#" class="hover:text-accent transition">About Us</a></li>
+            <li><a href="#" class="hover:text-accent transition">Careers</a></li>
+            <li><a href="#" class="hover:text-accent transition">Case Studies</a></li>
+            <li><a href="#" class="hover:text-accent transition">News & Press</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-6">Solutions</h4>
+          <ul class="space-y-3 text-steel text-sm">
+            <li><a href="#" class="hover:text-accent transition">Maintenance industrielle</a></li>
+            <li><a href="#" class="hover:text-accent transition">Réparation électronique</a></li>
+            <li><a href="#" class="hover:text-accent transition">Automatisation</a></li>
+            <li><a href="#" class="hover:text-accent transition">Machine de pesage</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-6">Stay Updated</h4>
+          <p class="text-steel text-sm mb-4">Latest industrial trends delivered to your inbox.</p>
+          <div class="flex">
+            <input type="text" placeholder="Email" class="bg-white/5 border border-white/10 px-4 py-2 rounded-l-lg w-full focus:outline-none focus:border-accent text-sm">
+            <button class="bg-accent text-black px-4 py-2 rounded-r-lg font-bold hover:bg-white transition">Go</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-steel text-xs">
+        <p>&copy; 2024 Expertronics Industrial. All rights reserved.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-white">Privacy Policy</a>
+          <a href="#" class="hover:text-white">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const btn = document.getElementById('mobile-btn');
+    const menu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('navbar');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      // Change icon
+      const icon = btn.querySelector('i');
+      if (menu.classList.contains('flex')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Close mobile menu when link clicked
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+        btn.querySelector('i').classList.add('fa-bars');
+        btn.querySelector('i').classList.remove('fa-times');
+      });
+    });
+
+    // Navbar Glass Effect on Scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('py-2');
+        navbar.classList.remove('py-4');
+        navbar.classList.add('shadow-xl');
+      } else {
+        navbar.classList.add('py-4');
+        navbar.classList.remove('py-2');
+        navbar.classList.remove('shadow-xl');
+      }
+    });
+
+    // Theme Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      // Also toggle between light/dark for the body background if needed explicitly
+      // For now, Tailwind 'dark:' classes handle it, but we can add logic here.
+      const icon = document.querySelector('#theme-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    });
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero
+    const tl = gsap.timeline();
+    tl.from("#home h1", { opacity: 0, y: 100, duration: 1, ease: "power4.out", delay: 0.5 })
+      .from("#home p", { opacity: 0, y: 50, duration: 1, ease: "power3.out" }, "-=0.5")
+      .from("#home a", { opacity: 0, scale: 0.8, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.5");
+
+    // Sections Fade Up
+    gsap.utils.toArray('section').forEach((section, i) => {
+      if(section.id !== 'home') {
+        gsap.from(section, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          },
+          opacity: 0,
+          y: 60,
+          duration: 1,
+          ease: "power2.out"
+        });
+      }
+    });
+
+    // Stagger cards in services and why us
+    gsap.utils.toArray('.glass-card, #services .group').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: i * 0.1
+      });
+    });
+
+  </script>
+</body>
+</html>
