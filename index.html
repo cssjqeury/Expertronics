@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -23,8 +23,8 @@
           },
           fontFamily: { display: ['"Space Grotesk"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
           animation: { 
-            'float': 'float 6s ease-in-out infinite', 
-            'glow': 'glow 2s ease-in-out infinite alternate',
+             'float': 'float 6s ease-in-out infinite', 
+             'glow': 'glow 2s ease-in-out infinite alternate',
             'scroll': 'scroll 30s linear infinite'
           },
           keyframes: {
@@ -59,7 +59,7 @@
     .preserve-3d { transform-style: preserve-3d; perspective: 1000px; }
     
     /* Scroller Utility */
-    .logo-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+    .logo-track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
     .logo-track:hover { animation-play-state: paused; }
     
     /* Custom Scrollbar */
@@ -68,22 +68,11 @@
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #00f5ff; }
 
-    /* Scroller Utility */
-.logo-track {
-  display: flex;
-  width: max-content;
-  animation: scroll 30s linear infinite; /* Adjusted speed */
-}
-
-.logo-track:hover {
-  animation-play-state: paused;
-}
-
-/* Ensure seamless loop */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+    /* Scroll Animation */
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
@@ -95,14 +84,14 @@
   <nav class="fixed top-0 w-full z-40 glass border-b border-white/5 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="#" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
-        <img src="assets\img\logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain">
+        <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain">
       </a>
       
       <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
         <a href="#home" class="hover:text-accent transition">Home</a>
         <a href="#why" class="hover:text-accent transition">À propos</a>
         <a href="#services" class="hover:text-accent transition">Services</a>
-        <a href="#Projets" class="hover:text-accent transition">Projets</a>
+        <a href="#products" class="hover:text-accent transition">Produits</a> <a href="#Projets" class="hover:text-accent transition">Projets</a>
         <a href="#contact" class="px-6 py-2 border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition">Contact</a>
       </div>
 
@@ -115,14 +104,14 @@
       <a href="#home" class="block text-lg py-2 hover:text-accent">Home</a>
       <a href="#why" class="block text-lg py-2 hover:text-accent">À propos</a>
       <a href="#services" class="block text-lg py-2 hover:text-accent">Services</a>
-      <a href="#Projets" class="block text-lg py-2 hover:text-accent">Projets</a>
-      <a href="#contact" class="block text-lg py-2 text-accent font-bold">Contact Us</a>
+      <a href="#products" class="block text-lg py-2 hover:text-accent">Produits</a> <a href="#Projets" class="block text-lg py-2 hover:text-accent">Projets</a>
+      <a href="#contact" class="block text-lg py-2 text-accent font-bold">Contact nos</a>
     </div>
   </nav>
 
   <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <video autoplay muted loop playsinline class="video-bg opacity-60">
-      <source src="assets\videos/Mechanical_Intro.mp4" type="video/mp4">
+      <source src="C:\Users\VIET\Documents\Programming\Expertronics\assets\videos/Mechanical_Intro.mp4" type="video/mp4">
     </video>
     
     <div class="absolute inset-0 bg-gradient-to-b from-darkbg/90 via-darkbg/40 to-darkbg"></div>
@@ -153,7 +142,7 @@
     <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-20">
-        <h2 class="text-5xl md:text-6xl font-bold mb-4">Why Leaders <span class="text-accent">Trust Us</span></h2>
+        <h2 class="text-5xl md:text-6xl font-bold mb-4">Pourquoi choisir <span class="text-accent">EXPERTRONICS?</span></h2>
         <p class="text-steel text-xl max-w-2xl mx-auto">Nous améliorons et optimisons votre performance industrielle.</p>
       </div>
 
@@ -230,7 +219,7 @@ De la mise à niveau de machines à la création de solutions sur mesure, nous a
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#444 1px, transparent 1px); background-size: 30px 30px;"></div>
     
     <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <h2 class="text-5xl md:text-7xl font-bold text-center mb-20">Nos <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Compétences</span></h2>
+      <h2 class="text-5xl md:text-7xl font-bold text-center mb-20">Nos <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Services</span></h2>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
@@ -253,25 +242,86 @@ De la mise à niveau de machines à la création de solutions sur mesure, nous a
           <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-chart-line text-8xl"></i></div>
           <i class="fas fa-chart-line text-5xl text-accent mb-6"></i>
           <h3 class="text-2xl font-bold mb-4">Conception de Machines</h3>
-          <p class="text-steel mb-6">Nous fabriquons notre propre machine professionnelle :
-Machine de Pesage Expertronics
-Robuste, précise et adaptée aux lignes de production.</p>
-          <a href="#contact" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block">Learn more &rarr;</a>
+          <p class="text-steel mb-6">Conception et fabrication sur mesure pour répondre à des besoins spécifiques de production.</p>
+          <a href="#products" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block">Learn more &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="products" class="py-32 relative bg-darkbg overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-20">
+        <h2 class="text-5xl md:text-7xl font-bold mb-6">Nos <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Produits</span></h2>
+        <p class="text-steel text-xl max-w-2xl mx-auto">Solutions matérielles conçues et assemblées par Expertronics.</p>
+      </div>
+
+      <div class="glass border border-accent/20 rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div class="relative rounded-2xl overflow-hidden h-[400px] w-full border border-white/10 bg-darkbg/50">
+              <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\machine_photo.jpg" 
+                   onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'"
+                   alt="Machine de Pesage Expertronics" 
+                   class="object-cover w-full h-full transform transition duration-700 group-hover:scale-105">
+            </div>
+            <div class="absolute top-4 right-4 bg-accent text-black font-bold px-4 py-1 rounded-full text-sm shadow-lg">
+              New Series
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <h3 class="text-3xl md:text-5xl font-bold text-white mb-6">
+              Machine de Pesage <br>
+              <span class="text-accent">Expertronics X1</span>
+            </h3>
+            
+            <p class="text-steel text-lg mb-8 leading-relaxed">
+              Une solution de pesage industriel haute précision, conçue pour les environnements exigeants. 
+              Dotée d'une interface tactile intuitive et d'une connectivité IIoT complète, la X1 optimise 
+              votre contrôle qualité tout en réduisant le gaspillage de matière première.
+            </p>
+
+            <ul class="space-y-4 mb-10 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-accent"></i> Précision de pesage +/- 0.5g
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-accent"></i> Structure en acier inoxydable 316L
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-accent"></i> Intégration SCADA native
+              </li>
+            </ul>
+
+            <div>
+              <a href="Machine-Pesage.html" class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-accent text-accent font-bold rounded-full text-lg hover:bg-accent hover:text-black transition-all group">
+                Learn more
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
   <section id="Projets" class="py-32 bg-darkbg/50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex justify-between items-end mb-16">
         <h2 class="text-5xl md:text-6xl font-bold">Projets <span class="text-accent">Réalisés</span></h2>
-        <a href="#contact" class="hidden md:block text-steel hover:text-white transition">View all case studies &rarr;</a>
+        <a href="Projets.html" class="hidden md:block text-steel hover:text-white transition">View all case studies &rarr;</a>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
-          <img src="assets\img\img3.JPG" alt="Automotive Line" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\img3.JPG" 
+               onerror="this.src='https://images.unsplash.com/photo-1581093577422-9d08e0673c58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'"
+               alt="Automotive Line" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
           <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
             <span class="text-accent text-sm font-bold uppercase tracking-wider">Automotive</span>
@@ -281,7 +331,9 @@ Robuste, précise et adaptée aux lignes de production.</p>
         </div>
 
         <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
-          <img src="assets\img\img6.JPG" alt="Food Processing" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\img6.JPG" 
+               onerror="this.src='https://images.unsplash.com/photo-1590502593747-42a996133562?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'"
+               alt="Food Processing" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
           <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
             <span class="text-accent text-sm font-bold uppercase tracking-wider">Food & Bev</span>
@@ -291,7 +343,9 @@ Robuste, précise et adaptée aux lignes de production.</p>
         </div>
 
         <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
-          <img src="assets\img\img7.JPG" alt="Energy Grid" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\img7.JPG" 
+               onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'"
+               alt="Energy Grid" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
           <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
             <span class="text-accent text-sm font-bold uppercase tracking-wider">Energy</span>
@@ -299,6 +353,12 @@ Robuste, précise et adaptée aux lignes de production.</p>
             <p class="text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition delay-100">IoT sensors for predictive substation maintenance.</p>
           </div>
         </div>
+          <div>
+              <a href="Projets.html" class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-accent text-accent font-bold rounded-full text-lg hover:bg-accent hover:text-black transition-all group">
+                Learn more
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </a>
+          </div>
       </div>
     </div>
   </section>
@@ -311,20 +371,20 @@ Robuste, précise et adaptée aux lignes de production.</p>
     <div class="flex overflow-hidden relative w-full">
       <div class="logo-track flex gap-16 md:gap-24 px-10 items-center">
         
-        <img src="assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
         
-        <img src="assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
 
-        <img src="assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\Logo_Maïsadour_2018.png" a lt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\Logo_Maïsadour_2018.png" alt="Maisadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
+        <img src="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\img\azura_logo_footer.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
 
       </div>
     </div>
@@ -372,27 +432,31 @@ Robuste, précise et adaptée aux lignes de production.</p>
           </div>
         </div>
 
-        <form class="glass p-8 rounded-3xl border border-white/10 shadow-2xl">
+<form action="https://formsubmit.co/yassinejmix4@gmail.com" method="POST" class="glass p-8 rounded-3xl border border-white/10 shadow-2xl">
+          
+          <input type="hidden" name="_subject" value="Nouveau contact via Site Expertronics">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://votre-site.com/merci.html">
           <div class="space-y-6">
             <div class="grid grid-cols-2 gap-6">
               <div class="flex flex-col gap-2">
                 <label class="text-sm font-bold text-steel">Nom</label>
-                <input type="text" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="John Doe">
+                <input type="text" name="nom" required class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="John Doe">
               </div>
               <div class="flex flex-col gap-2">
                 <label class="text-sm font-bold text-steel">Entreprise</label>
-                <input type="text" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="Acme Industries">
+                <input type="text" name="entreprise" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="Acme Industries">
               </div>
             </div>
             
             <div class="flex flex-col gap-2">
               <label class="text-sm font-bold text-steel">Email</label>
-              <input type="email" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="john@company.com">
+              <input type="email" name="email" required class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="john@company.com">
             </div>
 
             <div class="flex flex-col gap-2">
               <label class="text-sm font-bold text-steel">Description du projet</label>
-              <textarea rows="4" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="Parlez-nous de vos besoins..."></textarea>
+              <textarea name="message" required rows="4" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="Parlez-nous de vos besoins..."></textarea>
             </div>
 
             <button type="submit" class="w-full py-4 bg-accent text-black font-bold rounded-lg hover:bg-white transition duration-300 shadow-lg">
@@ -400,7 +464,6 @@ Robuste, précise et adaptée aux lignes de production.</p>
             </button>
           </div>
         </form>
-
       </div>
     </div>
   </section>
@@ -555,8 +618,4 @@ Robuste, précise et adaptée aux lignes de production.</p>
 
   </script>
 </body>
-
 </html>
-
-
-
