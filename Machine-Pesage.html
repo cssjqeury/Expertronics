@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Machine de Pesage Expertronics - Haute précision et robustesse industrielle." />
+  <title>Machine de Pesage X1 | Expertronics</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a1d56',
+            accent: '#00f5ff',
+            steel: '#94a3b8',
+            darkbg: '#0f172a',
+            surface: '#1e293b',
+          },
+          fontFamily: { display: ['"Space Grotesk"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+          animation: { 
+             'float': 'float 6s ease-in-out infinite', 
+             'glow': 'glow 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+            glow: { from: { boxShadow: '0 0 20px rgba(0,245,255,0.3)' }, to: { boxShadow: '0 0 40px rgba(0,245,255,0.6)' } },
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+    
+    /* Lightbox Styles */
+    #lightbox { transition: opacity 0.3s ease; }
+    #lightbox.hidden { display: none; }
+    #lightbox.visible { display: flex; opacity: 1; }
+  </style>
+</head>
+<body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
+
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center opacity-0 backdrop-blur-sm p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-accent transition text-4xl z-50 focus:outline-none">
+        <i class="fas fa-times"></i>
+    </button>
+    <div id="lightbox-content" class="max-w-6xl max-h-[90vh] w-full flex items-center justify-center relative">
+        </div>
+  </div>
+
+  <nav class="fixed top-0 w-full z-40 glass border-b border-white/5" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+        EXPERTRONICS
+      </a>
+      
+      <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+        <a href="index.html" class="text-accent hover:text-white transition"><i class="fas fa-arrow-left mr-2"></i> Retour à l'accueil</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="relative pt-32 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/20 via-darkbg to-darkbg"></div>
+    <div class="absolute top-20 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs uppercase tracking-widest">
+          <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> Série Professionnelle
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+          Machine de Pesage <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-steel">Expertronics X1</span>
+        </h1>
+        <p class="text-xl text-steel leading-relaxed">
+          La précision chirurgicale rencontre la robustesse industrielle. Conçue pour maximiser votre rendement et minimiser les pertes de matières premières.
+        </p>
+        
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#contact" class="px-8 py-3 bg-accent text-black font-bold rounded-lg hover:bg-white transition shadow-[0_0_20px_rgba(0,245,255,0.3)]">
+            Demander un Devis
+          </a>
+          <a href="#specs" class="px-8 py-3 border border-white/20 hover:bg-white/10 rounded-lg transition">
+            Spécifications
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl aspect-[4/3] group cursor-pointer" onclick="openLightbox('image', document.getElementById('main-image').src)">
+            <img id="main-image" src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\machine_photo.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'"
+                 class="object-cover w-full h-full transition duration-500 group-hover:scale-105"
+                 alt="Expertronics X1 Main View"
+                 loading="eager">
+            
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                <i class="fas fa-expand text-accent text-4xl drop-shadow-lg transform scale-50 group-hover:scale-100 transition duration-300"></i>
+            </div>
+
+            <div class="absolute bottom-4 left-4 bg-black/70 backdrop-blur px-4 py-2 rounded-lg text-sm border border-white/10 pointer-events-none">
+                <i class="fas fa-camera mr-2 text-accent"></i> Cliquez pour agrandir
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 border-b border-white/5 bg-surface/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-sm text-steel mb-4 uppercase tracking-widest font-bold">Galerie & Détails (Cliquez pour agrandir)</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\machine_photo.jpg" 
+                     onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-expand text-white text-xl"></i>
+                </div>
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img3.JPG" 
+                     onerror="this.src='https://images.unsplash.com/photo-1617575519391-b66471e4cb9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-expand text-white text-xl"></i>
+                </div>
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img6.JPG" 
+                     onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-expand text-white text-xl"></i>
+                </div>
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img7.JPG" 
+                     onerror="this.src='https://images.unsplash.com/photo-1531297461136-82lw9b44d940?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-expand text-white text-xl"></i>
+                </div>
+            </div>
+            
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 bg-accent/10 flex items-center justify-center h-24 md:h-32 group hover:bg-accent hover:text-black transition text-white" 
+                 onclick="openLightbox('video', 'C:/Users/VIET/Documents/Programming/Expertronics/assets/videos/machine_demo.mp4')">
+                <div class="text-center group-hover:scale-110 transition">
+                    <i class="fas fa-play-circle text-3xl mb-1"></i>
+                    <p class="text-xs font-bold">Voir Vidéo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-darkbg">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-16">
+        
+        <div class="lg:col-span-2 space-y-8">
+            <h2 class="text-3xl font-bold border-l-4 border-accent pl-4">Description Détaillée</h2>
+            
+            <div class="rounded-2xl overflow-hidden border border-white/10 cursor-pointer group" onclick="openLightbox('image', this.querySelector('img').src)">
+                
+
+[Image of industrial weighing machine diagram]
+
+                <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                     alt="Schéma Technique" 
+                     class="w-full h-auto opacity-80 group-hover:opacity-100 transition">
+            </div>
+
+            <div class="text-steel space-y-6 text-lg leading-relaxed">
+                <p>
+                    La <strong>Machine de Pesage Expertronics X1</strong> représente l'aboutissement de notre expertise en ingénierie et en automatisation. Conçue spécifiquement pour les lignes de production à cadence élevée, elle offre une stabilité de pesage inégalée, même dans des environnements soumis à des vibrations.
+                </p>
+                <p>
+                    Contrairement aux solutions standards, la X1 intègre des algorithmes de filtrage numérique propriétaires qui éliminent le bruit électronique, garantissant que chaque gramme compte. Son châssis en acier inoxydable 316L est conçu pour répondre aux normes d'hygiène les plus strictes (FDA/EHEDG), rendant le nettoyage rapide et sûr.
+                </p>
+                <p>
+                    L'interface homme-machine (IHM) tactile de 10 pouces permet aux opérateurs de changer de recette en moins de 3 clics, réduisant considérablement les temps de changement de série.
+                </p>
+            </div>
+
+            <h3 class="text-2xl font-bold mt-10 mb-6">Points Forts</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-feather-alt"></i></div>
+                    <div><h4 class="font-bold text-white">Haute Précision</h4><p class="text-sm text-steel">Cellules de charge digitales haute résolution.</p></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-sync-alt"></i></div>
+                    <div><h4 class="font-bold text-white">Changement Rapide</h4><p class="text-sm text-steel">Mémoire de 100 recettes produits.</p></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-wifi"></i></div>
+                    <div><h4 class="font-bold text-white">Connectivité 4.0</h4><p class="text-sm text-steel">Ethernet/IP, Modbus TCP, OPC UA.</p></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-tools"></i></div>
+                    <div><h4 class="font-bold text-white">Maintenance Facile</h4><p class="text-sm text-steel">Accès sans outils aux pièces d'usure.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="specs" class="lg:col-span-1">
+            <div class="glass p-8 rounded-2xl border border-white/10 sticky top-24">
+                <h3 class="text-2xl font-bold mb-6">Fiche Technique</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Modèle</span><span class="font-mono text-accent">EXP-X1-PRO</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Plage de Pesage</span><span class="font-mono text-white">10g - 5000g</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Précision</span><span class="font-mono text-white">+/- 0.5g</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Cadence</span><span class="font-mono text-white">Jusqu'à 60 cps/min</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Alimentation</span><span class="font-mono text-white">220V / 50Hz</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Matériau</span><span class="font-mono text-white">Inox 304/316L</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Indice IP</span><span class="font-mono text-white">IP65 (Lavage)</span></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-xs text-steel mb-4">* Les spécifications peuvent être adaptées selon vos besoins.</p>
+                    <a href="#" class="block w-full text-center py-3 bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg transition text-sm font-bold">
+                        <i class="fas fa-file-pdf mr-2 text-red-400"></i> Télécharger Brochure
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<section id="contact" class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-accent/10"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <h2 class="text-4xl font-bold mb-6">Intéressé par cette machine ?</h2>
+        <p class="text-steel mb-8">Nos ingénieurs sont disponibles pour une démonstration ou pour étudier l'intégration de la X1 dans votre ligne actuelle.</p>
+        
+        <div class="relative max-w-2xl mx-auto">
+            
+            <form id="machineForm" action="https://formsubmit.co/ajax/yassinejmix4@gmail.com" method="POST" class="glass p-8 rounded-2xl text-left">
+                
+                <input type="hidden" name="_subject" value="Nouvelle demande : Machine Expertronics X1">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <input type="text" name="nom" required placeholder="Nom complet" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 text-white focus:border-accent outline-none transition">
+                    </div>
+                    <div>
+                        <input type="text" name="entreprise" placeholder="Entreprise" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 text-white focus:border-accent outline-none transition">
+                    </div>
+                </div>
+                
+                <input type="email" name="email" required placeholder="Email professionnel" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 mb-4 text-white focus:border-accent outline-none transition">
+                
+                <button type="submit" id="machineBtn" class="w-full bg-accent text-black font-bold py-4 rounded hover:bg-white transition flex justify-center items-center gap-2">
+                    <span>Envoyer la demande</span> <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <div id="machineSuccess" class="hidden absolute inset-0 bg-surface/95 backdrop-blur-xl rounded-2xl flex-col items-center justify-center z-20 border border-accent/20 p-6">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-black text-3xl mb-4 shadow-[0_0_15px_rgba(34,197,94,0.5)]">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Demande Reçue !</h3>
+                <p class="text-steel text-sm mb-6">Nous avons bien reçu vos coordonnées. Un spécialiste produit vous contactera très bientôt.</p>
+                <button onclick="resetMachineForm()" class="px-6 py-2 border border-white/20 rounded-lg hover:bg-white/10 transition text-sm text-white">
+                    Fermer
+                </button>
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+  <footer class="bg-black py-8 border-t border-white/10 text-center text-steel text-sm">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2024 Expertronics Industrial. Tous droits réservés.</p>
+        <div class="mt-4 md:mt-0 space-x-6">
+            <a href="index.html" class="hover:text-white">Accueil</a>
+            <a href="index.html#contact" class="hover:text-white">Contact</a>
+        </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    /* --- Lightbox Logic --- */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const mainImage = document.getElementById('main-image');
+
+    // Function to swap the main preview image when hovering
+    function swapMainImage(element) {
+        const newSrc = element.querySelector('img').src;
+        mainImage.style.opacity = '0.7';
+        setTimeout(() => {
+            mainImage.src = newSrc;
+            mainImage.style.opacity = '1';
+        }, 150);
+    }
+
+    // Function to open the Full Screen Lightbox
+    function openLightbox(type, src) {
+        lightbox.classList.remove('hidden');
+        setTimeout(() => {
+            lightbox.classList.add('visible');
+            lightbox.classList.remove('opacity-0');
+        }, 10);
+
+        lightboxContent.innerHTML = ''; 
+
+        if (type === 'video') {
+            lightboxContent.innerHTML = `
+                <video controls autoplay class="max-w-full max-h-[85vh] rounded-lg shadow-2xl border border-white/20">
+                    <source src="${src}" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+            `;
+        } else {
+            lightboxContent.innerHTML = `
+                <img src="${src}" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+            `;
+        }
+    }
+
+    // Function to Close Lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('visible');
+        lightbox.classList.add('opacity-0');
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            lightboxContent.innerHTML = ''; 
+        }, 300); 
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") closeLightbox();
+    });
+
+    lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) closeLightbox();
+    });
+
+    /* --- GSAP Animations --- */
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.from("h1", { opacity: 0, y: 50, duration: 1, ease: "power4.out", delay: 0.2 });
+    gsap.from(".glass", { 
+        scrollTrigger: { trigger: "#specs", start: "top 80%" },
+        opacity: 0, x: 50, duration: 0.8 
+    });
+
+    /* --- Machine Form AJAX Logic --- */
+    const machineForm = document.getElementById('machineForm');
+    const machineSuccess = document.getElementById('machineSuccess');
+    const machineBtn = document.getElementById('machineBtn');
+    const machineBtnOriginal = machineBtn.innerHTML;
+
+    machineForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Loading State
+        machineBtn.disabled = true;
+        machineBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+
+        fetch(machineForm.action, {
+            method: 'POST',
+            body: new FormData(machineForm),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                machineSuccess.classList.remove('hidden');
+                machineSuccess.classList.add('flex');
+                machineForm.reset();
+            } else {
+                alert("Erreur lors de l'envoi. Veuillez réessayer.");
+            }
+        })
+        .catch(error => alert("Erreur de connexion."))
+        .finally(() => {
+            machineBtn.disabled = false;
+            machineBtn.innerHTML = machineBtnOriginal;
+        });
+    });
+
+    function resetMachineForm() {
+        machineSuccess.classList.add('hidden');
+        machineSuccess.classList.remove('flex');
+    }
+  </script>
+
+  
+</body>
+</html>

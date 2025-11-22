@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Nos Réalisations - Expertronics. Découvrez nos projets en automatisation, maintenance et réparation électronique." />
+  <title>Nos Projets | Expertronics</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a1d56',
+            accent: '#00f5ff',
+            steel: '#94a3b8',
+            darkbg: '#0f172a',
+            surface: '#1e293b',
+          },
+          fontFamily: { display: ['"Space Grotesk"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+          animation: { 
+             'float': 'float 6s ease-in-out infinite', 
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+    
+    /* Project Card Hover Effects matching Index */
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-card:hover .project-content { transform: translateY(0); }
+    .project-card:hover img { transform: scale(1.1); }
+    
+    /* Filter Button Active State */
+    .filter-btn.active { background-color: #00f5ff; color: black; border-color: #00f5ff; }
+
+    /* Lightbox */
+    #lightbox { transition: opacity 0.3s ease; }
+    #lightbox.hidden { display: none; }
+    #lightbox.visible { display: flex; opacity: 1; }
+  </style>
+</head>
+<body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
+
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center opacity-0 backdrop-blur-sm p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-accent transition text-4xl z-50 focus:outline-none">
+        <i class="fas fa-times"></i>
+    </button>
+    <div id="lightbox-content" class="max-w-6xl max-h-[90vh] w-full flex items-center justify-center relative"></div>
+  </div>
+
+  <nav class="fixed top-0 w-full z-40 glass border-b border-white/5" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+        EXPERTRONICS
+      </a>
+      <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+        <a href="index.html" class="text-accent hover:text-white transition"><i class="fas fa-arrow-left mr-2"></i> Retour à l'accueil</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="relative pt-40 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/20 via-darkbg to-darkbg"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">Nos <span class="text-accent">Réalisations</span></h1>
+        <p class="text-xl text-steel max-w-2xl mx-auto">
+            Une décennie d'excellence en ingénierie. Découvrez comment nous transformons les défis industriels en solutions performantes.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+            <button onclick="filterProjects('all')" class="filter-btn active px-6 py-2 border border-white/20 rounded-full hover:border-accent transition duration-300 text-sm font-bold uppercase tracking-wider">Tout</button>
+            <button onclick="filterProjects('auto')" class="filter-btn px-6 py-2 border border-white/20 rounded-full hover:border-accent transition duration-300 text-sm font-bold uppercase tracking-wider">Automatisation</button>
+            <button onclick="filterProjects('repair')" class="filter-btn px-6 py-2 border border-white/20 rounded-full hover:border-accent transition duration-300 text-sm font-bold uppercase tracking-wider">Réparation</button>
+            <button onclick="filterProjects('scada')" class="filter-btn px-6 py-2 border border-white/20 rounded-full hover:border-accent transition duration-300 text-sm font-bold uppercase tracking-wider">SCADA & IoT</button>
+        </div>
+    </div>
+  </section>
+
+  <section class="pb-32 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="auto" onclick="openLightbox(this)">
+            <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img3.JPG" 
+                 onerror="this.src='https://images.unsplash.com/photo-1581093577422-9d08e0673c58?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Automotive</span>
+                <h3 class="text-2xl font-bold text-white">Ligne d'Assemblage Robotisée</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Réduction du temps de cycle de 45% via Siemens TIA Portal et robots KUKA.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="scada" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1574689049597-7e6df3db2d8e?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Infrastructure</span>
+                <h3 class="text-2xl font-bold text-white">Station de Traitement d'Eau</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Supervision Wonderware System Platform pour une ville de 500k habitants.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="repair" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Électronique</span>
+                <h3 class="text-2xl font-bold text-white">Réparation Variateur CNC</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Remise à neuf d'un variateur de puissance Fanuc indisponible sur le marché.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="auto" onclick="openLightbox(this)">
+            <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img6.JPG" 
+                 onerror="this.src='https://images.unsplash.com/photo-1590502593747-42a996133562?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Agroalimentaire</span>
+                <h3 class="text-2xl font-bold text-white">Embouteillage Haute Vitesse</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Synchronisation de 3 convoyeurs et système de vision pour 20k unités/heure.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="scada" onclick="openLightbox(this)">
+            <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img7.JPG" 
+                 onerror="this.src='https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Énergie</span>
+                <h3 class="text-2xl font-bold text-white">Monitoring Parc Solaire</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Collecte de données IoT via MQTT et tableau de bord de rendement en temps réel.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="auto" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1583912267670-6575ad43263d?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Pharmaceutique</span>
+                <h3 class="text-2xl font-bold text-white">Conditionnement Stérile</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Mise aux normes FDA 21 CFR Part 11 d'une blistéreuse ancienne génération.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="repair" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Maintenance</span>
+                <h3 class="text-2xl font-bold text-white">Rétrofit Écran Industriel</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Remplacement dalle tactile et rétroéclairage sur pupitre opérateur critique.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="auto" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1563821217551-706f9bd3e36e?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Textile</span>
+                <h3 class="text-2xl font-bold text-white">Optimisation Métier à Tisser</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Remplacement de la logique relais par automate Schneider M241.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="scada" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Mining</span>
+                <h3 class="text-2xl font-bold text-white">Maintenance Prédictive IA</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Analyse vibratoire sur broyeurs miniers pour anticiper les pannes.</p>
+            </div>
+        </div>
+
+        <div class="project-card group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-white/5" data-category="auto" onclick="openLightbox(this)">
+            <img src="placeholder.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&w=800&q=80'"
+                 class="absolute inset-0 w-full h-full object-cover transition duration-700">
+            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition duration-500"></div>
+            <div class="project-content absolute bottom-0 p-8 translate-y-4 transition duration-500 w-full">
+                <span class="text-accent text-xs font-bold uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full mb-3 inline-block">Logistique</span>
+                <h3 class="text-2xl font-bold text-white">Tri Automatisé</h3>
+                <p class="text-gray-300 mt-2 text-sm leading-relaxed">Installation de lecteurs codes-barres Cognex et éjecteurs pneumatiques.</p>
+            </div>
+        </div>
+
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/10 bg-gradient-to-b from-darkbg to-primary/20 text-center">
+    <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-6">Un projet complexe ?</h2>
+        <p class="text-steel mb-8 text-lg">Nos ingénieurs sont prêts à relever le défi. Discutons de vos besoins spécifiques.</p>
+        <a href="index.html#contact" class="inline-block px-10 py-4 bg-accent text-black font-bold rounded-full text-lg shadow-[0_0_20px_rgba(0,245,255,0.4)] hover:bg-white transition transform hover:-translate-y-1">
+            Démarrer un projet
+        </a>
+    </div>
+  </section>
+
+  <footer class="bg-black py-8 border-t border-white/10 text-center text-steel text-sm">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2024 Expertronics Industrial. Tous droits réservés.</p>
+        <div class="mt-4 md:mt-0 space-x-6">
+            <a href="index.html" class="hover:text-white">Accueil</a>
+            <a href="index.html#contact" class="hover:text-white">Contact</a>
+        </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    /* --- Filter Logic --- */
+    function filterProjects(category) {
+        // Update Buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.textContent.toLowerCase().includes(category === 'all' ? 'tout' : category) || 
+               (category === 'auto' && btn.textContent.includes('Automatisation')) ||
+               (category === 'repair' && btn.textContent.includes('Réparation')) ||
+               (category === 'scada' && btn.textContent.includes('SCADA'))) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Filter Cards
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            if(category === 'all' || card.dataset.category === category) {
+                gsap.to(card, { autoAlpha: 1, display: 'block', duration: 0.4 });
+            } else {
+                gsap.to(card, { autoAlpha: 0, display: 'none', duration: 0.4 });
+            }
+        });
+    }
+
+    /* --- Lightbox Logic --- */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+
+    function openLightbox(element) {
+        const img = element.querySelector('img').src;
+        const title = element.querySelector('h3').innerText;
+        const desc = element.querySelector('p').innerText;
+
+        lightbox.classList.remove('hidden');
+        setTimeout(() => {
+            lightbox.classList.add('visible');
+            lightbox.classList.remove('opacity-0');
+        }, 10);
+
+        lightboxContent.innerHTML = `
+            <div class="bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[85vh]">
+                <div class="md:w-2/3 bg-black flex items-center justify-center">
+                    <img src="${img}" class="max-w-full max-h-[60vh] md:max-h-[85vh] object-contain">
+                </div>
+                <div class="md:w-1/3 p-8 flex flex-col justify-center bg-surface">
+                    <h3 class="text-3xl font-bold text-white mb-4">${title}</h3>
+                    <p class="text-steel leading-relaxed mb-6">${desc}</p>
+                    <div class="mt-auto">
+                        <button onclick="closeLightbox()" class="text-accent font-bold hover:text-white transition">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('visible');
+        lightbox.classList.add('opacity-0');
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            lightboxContent.innerHTML = ''; 
+        }, 300);
+    }
+
+    // Close on Escape or click outside
+    document.addEventListener('keydown', (e) => { if(e.key === "Escape") closeLightbox(); });
+    lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+
+    /* --- GSAP Animations --- */
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate grid items on load
+    gsap.from(".project-card", {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#projects-grid",
+            start: "top 85%"
+        }
+    });
+  </script>
+</body>
+</html>
