@@ -35,6 +35,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="C:\Users\VIET\Documents\Programming\Programming\Expertronics\assets\css\style.css"/>
   
   <style>
     body { font-family: 'Inter', sans-serif; }
@@ -59,8 +60,8 @@
 
   <nav class="fixed top-0 w-full z-40 glass border-b border-white/5" id="navbar">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
-        EXPERTRONICS
+      <a href="index.html" class="logo text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+        <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain logo">
       </a>
       
       <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
@@ -100,7 +101,7 @@
       <div class="relative">
         <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl aspect-[4/3] group cursor-pointer" onclick="openLightbox('image', document.getElementById('main-image').src)">
             <img id="main-image" src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\machine_photo.jpg" 
-                 onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'"
+                 onerror="this.src='file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/machine-1.jpg'"
                  class="object-cover w-full h-full transition duration-500 group-hover:scale-105"
                  alt="Expertronics X1 Main View"
                  loading="eager">
@@ -127,7 +128,7 @@
                  onmouseover="swapMainImage(this)"
                  onclick="openLightbox('image', this.querySelector('img').src)">
                 <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\machine_photo.jpg" 
-                     onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     onerror="this.src='file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/mach2.jpg'"
                      class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fas fa-expand text-white text-xl"></i>
@@ -138,7 +139,7 @@
                  onmouseover="swapMainImage(this)"
                  onclick="openLightbox('image', this.querySelector('img').src)">
                 <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img3.JPG" 
-                     onerror="this.src='https://images.unsplash.com/photo-1617575519391-b66471e4cb9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     onerror="this.src='file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/mach1.jpg'"
                      class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fas fa-expand text-white text-xl"></i>
@@ -149,7 +150,7 @@
                  onmouseover="swapMainImage(this)"
                  onclick="openLightbox('image', this.querySelector('img').src)">
                 <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img6.JPG" 
-                     onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     onerror="this.src='file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/mach3.JPG'"
                      class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fas fa-expand text-white text-xl"></i>
@@ -160,7 +161,7 @@
                  onmouseover="swapMainImage(this)"
                  onclick="openLightbox('image', this.querySelector('img').src)">
                 <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\img7.JPG" 
-                     onerror="this.src='https://images.unsplash.com/photo-1531297461136-82lw9b44d940?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60'"
+                     onerror="this.src='file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/machin4.jpg'"
                      class="w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fas fa-expand text-white text-xl"></i>
@@ -168,7 +169,7 @@
             </div>
             
             <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 bg-accent/10 flex items-center justify-center h-24 md:h-32 group hover:bg-accent hover:text-black transition text-white" 
-                 onclick="openLightbox('video', 'C:/Users/VIET/Documents/Programming/Expertronics/assets/videos/machine_demo.mp4')">
+                 onclick="openLightbox('video', 'file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/videos/Vid-1.mp4')">
                 <div class="text-center group-hover:scale-110 transition">
                     <i class="fas fa-play-circle text-3xl mb-1"></i>
                     <p class="text-xs font-bold">Voir Vidéo</p>
@@ -186,12 +187,10 @@
             
             <div class="rounded-2xl overflow-hidden border border-white/10 cursor-pointer group" onclick="openLightbox('image', this.querySelector('img').src)">
                 
-
-[Image of industrial weighing machine diagram]
-
-                <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                     alt="Schéma Technique" 
-                     class="w-full h-auto opacity-80 group-hover:opacity-100 transition">
+                    <video autoplay muted loop playsinline class="video-bg opacity-60">
+      <source src="C:\Users\VIET\Documents\Programming\Expertronics\assets\videos/Mechanical_Intro.mp4" type="video/mp4">
+    </video>
+           
             </div>
 
             <div class="text-steel space-y-6 text-lg leading-relaxed">
@@ -237,7 +236,7 @@
                     <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Cadence</span><span class="font-mono text-white">Jusqu'à 60 cps/min</span></div>
                     <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Alimentation</span><span class="font-mono text-white">220V / 50Hz</span></div>
                     <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Matériau</span><span class="font-mono text-white">Inox 304/316L</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Indice IP</span><span class="font-mono text-white">IP65 (Lavage)</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel">Indice IP</span><span class="font-mono text-white">IP21</span></div>
                 </div>
                 <div class="mt-8 pt-6 border-t border-white/10">
                     <p class="text-xs text-steel mb-4">* Les spécifications peuvent être adaptées selon vos besoins.</p>
@@ -272,7 +271,7 @@
                     </div>
                 </div>
                 
-                <input type="email" name="email" required placeholder="Email professionnel" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 mb-4 text-white focus:border-accent outline-none transition">
+                <input type="email" name="email" required placeholder="Email" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 mb-4 text-white focus:border-accent outline-none transition">
                 
                 <button type="submit" id="machineBtn" class="w-full bg-accent text-black font-bold py-4 rounded hover:bg-white transition flex justify-center items-center gap-2">
                     <span>Envoyer la demande</span> <i class="fas fa-paper-plane"></i>
