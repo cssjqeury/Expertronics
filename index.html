@@ -59,22 +59,48 @@
     /* 3D Presets */
     .preserve-3d { transform-style: preserve-3d; perspective: 1000px; }
     
-    /* Scroller Utility */
-    .logo-track { display: flex; width: max-content; animation: scroll 20s linear infinite; }
-    .logo-track:hover { animation-play-state: paused; }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #00f5ff; }
+      /* Scroll Animation */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-    /* Scroll Animation */
-    @keyframes scroll {
+  /* Scroller Utility (updated animation time) */
+  .logo-track { 
+      display: flex; 
+      width: max-content; 
+      animation: scroll 40s linear infinite; /* Increased time for smoothness */
+  }
+  .logo-track:hover { animation-play-state: paused; }
+
+  /* Custom Scroll Animation Keyframes (verify 100% to -50% is still 40s) */
+  @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
-    }
-  </style>
+  }
+
+  /* New CSS for Seamless Fading Edges */
+  .scrolling-mask {
+      /* Use a linear gradient mask to fade logos out at the sides */
+      mask-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0) 0%,   /* Start fully transparent */
+          rgba(0, 0, 0, 1) 15%,  /* Become fully opaque at 15% */
+          rgba(0, 0, 0, 1) 85%,  /* Stay opaque until 85% */
+          rgba(0, 0, 0, 0) 100%  /* Fade back to transparent at 100% */
+      );
+      -webkit-mask-image: linear-gradient( /* For Safari/Chrome compatibility */
+          to right,
+          rgba(0, 0, 0, 0) 0%, 
+          rgba(0, 0, 0, 1) 15%, 
+          rgba(0, 0, 0, 1) 85%, 
+          rgba(0, 0, 0, 0) 100%
+      );
+      overflow: hidden; 
+  } 
+</style>
+
+
 </head>
 <body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
 
@@ -112,7 +138,7 @@
 
   <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <video autoplay muted loop playsinline class="video-bg opacity-60">
-      <source src="assets/videos/Intro3.mp4" type="video/mp4">
+      <source src="assets/videos/Intro.mp4" type="video/mp4">
     </video>
     
     <div class="absolute inset-0 bg-gradient-to-b from-darkbg/90 via-darkbg/40 to-darkbg"></div>
@@ -306,7 +332,7 @@ De la mise à niveau de machines à la création de solutions sur mesure, nous a
       </div>
     </div>
   </section>
-
+  
   <section id="Projets" class="py-32 bg-darkbg/50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex justify-between items-end mb-16">
@@ -346,8 +372,8 @@ De la mise à niveau de machines à la création de solutions sur mesure, nous a
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
           <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
             <span class="text-accent text-sm font-bold uppercase tracking-wider">Electronique</span>
-            <h3 class="text-2xl font-bold text-white mt-2">Réparation Carte Électronique Écran Médical</h3>
-            <p class="text-gray-300 mt-2 transition delay-100">Réparation spécialisée d'une carte électronique pour écran médical pour usage hospitalier.</p>
+            <h3 class="text-2xl font-bold text-white mt-2">Réparation Carte Électronique HMI</h3>
+            <p class="text-gray-300 mt-2 transition delay-100">Réparation spécialisée d'une carte électronique d'interface homme-machine, restaurant les fonctionnalités d'affichage et de contrôle tactile.</p>
           </div>
         </div>
           <div>
@@ -360,37 +386,38 @@ De la mise à niveau de machines à la création de solutions sur mesure, nous a
     </div>
   </section>
 
-<section id="clients" class="py-20 bg-surface border-y border-white/5 overflow-hidden">
+<section id="clients" class="py-20 bg-surface border-y border-white/5">
     <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
       <p class="client-p text-steel uppercase tracking-widest text-sm font-bold" style="font-size: 30px;">NOS CLIENTS</p>
     </div>
     
-    <div class="flex overflow-hidden relative w-full">
-      <div class="logo-track flex gap-16 md:gap-24 px-10 items-center">
-        
-        <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\Elite.jpg" alt="Elite" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\fromital.png" alt="Fromital" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\Arizal.jpg" alt="Arizal" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\KnaufIndustries.jpg" alt="Knauf Industries" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\lafargeholcim.png" alt="LafargeHolcim" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\Maïsadour.png" alt="Maïsadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\MoovUp.png" alt="MoovUp" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\MediaTelecom.png" alt="MediaTelecom" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\sovapec.png" alt="Sovapec" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\Elite.jpg" alt="Elite" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\fromital.png" alt="Fromital" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\Arizal.jpg" alt="Arizal" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\KnaufIndustries.jpg" alt="Knauf Industries" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\lafargeholcim.png" alt="LafargeHolcim" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\Maïsadour.png" alt="Maïsadour" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\MoovUp.png" alt="MoovUp" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\MediaTelecom.png" alt="MediaTelecom" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\sovapec.png" alt="Sovapec" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-        <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition duration-500 cursor-pointer">
-
+    <div class="relative w-full"> 
+        <div class="scrolling-mask"> 
+            <div class="logo-track flex gap-16 md:gap-24 items-center">
+                
+                <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Elite.jpg" alt="Elite" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\fromital.png" alt="Fromital" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Arizal.jpg" alt="Arizal" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\KnaufIndustries.jpg" alt="Knauf Industries" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\lafargeholcim.png" alt="LafargeHolcim" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Maïsadour.png" alt="Maïsadour" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MoovUp.png" alt="MoovUp" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MediaTelecom.png" alt="MediaTelecom" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\sovapec.png" alt="Sovapec" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Gadimat.png" alt="Gadimat" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Elite.jpg" alt="Elite" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\fromital.png" alt="Fromital" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Arizal.jpg" alt="Arizal" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\KnaufIndustries.jpg" alt="Knauf Industries" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\lafargeholcim.png" alt="LafargeHolcim" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Maïsadour.png" alt="Maïsadour" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MoovUp.png" alt="MoovUp" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MediaTelecom.png" alt="MediaTelecom" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\sovapec.png" alt="Sovapec" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Gadimat.png" alt="Gadimat" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                </div>
         </div>
     </div>
 </section>
@@ -686,16 +713,3 @@ De la mise à niveau de machines à la création de solutions sur mesure, nous a
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
