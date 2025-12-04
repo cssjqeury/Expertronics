@@ -3,29 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Expertronics – Automation Industrielle & Maintenance. Précision. Performance." />
+  <meta name="description" content="Expertronics – Next-Generation Industrial Automation & Maintenance. Precision. Performance. 24/7." />
+  <meta property="og:title" content="Expertronics | Future of Industrial Automation" />
+  <meta property="og:description" content="Engineered for zero downtime. Powered by innovation." />
   <title>Expertronics | Industrial Automation & Maintenance</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            primary: '#0f172a',      // Slate 900 (Text & Strong Elements)
-            secondary: '#1e40af',    // Royal Blue (Brand Color)
-            accent: '#0284c7',       // Sky Blue (Buttons/Highlights)
-            lightbg: '#f8fafc',      // Slate 50 (Page Background)
-            surface: '#ffffff',      // White (Cards)
-            subtle: '#e2e8f0',       // Slate 200 (Borders)
+            primary: '#0a1d56',      // Deep Cosmic Blue
+            accent: '#00f5ff',       // Electric Cyan
+            steel: '#94a3b8',
+            darkbg: '#0f172a',
+            surface: '#1e293b',
           },
           fontFamily: { 
             display: ['"Space Grotesk"', 'sans-serif'], 
             sans: ['Inter', 'sans-serif'],
-            arabic: ['Cairo', 'sans-serif']
+            arabic: ['Cairo', 'sans-serif'] // Added for Arabic
           },
-          backgroundImage: {
-            'grid-pattern': "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
+          animation: { 
+             'float': 'float 6s ease-in-out infinite', 
+             'glow': 'glow 2s ease-in-out infinite alternate',
+            'scroll': 'scroll 30s linear infinite'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+            glow: { from: { boxShadow: '0 0 20px rgba(0,245,255,0.3)' }, to: { boxShadow: '0 0 40px rgba(0,245,255,0.6)' } },
+            scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
           }
         }
       }
@@ -34,135 +43,139 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="assets\css\style.css"/>
   
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-    
-    /* Arabic Font Override */
+    body { font-family: 'Inter', sans-serif; }
+    /* Arabic Font Override when lang="ar" */
     html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
     html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { font-family: 'Cairo', sans-serif; }
 
-    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
     
-    /* UI Utilities */
-    .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8f0; }
+    .video-bg { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; z-index: 0; }
+    .glass { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(0, 245, 255, 0.1); }
     
-    .clean-card { 
-        background: #ffffff; 
-        border: 1px solid #e2e8f0; 
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        transition: all 0.3s ease;
-    }
-    .clean-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
-        border-color: #0284c7;
-    }
-
-    .btn-primary {
-        background: #0f172a;
-        color: white;
-        transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-        background: #1e40af;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.3);
-    }
-
-    .btn-outline {
-        background: transparent;
-        border: 1px solid #0f172a;
-        color: #0f172a;
-        transition: all 0.3s ease;
-    }
-    .btn-outline:hover {
-        background: #0f172a;
-        color: white;
-    }
-
-    /* Grid Background Utility */
-    .bg-grid {
-        background-size: 40px 40px;
-        background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
-                          linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
-        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-    }
+    /* Button Effects */
+    .magnetic-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .magnetic-btn:hover { transform: scale(1.05) translateY(-4px); box-shadow: 0 10px 30px -10px rgba(0, 245, 255, 0.5); }
     
-    /* Infinite Scroll */
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-    .logo-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
-    .logo-track:hover { animation-play-state: paused; }
+    /* 3D Presets */
+    .preserve-3d { transform-style: preserve-3d; perspective: 1000px; }
     
-    /* Make logos grayscale by default, color on hover */
-    .client-logo { filter: grayscale(100%); opacity: 0.6; transition: all 0.3s; mix-blend-mode: multiply; }
-    .client-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+      /* Scroll Animation */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-    /* Lang Switcher */
-    .lang-btn { cursor: pointer; font-weight: 600; font-size: 0.85rem; padding: 4px 8px; border-radius: 4px; transition: all 0.2s; color: #64748b; }
-    .lang-btn:hover, .lang-btn.active { background-color: #e0f2fe; color: #0284c7; }
-  </style>
+  /* Scroller Utility */
+  .logo-track { 
+      display: flex; 
+      width: max-content; 
+      animation: scroll 40s linear infinite; 
+  }
+  .logo-track:hover { animation-play-state: paused; }
+
+  .scrolling-mask {
+      mask-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0) 0%,   
+          rgba(0, 0, 0, 1) 15%,  
+          rgba(0, 0, 0, 1) 85%,  
+          rgba(0, 0, 0, 0) 100%  
+      );
+      -webkit-mask-image: linear-gradient( 
+          to right,
+          rgba(0, 0, 0, 0) 0%, 
+          rgba(0, 0, 0, 1) 15%, 
+          rgba(0, 0, 0, 1) 85%, 
+          rgba(0, 0, 0, 0) 100%
+      );
+      overflow: hidden; 
+  } 
+  
+  /* Language Switcher Styles */
+  .lang-btn {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 0 5px;
+    opacity: 0.7;
+    transition: all 0.3s;
+  }
+  .lang-btn:hover, .lang-btn.active {
+    opacity: 1;
+    color: #00f5ff; /* Accent color */
+    text-shadow: 0 0 10px rgba(0,245,255,0.5);
+  }
+</style>
+
+
 </head>
-<body class="bg-lightbg text-primary overflow-x-hidden selection:bg-accent selection:text-white">
+<body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
 
-  <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
+  <button id="theme-toggle" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary/80 backdrop-blur flex items-center justify-center text-2xl hover:bg-accent hover:text-black transition-all shadow-2xl border border-accent/30">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <nav class="fixed top-0 w-full z-40 glass border-b border-white/5 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="flex items-center gap-2 group">
-        <img src="assets/img/logo.png" onerror="this.style.display='none'" alt="Expertronics" class="h-10 w-auto object-contain">
-        <span class="text-2xl font-bold tracking-tight text-primary group-hover:text-secondary transition">EXPERTRONICS</span>
+      <a href="#" class="logo text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+        <img src="assets\img\logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain logo">
       </a>
       
-      <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide text-slate-600">
-          <a href="#home" class="hover:text-secondary transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all hover:after:w-full" data-i18n="nav_home">Home</a>
-          <a href="#about" class="hover:text-secondary transition" data-i18n="nav_about">À propos</a>
-          <a href="#services" class="hover:text-secondary transition" data-i18n="nav_services">Services</a>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+          <a href="#home" class="hover:text-accent transition" data-i18n="nav_home">Home</a>
+          <a href="#about" class="hover:text-accent transition" data-i18n="nav_about">À propos</a>
+          <a href="#services" class="hover:text-accent transition" data-i18n="nav_services">Services</a>
           
           <div class="relative group h-full flex items-center">
-            <button class="hover:text-secondary transition flex items-center gap-1 focus:outline-none">
+            <button class="hover:text-accent transition flex items-center gap-2 focus:outline-none">
               <span data-i18n="nav_products">Produits</span>
               <i class="fas fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
             </button>
-            <div class="absolute top-full left-0 mt-2 w-64 bg-white border border-slate-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 overflow-hidden">
-              <a href="#product-checkweigher" class="block px-6 py-4 hover:bg-slate-50 hover:text-secondary border-b border-slate-50 transition">
+            
+            <div class="absolute top-full left-0 mt-2 w-64 bg-surface/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 overflow-hidden">
+              <a href="#product-checkweigher" class="block px-6 py-4 hover:bg-white/5 hover:text-accent border-b border-white/5 transition">
                 <i class="fas fa-scale-balanced mr-2 text-accent"></i> <span data-i18n="nav_prod_checkweigher">Trieuse Pondérale</span>
               </a>
-              <a href="#product-conveyor" class="block px-6 py-4 hover:bg-slate-50 hover:text-secondary transition">
+              <a href="#product-conveyor" class="block px-6 py-4 hover:bg-white/5 hover:text-accent transition">
                 <i class="fas fa-industry mr-2 text-accent"></i> <span data-i18n="nav_prod_conveyor">Conception Convoyeurs</span>
               </a>
             </div>
           </div>
-
-          <a href="#Projets" class="hover:text-secondary transition" data-i18n="nav_projects">Projets</a>
+          <a href="#Projets" class="hover:text-accent transition" data-i18n="nav_projects">Projets</a>
+          <a href="#contact" class="px-6 py-2 border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition" data-i18n="nav_contact">Contact</a>
           
-          <a href="#contact" class="px-5 py-2.5 bg-secondary text-white rounded-full hover:bg-primary transition shadow-md shadow-blue-900/10" data-i18n="nav_contact">Contact</a>
-          
-          <div class="flex items-center gap-1 border-l border-slate-200 pl-4">
+          <div class="flex items-center gap-3 border-l border-white/20 pl-4">
               <span class="lang-btn" onclick="changeLanguage('fr')" id="btn-fr">FR</span>
               <span class="lang-btn" onclick="changeLanguage('en')" id="btn-en">EN</span>
               <span class="lang-btn" onclick="changeLanguage('ar')" id="btn-ar">AR</span>
           </div>
-      </div>
+        </div>
 
-      <button id="mobile-btn" class="md:hidden text-2xl text-primary focus:outline-none">
+      <button id="mobile-btn" class="md:hidden text-2xl text-accent focus:outline-none">
         <i class="fas fa-bars"></i>
       </button>
     </div>
 
-    <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-6 hidden flex-col space-y-4 text-center shadow-lg md:hidden">
-      <a href="#home" class="block text-lg font-medium text-slate-700 py-2 hover:text-secondary" data-i18n="nav_home">Home</a>
-      <a href="#about" class="block text-lg font-medium text-slate-700 py-2 hover:text-secondary" data-i18n="nav_about">À propos</a>
-      <a href="#services" class="block text-lg font-medium text-slate-700 py-2 hover:text-secondary" data-i18n="nav_services">Services</a>
-      <a href="#products" class="block text-lg font-medium text-slate-700 py-2 hover:text-secondary" data-i18n="nav_products">Produits</a>
-      <a href="#Projets" class="block text-lg font-medium text-slate-700 py-2 hover:text-secondary" data-i18n="nav_projects">Projets</a>
-      <a href="#contact" class="block text-lg font-bold text-secondary py-2" data-i18n="nav_contact">Contact</a>
-      <div class="flex justify-center gap-4 pt-4 border-t border-slate-100">
+    <div id="mobile-menu" class="absolute top-full left-0 w-full bg-darkbg/95 backdrop-blur-xl border-b border-accent/20 p-6 hidden flex-col space-y-4 text-center md:hidden">
+      <a href="#home" class="block text-lg py-2 hover:text-accent" data-i18n="nav_home">Home</a>
+      <a href="#about" class="block text-lg py-2 hover:text-accent" data-i18n="nav_about">À propos</a>
+      <a href="#services" class="block text-lg py-2 hover:text-accent" data-i18n="nav_services">Services</a>
+      <a href="#products" class="block text-lg py-2 hover:text-accent font-bold bg-white/5 rounded-lg" data-i18n="nav_products">Produits</a>
+      <div class="flex flex-col gap-2 pl-4 text-sm text-gray-300">
+          <a href="#product-checkweigher" data-i18n="nav_prod_checkweigher">- Trieuse Pondérale</a>
+          <a href="#product-conveyor" data-i18n="nav_prod_conveyor">- Convoyeurs</a>
+      </div>
+      <a href="#Projets" class="block text-lg py-2 hover:text-accent" data-i18n="nav_projects">Projets</a>
+      <a href="#contact" class="block text-lg py-2 text-accent font-bold" data-i18n="nav_contact">Contact</a>
+      <div class="flex justify-center gap-6 pt-4 border-t border-white/10">
         <span class="lang-btn text-lg" onclick="changeLanguage('fr')">FR</span>
         <span class="lang-btn text-lg" onclick="changeLanguage('en')">EN</span>
         <span class="lang-btn text-lg" onclick="changeLanguage('ar')">AR</span>
@@ -170,691 +183,1054 @@
     </div>
   </nav>
 
-  <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-white">
-    <div class="absolute inset-0 bg-grid pointer-events-none z-0"></div>
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <video autoplay muted loop playsinline class="video-bg opacity-60">
+      <source src="assets/videos/Intro.mp4" type="video/mp4">
+    </video>
     
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80 z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-darkbg/90 via-darkbg/40 to-darkbg"></div>
 
-    <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-100 rounded-full blur-[100px] opacity-60 animate-pulse"></div>
-    <div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-cyan-50 rounded-full blur-[80px] opacity-70"></div>
-
-    <div class="relative text-center px-6 max-w-5xl z-10">
-      <div class="inline-block px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-secondary text-xs font-bold uppercase tracking-wider mb-6">
-        <i class="fas fa-bolt mr-2"></i> Industrial Automation v2.0
-      </div>
-      
-      <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 text-primary">
-        <span data-i18n="hero_title_1">Conçu pour une</span><br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent" data-i18n="hero_title_2">Production Sans Arrêt</span>
+    <div class="relative text-center px-6 max-w-5xl z-10 pt-20">
+      <h1 class="header-h1 text-5xl md:text-8xl font-bold leading-tight mb-6">
+        <span class="bg-gradient-to-r from-white to-steel bg-clip-text text-transparent" data-i18n="hero_title_1">Conçu pour une</span><br>
+        <span class="text-accent drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]" data-i18n="hero_title_2">Production Sans Arrêt</span>
       </h1>
-      
-      <p class="mt-6 text-xl text-slate-600 font-light max-w-2xl mx-auto leading-relaxed" data-i18n="hero_desc">
+      <p class="mt-6 text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto" data-i18n="hero_desc">
         Solutions de maintenance industrielle, automatisation, réparation électronique et assistance technique 24/7.
       </p>
-      
-      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-lg font-semibold shadow-xl shadow-blue-900/10" data-i18n="hero_btn_quote">
+      <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+        <a href="#contact" class="magnetic-btn px-10 py-4 bg-accent text-black font-bold rounded-full text-lg shadow-[0_0_20px_rgba(0,245,255,0.4)]" data-i18n="hero_btn_quote">
           Obtenir un Devis
         </a>
-        <a href="#services" class="btn-outline px-8 py-4 rounded-full text-lg font-semibold" data-i18n="hero_btn_explore">
+        <a href="#services" class="px-10 py-4 border border-white/20 bg-white/5 backdrop-blur text-white font-bold rounded-full text-lg hover:bg-white/10 transition" data-i18n="hero_btn_explore">
           Explorer Services
         </a>
       </div>
-      
-      <div class="mt-16 pt-8 border-t border-slate-100 flex justify-center gap-8 md:gap-16 text-slate-400 grayscale opacity-70">
-         <i class="fas fa-industry text-3xl"></i>
-         <i class="fas fa-microchip text-3xl"></i>
-         <i class="fas fa-cogs text-3xl"></i>
-         <i class="fas fa-shield-alt text-3xl"></i>
-      </div>
     </div>
   </section>
 
-  <section id="why" class="py-24 bg-lightbg relative">
+  <section id="why" class="py-32 relative bg-darkbg">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary"><span data-i18n="why_title">Pourquoi choisir</span> <span class="text-secondary">EXPERTRONICS?</span></h2>
-        <p class="text-slate-500 text-lg max-w-2xl mx-auto" data-i18n="why_subtitle">Nous améliorons et optimisons votre performance industrielle.</p>
+      <div class="text-center mb-20">
+        <h2 class="text-5xl md:text-6xl font-bold mb-4"><span data-i18n="why_title">Pourquoi choisir</span> <span class="text-accent">EXPERTRONICS?</span></h2>
+        <p class="text-steel text-xl max-w-2xl mx-auto" data-i18n="why_subtitle">Nous améliorons et optimisons votre performance industrielle.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="clean-card p-8 rounded-2xl group">
-          <div class="w-14 h-14 mb-6 rounded-xl bg-blue-50 text-secondary flex items-center justify-center text-2xl group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
             <i class="fas fa-medal"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-primary" data-i18n="feat_1_title">Expertise Confirmée</h3>
-          <p class="text-slate-500 text-sm leading-relaxed" data-i18n="feat_1_desc">Plus de 10 ans d’expérience en maintenance, diagnostic, réparation électronique et automatisation.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="feat_1_title">Expertise Confirmée</h3>
+          <p class="text-steel text-sm leading-relaxed" data-i18n="feat_1_desc">Plus de 10 ans d’expérience en maintenance, diagnostic, réparation électronique et automatisation.</p>
         </div>
 
-        <div class="clean-card p-8 rounded-2xl group">
-          <div class="w-14 h-14 mb-6 rounded-xl bg-blue-50 text-secondary flex items-center justify-center text-2xl group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
             <i class="fas fa-tachometer-alt"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-primary" data-i18n="feat_2_title">Haute Performance</h3>
-          <p class="text-slate-500 text-sm leading-relaxed" data-i18n="feat_2_desc">Optimisation des machines, réduction des temps d’arrêt et amélioration de l’efficacité globale.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="feat_2_title">Haute Performance</h3>
+          <p class="text-steel text-sm leading-relaxed" data-i18n="feat_2_desc">Optimisation des machines, réduction des temps d’arrêt et amélioration de l’efficacité globale.</p>
         </div>
 
-        <div class="clean-card p-8 rounded-2xl group">
-          <div class="w-14 h-14 mb-6 rounded-xl bg-blue-50 text-secondary flex items-center justify-center text-2xl group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
             <i class="fas fa-headset"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-primary" data-i18n="feat_3_title">24/7 Support</h3>
-          <p class="text-slate-500 text-sm leading-relaxed" data-i18n="feat_3_desc">Support technique rapide, interventions urgentes et diagnostic à distance.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="feat_3_title">24/7 Support</h3>
+          <p class="text-steel text-sm leading-relaxed" data-i18n="feat_3_desc">Support technique rapide, interventions urgentes et diagnostic à distance.</p>
         </div>
 
-        <div class="clean-card p-8 rounded-2xl group">
-          <div class="w-14 h-14 mb-6 rounded-xl bg-blue-50 text-secondary flex items-center justify-center text-2xl group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+        <div class="glass-card p-8 rounded-3xl hover:-translate-y-3 transition-all duration-300 group">
+          <div class="w-16 h-16 mb-6 rounded-2xl bg-primary/50 border border-accent/30 flex items-center justify-center text-3xl text-accent group-hover:scale-110 transition">
             <i class="fas fa-shield-alt"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-primary" data-i18n="feat_4_title">Sécurité & Fiabilité</h3>
-          <p class="text-slate-500 text-sm leading-relaxed" data-i18n="feat_4_desc">Méthodes de travail rigoureuses et projets livrés avec précision et conformité industrielle.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="feat_4_title">Sécurité & Fiabilité</h3>
+          <p class="text-steel text-sm leading-relaxed" data-i18n="feat_4_desc">Méthodes de travail rigoureuses et projets livrés avec précision et conformité industrielle.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="py-24 bg-white border-y border-slate-100">
+  <section id="about" class="py-32 bg-gradient-to-b from-darkbg to-primary/20">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
       <div class="order-2 md:order-1">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-primary">
+        <h2 class="text-5xl md:text-6xl font-bold mb-8 leading-tight">
           <span data-i18n="about_h2_1">Construit pour</span> <br>
-          <span class="text-secondary" data-i18n="about_h2_2">l’Industrie de Demain</span>
+          <span class="text-accent" data-i18n="about_h2_2">l’Industrie de Demain</span>
         </h2>
-        <div class="w-20 h-1 bg-accent mb-6"></div>
-        <p class="text-lg text-slate-600 leading-relaxed mb-8" data-i18n="about_desc">
-          Depuis 10 ans, Expertronics développe des solutions industrielles complètes : maintenance, automatisation, programmation API et modernisation des installations. Nous accompagnons les entreprises vers une production plus performante et durable.
+        <p class="text-lg text-steel leading-relaxed mb-8" data-i18n="about_desc">
+          Depuis 10 ans, Expertronics développe des solutions industrielles complètes :
+maintenance, automatisation, programmation API, modernisation des installations et réparation électronique de cartes complexes.
+
+De la mise à niveau de machines à la création de solutions sur mesure, nous accompagnons les entreprises vers une production plus performante et durable.
         </p>
         
-        <div class="grid grid-cols-2 gap-8 pt-6">
-          <div class="border-l-4 border-secondary pl-6">
-            <h4 class="text-4xl font-bold text-primary">50+</h4>
-            <p class="text-slate-500 text-sm mt-1" data-i18n="stat_projects">Projets Achevés</p>
+        <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+          <div>
+            <h4 class="text-4xl font-bold text-white">50+</h4>
+            <p class="text-accent text-sm mt-1" data-i18n="stat_projects">Projets Qui Ont Été Achevés</p>
           </div>
-          <div class="border-l-4 border-accent pl-6">
-            <h4 class="text-4xl font-bold text-primary">99%</h4>
-            <p class="text-slate-500 text-sm mt-1" data-i18n="stat_reliability">Satisfaction Client</p>
+          <div>
+            <h4 class="text-4xl font-bold text-white">90%</h4>
+            <p class="text-accent text-sm mt-1" data-i18n="stat_reliability">Taux de Fiabilité Après Intervention</p>
           </div>
         </div>
       </div>
       
-      <div class="relative order-1 md:order-2">
-        <div class="absolute inset-0 bg-blue-50 rounded-3xl transform rotate-3 translate-x-2 translate-y-2 -z-10"></div>
-        <img src="assets/img/img2.JPG" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800'" alt="Industrial Engineer" class="rounded-3xl shadow-2xl object-cover h-[500px] w-full border border-white">
+      <div class="relative order-1 md:order-2 group">
+        <div class="absolute inset-0 bg-accent/20 rounded-3xl transform rotate-6 transition group-hover:rotate-3"></div>
+        <img src="assets/img/img2.JPG" alt="Industrial Engineer" class="relative rounded-3xl shadow-2xl z-10 grayscale group-hover:grayscale-0 transition duration-700 object-cover h-[500px] w-full">
       </div>
     </div>
   </section>
 
-  <section id="services" class="py-24 bg-lightbg relative">
-    <div class="absolute inset-0 bg-grid opacity-30"></div>
+  <section id="services" class="py-32 bg-darkbg relative">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#444 1px, transparent 1px); background-size: 30px 30px;"></div>
+    
     <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-primary"><span data-i18n="services_title_1">Nos</span> <span class="text-secondary" data-i18n="services_title_2">Services</span></h2>
+      <h2 class="text-5xl md:text-7xl font-bold text-center mb-20"><span data-i18n="services_title_1">Nos</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500" data-i18n="services_title_2">Services</span></h2>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="clean-card p-10 rounded-3xl group relative overflow-hidden">
-          <div class="absolute -right-6 -top-6 text-9xl text-slate-50 group-hover:text-blue-50 transition-colors duration-500 z-0">
-            <i class="fas fa-microchip"></i>
-          </div>
-          <div class="relative z-10">
-            <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-secondary text-3xl mb-6">
-                <i class="fas fa-microchip"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-primary" data-i18n="serv_1_title">Réparation Électronique</h3>
-            <p class="text-slate-500 mb-6 leading-relaxed" data-i18n="serv_1_desc">Diagnostic, réparation et remise à neuf de cartes électroniques industrielles (alimentation, commande, moteurs, I/O).</p>
-            <a href="#contact" class="text-secondary font-bold group-hover:text-accent flex items-center gap-2 transition-colors" data-i18n="see_more">
-                Voir plus <i class="fas fa-arrow-right text-xs"></i>
-            </a>
-          </div>
+        <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-microchip text-8xl"></i></div>
+          <i class="fas fa-microchip text-5xl text-accent mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4" data-i18n="serv_1_title">Réparation Électronique</h3>
+          <p class="text-steel mb-6" data-i18n="serv_1_desc">Diagnostic, réparation et remise à neuf de cartes électroniques industrielles (alimentation, commande, moteurs, I/O).</p>
+          <a href="#contact" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block" data-i18n="see_more">Voir plus →</a>
         </div>
 
-        <div class="clean-card p-10 rounded-3xl group relative overflow-hidden">
-            <div class="absolute -right-6 -top-6 text-9xl text-slate-50 group-hover:text-blue-50 transition-colors duration-500 z-0">
-              <i class="fas fa-robot"></i>
-            </div>
-            <div class="relative z-10">
-                <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-secondary text-3xl mb-6">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 text-primary" data-i18n="serv_2_title">Automatisation & Programmation</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed" data-i18n="serv_2_desc">Développement API (Siemens, Schneider…), intégration de capteurs, optimisation de ligne, modification de programmes.</p>
-                <a href="#contact" class="text-secondary font-bold group-hover:text-accent flex items-center gap-2 transition-colors" data-i18n="see_more">
-                    Voir plus <i class="fas fa-arrow-right text-xs"></i>
-                </a>
-            </div>
+        <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-robot text-8xl"></i></div>
+          <i class="fas fa-robot text-5xl text-accent mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4" data-i18n="serv_2_title">Automatisation & Programmation</h3>
+          <p class="text-steel mb-6" data-i18n="serv_2_desc">Développement API (Siemens, Schneider…), intégration de capteurs, optimisation de ligne, modification de programmes.</p>
+          <a href="#contact" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block" data-i18n="see_more">Voir plus →</a>
         </div>
 
-        <div class="clean-card p-10 rounded-3xl group relative overflow-hidden">
-            <div class="absolute -right-6 -top-6 text-9xl text-slate-50 group-hover:text-blue-50 transition-colors duration-500 z-0">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="relative z-10">
-                <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-secondary text-3xl mb-6">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 text-primary" data-i18n="serv_3_title">Conception de Machines</h3>
-                <p class="text-slate-500 mb-6 leading-relaxed" data-i18n="serv_3_desc">Conception et fabrication sur mesure pour répondre à des besoins spécifiques de production.</p>
-                <a href="#products" class="text-secondary font-bold group-hover:text-accent flex items-center gap-2 transition-colors" data-i18n="see_more">
-                    Voir plus <i class="fas fa-arrow-right text-xs"></i>
-                </a>
-            </div>
+        <div class="group relative p-8 rounded-3xl bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 overflow-hidden">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition"><i class="fas fa-chart-line text-8xl"></i></div>
+          <i class="fas fa-chart-line text-5xl text-accent mb-6"></i>
+          <h3 class="text-2xl font-bold mb-4" data-i18n="serv_3_title">Conception de Machines</h3>
+          <p class="text-steel mb-6" data-i18n="serv_3_desc">Conception et fabrication sur mesure pour répondre à des besoins spécifiques de production.</p>
+          <a href="#products" class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block" data-i18n="see_more">Voir plus →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="director" class="py-24 bg-white border-y border-slate-100">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <div class="relative group order-1">
-        <div class="absolute inset-0 bg-slate-200 rounded-3xl transform -rotate-3 transition group-hover:rotate-0 duration-500"></div>
-        <img src="assets/img/img6.JPG" 
-              onerror="this.src='assets/img/img6.JPG'"
-              alt="Rachid Balla" 
-              class="relative rounded-3xl shadow-xl z-10 bg-white p-2 object-cover h-[500px] w-full">
-      </div>
+<section id="director" class="py-32 bg-gradient-to-t from-darkbg/50 to-darkbg relative">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    
+    <div class="relative group order-1">
+      <div class="absolute inset-0 bg-accent/20 rounded-3xl transform -rotate-3 transition group-hover:rotate-0 duration-500"></div>
+      <img src="assets/img/img6.JPG" 
+            onerror="this.src='assets/img/img6.JPG'"
+            alt="[Votre Nom], Fondateur d'Expertronics" 
+            class="relative rounded-3xl shadow-2xl z-10 border-4 border-primary group-hover:border-accent transition object-cover h-[550px] w-full">
+    </div>
+    
+    <div class="order-2">
+      <p class="text-accent uppercase tracking-widest text-sm font-bold mb-4" data-i18n="dir_tag">Gérant et Fondateur, Expertronics</p>
       
-      <div class="order-2">
-        <span class="text-accent uppercase tracking-widest text-xs font-bold mb-2 block" data-i18n="dir_tag">Gérant et Fondateur</span>
-        <h2 class="text-4xl font-bold mb-6 text-primary" data-i18n="dir_name">Rachid Balla</h2>
-        
-        <blockquote class="text-lg text-slate-600 italic border-l-4 border-secondary pl-6 mb-8 bg-slate-50 p-4 rounded-r-lg">
-           "L'expertise technique est le socle sur lequel repose l'engagement d'Expertronics à fournir des services fiables et adaptés aux enjeux modernes."
-        </blockquote>
+      <h2 class="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+        <span data-i18n="dir_name">Rachid Balla</span>
+      </h2>
+      
+      <p class="text-lg text-steel leading-relaxed mb-10">
+        Rachid Balla, **entrepreneur et expert en ingénierie industrielle**, est le fondateur d'Expertronics. 
+        <br><br>
+        Titulaire d’un [Diplôme universitaire ex: Master en génie électrique] et d'une spécialisation en [Domaine technique ex: Automatisation Siemens], il a bâti une carrière de plus de 20 ans dans la maintenance de haute précision et l'intégration de systèmes complexes. Cette expertise est le socle sur lequel repose l'engagement d'Expertronics à fournir des services professionnels, fiables et adaptés aux enjeux de la production moderne.
+      </p>
 
-        <p class="text-slate-500 leading-relaxed mb-8">
-          Rachid Balla, expert en ingénierie industrielle, a bâti une carrière de plus de 20 ans dans la maintenance de haute précision et l'intégration de systèmes complexes.
-        </p>
-
-        <div class="flex gap-4">
-          <a href="#contact" class="btn-primary px-6 py-3 rounded-lg text-sm font-bold" data-i18n="dir_btn_contact">
-            Contacter l'Expert
-          </a>
-          <a href="#" class="w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-blue-50 hover:text-secondary transition"><i class="fab fa-linkedin-in text-lg"></i></a>
-        </div>
+      <p class="text-lg font-bold text-white mb-2" data-i18n="dir_name">Rachid Balla</p>
+      <p class="text-accent text-sm uppercase tracking-wider">Gérant et Fondateur</p>
+      
+      <div class="mt-8 flex gap-4">
+        <a href="https://www.linkedin.com/in/[votre_profil]" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#contact" class="px-6 py-2 border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition text-sm font-bold" data-i18n="dir_btn_contact">
+          Contacter l'Expert
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="products" class="py-24 bg-lightbg relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary"><span data-i18n="products_title_1">Nos</span> <span class="text-secondary" data-i18n="products_title_2">Produits</span></h2>
-        <p class="text-slate-500 text-lg" data-i18n="products_subtitle">Solutions matérielles conçues et assemblées par Expertronics.</p>
-      </div>
+<section id="products" class="py-32 relative bg-darkbg overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div class="flex flex-col gap-12">
-        <div id="product-checkweigher" class="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition duration-500 scroll-mt-32">
-          <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="relative bg-slate-50 rounded-2xl p-4 border border-slate-100 h-[400px]">
-               <img src="assets/img/machine_photo.jpg" 
-                   onerror="this.src='https://placehold.co/600x400/e2e8f0/1e293b?text=Machine+Image'"
-                   alt="Machine de Pesage" 
-                   class="object-contain w-full h-full mix-blend-multiply">
-              <div class="absolute top-4 right-4 bg-accent text-white font-bold px-4 py-1 rounded-full text-xs uppercase tracking-wide shadow-lg" data-i18n="prod_badge">
-                Nouvelle Série
-              </div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-20">
+      <h2 class="text-5xl md:text-7xl font-bold mb-6"><span data-i18n="products_title_1">Nos</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500" data-i18n="products_title_2">Produits</span></h2>
+      <p class="text-steel text-xl max-w-2xl mx-auto" data-i18n="products_subtitle">Solutions matérielles conçues et assemblées par Expertronics.</p>
+    </div>
+
+    <div class="flex flex-col gap-16">
+      
+      <div id="product-checkweigher" class="glass border border-accent/20 rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(0,0,0,0.5)] scroll-mt-32">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div class="relative rounded-2xl overflow-hidden h-[400px] w-full border border-white/10 bg-darkbg/50">
+              <img src="assets\img\machine_photo.jpg" 
+                   onerror="this.src='assets/img/IMG-3024.JPG'"
+                   alt="Machine de Pesage Expertronics" 
+                   class="object-cover w-full h-full transform transition duration-700 group-hover:scale-105">
             </div>
+            <div class="absolute top-4 right-4 bg-accent text-black font-bold px-4 py-1 rounded-full text-sm shadow-lg" data-i18n="prod_badge">
+              Nouvelle Série
+            </div>
+          </div>
 
-            <div class="flex flex-col justify-center">
-              <h3 class="text-3xl font-bold text-primary mb-2" data-i18n="prod_name">Trieuse Pondérale</h3>
-              <div class="text-secondary text-xl font-bold mb-6">EXPERTCHECK V03</div>
-              
-              <p class="text-slate-500 text-lg mb-8 leading-relaxed" data-i18n="prod_desc">
-                Système de pesage industriel haute précision conçu pour fonctionner en toute fiabilité. Interface tactile intuitive et connectivité IIoT.
-              </p>
-              <ul class="space-y-4 mb-8 text-slate-700 font-medium">
-                <li class="flex items-center gap-3">
-                  <i class="fas fa-check-circle text-green-500"></i> <span data-i18n="prod_feat_1">Précision de pesage +/- 0.5g</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <i class="fas fa-check-circle text-green-500"></i> <span data-i18n="prod_feat_2">Détecteur de métaux (option)</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <i class="fas fa-check-circle text-green-500"></i> <span data-i18n="prod_feat_3">Intégration SIEMENS native</span>
-                </li>
-              </ul>
-              <div>
-                <a href="Machine-Pesage.html" class="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-lg font-bold group">
-                  <span data-i18n="see_more">Voir fiche technique</span>
-                  <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                </a>
-              </div>
+          <div class="flex flex-col justify-center">
+            <h3 class="text-3xl md:text-5xl font-bold text-white mb-6">
+              <span data-i18n="prod_name">Trieuse Pondérale</span> <br>
+              <span class="text-accent">EXPERTCHECK V03</span>
+            </h3>
+            <p class="text-steel text-lg mb-8 leading-relaxed" data-i18n="prod_desc">
+              Système de pesage industriel haute précision conçu pour fonctionner en toute fiabilité dans les environnements difficiles. Avec son interface tactile intuitive et sa connectivité IIoT, la X1 améliore votre contrôle qualité et réduit les pertes de matière.
+            </p>
+            <ul class="space-y-4 mb-10 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-accent"></i> <span data-i18n="prod_feat_1">Précision de pesage +/- 0.5g</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-accent"></i> <span data-i18n="prod_feat_2">Détecteur de métaux (option)</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-check-circle text-accent"></i> <span data-i18n="prod_feat_3">Intégration SIEMENS native</span>
+              </li>
+            </ul>
+            <div>
+              <a href="Machine-Pesage.html" class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-accent text-accent font-bold rounded-full text-lg hover:bg-accent hover:text-black transition-all group">
+                <span data-i18n="see_more">Voir plus</span>
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div id="product-conveyor" class="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition duration-500 scroll-mt-32">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="order-1 lg:order-2 relative bg-slate-50 rounded-2xl p-4 border border-slate-100 h-[400px]">
-                <img src="assets/img/mach2.jpg" 
-                     onerror="this.src='https://placehold.co/600x400/e2e8f0/1e293b?text=Conveyor+Image'"
-                     alt="Convoyeur" 
-                     class="object-contain w-full h-full mix-blend-multiply">
-                <div class="absolute top-4 left-4 bg-primary text-white font-bold px-4 py-1 rounded-full text-xs uppercase tracking-wide shadow-lg" data-i18n="prod_badge_custom">
-                  Sur Mesure
-                </div>
-              </div>
-  
-              <div class="order-2 lg:order-1 flex flex-col justify-center">
-                <h3 class="text-3xl font-bold text-primary mb-2" data-i18n="prod2_name">Convoyeurs Industriels</h3>
-                <div class="text-secondary text-xl font-bold mb-6" data-i18n="prod2_sub">Fabrication & Conception</div>
-                
-                <p class="text-slate-500 text-lg mb-8 leading-relaxed" data-i18n="prod2_desc">
-                  Systèmes de convoyage adaptés à votre ligne de production. Structure Inox ou Alu, bande PVC ou rouleaux motorisés.
-                </p>
-  
-                <ul class="space-y-4 mb-8 text-slate-700 font-medium">
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-cogs text-accent"></i> <span data-i18n="prod2_feat_1">Structure Inox ou Aluminium Modulaire</span>
-                  </li>
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-tachometer-alt text-accent"></i> <span data-i18n="prod2_feat_2">Vitesse variable & Synchronisation</span>
-                  </li>
-                </ul>
-                <div>
-                  <a href="Convoyeurs.html" class="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-lg font-bold group">
-                    <span data-i18n="see_more">Voir configurations</span>
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                  </a>
-                </div>
-              </div>
+      <div id="product-conveyor" class="glass border border-white/10 rounded-3xl p-8 md:p-12 shadow-[0_0_40px_rgba(0,0,0,0.5)] scroll-mt-32">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          
+          <div class="order-1 lg:order-2 relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-accent rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div class="relative rounded-2xl overflow-hidden h-[400px] w-full border border-white/10 bg-darkbg/50">
+              <img src="assets/img/mach2.jpg" 
+                   alt="Convoyeurs Industriels" 
+                   class="object-cover w-full h-full transform transition duration-700 group-hover:scale-105">
+            </div>
+            <div class="absolute top-4 right-4 bg-white text-black font-bold px-4 py-1 rounded-full text-sm shadow-lg" data-i18n="prod_badge_custom">
+              Sur Mesure
             </div>
           </div>
+
+          <div class="order-2 lg:order-1 flex flex-col justify-center">
+            <h3 class="text-3xl md:text-5xl font-bold text-white mb-6">
+              <span data-i18n="prod2_name">Convoyeurs Industriels</span> <br>
+              <span class="text-accent" data-i18n="prod2_sub">Fabrication & Conception</span>
+            </h3>
+            
+            <p class="text-steel text-lg mb-8 leading-relaxed" data-i18n="prod2_desc">
+              Nous concevons et fabriquons des systèmes de convoyage adaptés à votre ligne de production. Du convoyeur à bande PVC alimentaire au convoyeur à rouleaux motorisés, nos solutions garantissent un flux de produits fluide et optimisé.
+            </p>
+
+            <ul class="space-y-4 mb-10 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-cogs text-accent"></i> <span data-i18n="prod2_feat_1">Structure Inox ou Aluminium Modulaire</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-tachometer-alt text-accent"></i> <span data-i18n="prod2_feat_2">Vitesse variable & Synchronisation</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-ruler-combined text-accent"></i> <span data-i18n="prod2_feat_3">Dimensions et courbures personnalisées</span>
+              </li>
+            </ul>
+
+            <div>
+              <a href="Convoyeurs.html" class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-accent text-accent font-bold rounded-full text-lg hover:bg-accent hover:text-black transition-all group">
+                <span data-i18n="see_more">Voir plus</span>
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
   
-  <section id="Projets" class="py-24 bg-white border-t border-slate-100">
+  <section id="Projets" class="py-32 bg-darkbg/50">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold text-primary"><span data-i18n="proj_title_1">Projets</span> <span class="text-secondary" data-i18n="proj_title_2">Réalisés</span></h2>
-        <a href="Projets.html" class="mt-4 md:mt-0 text-secondary hover:text-accent font-semibold transition" data-i18n="see_all_proj">Voir tous les projets →</a>
+      <div class="flex justify-between items-end mb-16">
+        <h2 class="text-5xl md:text-6xl font-bold"><span data-i18n="proj_title_1">Projets</span> <span class="text-accent" data-i18n="proj_title_2">Réalisés</span></h2>
+        <a href="Projets.html" class="hidden md:block text-steel hover:text-white transition" data-i18n="see_all_proj">Voir tous les projets →</a>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[400px]">
-          <img src="assets/img/IMG-9626.JPG" onerror="this.src='https://images.unsplash.com/photo-1565514020176-db9315d18e80?auto=format&fit=crop&q=80&w=800'" alt="Project" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
-          <div class="absolute bottom-0 p-8">
-            <span class="bg-accent text-white text-xs font-bold px-2 py-1 rounded uppercase" data-i18n="cat_automation">Automation</span>
-            <h3 class="text-xl font-bold text-white mt-3" data-i18n="proj_1_title">Renouvellement Armoire</h3>
-            <p class="text-slate-300 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-i18n="proj_1_desc">Modernisation complète d'une armoire de contrôle industriel.</p>
+        <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
+          <img src="assets/img/IMG-9626.JPG" 
+               onerror="this.src='https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
+               alt="Automotive Line" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+            <span class="text-accent text-sm font-bold uppercase tracking-wider" data-i18n="cat_automation">Automotisation</span>
+            <h3 class="text-2xl font-bold text-white mt-2" data-i18n="proj_1_title">Renouvellement Armoire Industrielle</h3>
+            <p class="text-gray-300 mt-2 transition delay-100" data-i18n="proj_1_desc">Modernisation complète d'une armoire de contrôle industriel avec mise à niveau des systèmes d'automatisation et interface opérateur.</p>
           </div>
         </div>
 
-        <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[400px]">
-          <img src="assets/img/IMG-2815.JPG" onerror="this.src='https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80&w=800'" alt="Project" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
-          <div class="absolute bottom-0 p-8">
-            <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded uppercase" data-i18n="cat_wiring">Cablage</span>
-            <h3 class="text-xl font-bold text-white mt-3" data-i18n="proj_2_title">Installation Automates</h3>
-            <p class="text-slate-300 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-i18n="proj_2_desc">Câblage et mise en service d'armoire.</p>
+        <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
+          <img src="assets/img/IMG-2815.JPG" 
+               onerror="this.src='https://images.unsplash.com/photo-1590502593747-42a996133562?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'"
+               alt="Food Processing" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+            <span class="text-accent text-sm font-bold uppercase tracking-wider" data-i18n="cat_wiring">Cablage</span>
+            <h3 class="text-2xl font-bold text-white mt-2" data-i18n="proj_2_title">Câblage et Installation Armoire Automates</h3>
+            <p class="text-gray-300 mt-2 transition delay-100" data-i18n="proj_2_desc">Câblage, installation et mise en service complète d'une armoire d'automates industriels avec intégration des systèmes de contrôle.</p>
           </div>
         </div>
 
-        <div class="group relative rounded-2xl overflow-hidden shadow-lg h-[400px]">
-          <img src="assets/img/IMG-3618.JPG" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800'" alt="Project" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
-          <div class="absolute bottom-0 p-8">
-            <span class="bg-teal-600 text-white text-xs font-bold px-2 py-1 rounded uppercase" data-i18n="cat_electronic">Electronique</span>
-            <h3 class="text-xl font-bold text-white mt-3" data-i18n="proj_3_title">Réparation HMI</h3>
-            <p class="text-slate-300 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-i18n="proj_3_desc">Réparation spécialisée de carte électronique.</p>
+        <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer">
+          <img src="assets/img/IMG-3618.JPG" 
+               onerror="this.src='assets/img/IMG-3618.JPG'"
+               alt="Energy Grid" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 translate-y-4 group-hover:translate-y-0 transition duration-500">
+            <span class="text-accent text-sm font-bold uppercase tracking-wider" data-i18n="cat_electronic">Electronique</span>
+            <h3 class="text-2xl font-bold text-white mt-2" data-i18n="proj_3_title">Réparation Carte Électronique HMI</h3>
+            <p class="text-gray-300 mt-2 transition delay-100" data-i18n="proj_3_desc">Réparation spécialisée d'une carte électronique d'interface homme-machine, restaurant les fonctionnalités d'affichage et de contrôle tactile.</p>
           </div>
         </div>
+          <div>
+              <a href="Projets.html" class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-accent text-accent font-bold rounded-full text-lg hover:bg-accent hover:text-black transition-all group">
+                <span data-i18n="see_more">Voir plus</span>
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </a>
+          </div>
       </div>
     </div>
   </section>
 
-  <section id="clients" class="py-16 bg-slate-50 border-y border-slate-200 overflow-hidden" style="direction: ltr;">
-    <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
-      <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-sm" data-i18n="clients_title">Ils nous font confiance</p>
+
+  <section id="clients" class="py-20 bg-surface border-y border-white/5" style="direction: ltr;">
+    <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+      <p class="client-p text-steel uppercase tracking-widest text-sm font-bold" style="font-size: 30px;" data-i18n="clients_title">NOS CLIENTS</p>
     </div>
+    
     <div class="relative w-full"> 
-        <div class="logo-track flex gap-16 items-center px-4">
-            <img src="assets/img/logos/azura.png" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/Elite.jpg" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/fromital.png" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/KnaufIndustries.jpg" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/Holcim.png" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/Maïsadour.png" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/azura.png" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/Elite.jpg" class="client-logo h-12 w-auto object-contain">
-            <img src="assets/img/logos/fromital.png" class="client-logo h-12 w-auto object-contain">
+        <div class="scrolling-mask"> 
+            <div class="logo-track flex gap-16 md:gap-24 items-center">
+                
+                <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Elite.jpg" alt="Elite" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\fromital.png" alt="Fromital" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Arizal.jpg" alt="Arizal" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\KnaufIndustries.jpg" alt="Knauf Industries" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Holcim.png" alt="LafargeHolcim" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Maïsadour.png" alt="Maïsadour" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MoovUp.png" alt="MoovUp" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MediaTelecom.png" alt="MediaTelecom" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\sovapec.png" alt="Sovapec" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Gadimat.png" alt="Gadimat" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\lesdomain.png" alt="Les Domaines" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\azura.png" alt="Azura" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Elite.jpg" alt="Elite" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\fromital.png" alt="Fromital" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Arizal.jpg" alt="Arizal" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\KnaufIndustries.jpg" alt="Knauf Industries" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Holcim.png" alt="LafargeHolcim" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Maïsadour.png" alt="Maïsadour" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MoovUp.png" alt="MoovUp" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\MediaTelecom.png" alt="MediaTelecom" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\sovapec.png" alt="Sovapec" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\Gadimat.png" alt="Gadimat" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                <img src="assets\img\logos\lesdomain.png" alt="Les Domaines" class="h-12 md:h-16 w-auto object-contain transition duration-500 cursor-pointer">
+                </div>
         </div>
     </div>
-  </section>
+</section>
 
-  <section id="contact" class="py-24 relative bg-primary text-white">
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<section id="contact" class="py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-darkbg z-0"></div>
     
     <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="grid md:grid-cols-2 gap-16">
+      
+      <div class="grid md:grid-cols-2 gap-16 mb-16">
+        
         <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          <h2 class="text-5xl font-bold mb-6">
             <span data-i18n="contact_h2_1">Boostez votre</span> <br>
             <span class="text-accent" data-i18n="contact_h2_2">productivité</span>
           </h2>
-          <p class="text-slate-300 text-lg mb-10" data-i18n="contact_desc">Expertise technique disponible. Contactez-nous pour une intervention.</p>
+          <p class="text-steel text-lg mb-10" data-i18n="contact_desc">Nous sommes prêts à intervenir, diagnostiquer ou moderniser vos machines.</p>
           
-          <div class="space-y-6">
-            <div class="flex gap-4">
-              <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
+          <div class="space-y-8">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mt-1">
                 <i class="fas fa-map-marker-alt"></i>
               </div>
               <div>
-                <h4 class="font-bold text-white text-lg" data-i18n="contact_address_label">Adresse</h4>
-                <p class="text-slate-400" data-i18n="contact_address">Rue 465 N°39 - Les Amicales, Agadir, Maroc</p>
+                <h4 class="text-xl font-bold text-white" data-i18n="contact_address_label">Adresse</h4>
+                <p class="text-steel" data-i18n="contact_address">Rue 465 N°39 - Les Amicales, Agadir, Maroc</p>
               </div>
             </div>
             
-            <div class="flex gap-4">
-              <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mt-1">
                 <i class="fas fa-phone-alt"></i>
               </div>
               <div>
-                <h4 class="font-bold text-white text-lg" data-i18n="contact_support_label">Support</h4>
-                <p class="text-slate-400">05 28 21 33 90 / 06 62 74 58 59</p>
+                <h4 class="text-xl font-bold text-white" data-i18n="contact_support_label">Assistance & Support</h4>
+                <p class="text-steel">Tél: 05 28 21 33 90</p><p class="text-steel">GSM: 06 62 74 58 59</p>
               </div>
             </div>
 
-            <div class="flex gap-4">
-                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-accent text-xl flex-shrink-0">
-                  <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-white text-lg">Email</h4>
-                  <p class="text-slate-400">expertronics.ma@gmail.com</p>
-                </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mt-1">
+                <i class="fas fa-envelope"></i>
               </div>
+              <div>
+                <h4 class="text-xl font-bold text-white">Email</h4>
+                <p class="text-steel">expertronics.ma@gmail.com</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-8 text-primary shadow-2xl">
+        <div class="glass p-8 rounded-3xl border border-white/10 shadow-2xl relative">
             <form id="contactForm" action="https://formsubmit.co/ajax/expertronics.maroc@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Contact Site Web">
+                <input type="hidden" name="_subject" value="Nouveau contact via Site Expertronics">
                 <input type="hidden" name="_captcha" value="false">
                 
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-sm font-bold text-slate-700 mb-1 block" data-i18n="form_name">Nom</label>
-                            <input type="text" name="nom" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition" data-i18n-placeholder="form_name_ph" placeholder="Nom complet">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm font-bold text-steel" data-i18n="form_name">Nom</label>
+                            <input type="text" name="nom" required class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" data-i18n-placeholder="form_name_ph" placeholder="Votre nom">
                         </div>
-                        <div>
-                            <label class="text-sm font-bold text-slate-700 mb-1 block" data-i18n="form_company">Entreprise</label>
-                            <input type="text" name="entreprise" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition" data-i18n-placeholder="form_company_ph" placeholder="Société">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm font-bold text-steel" data-i18n="form_company">Entreprise</label>
+                            <input type="text" name="entreprise" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" data-i18n-placeholder="form_company_ph" placeholder="Votre société">
                         </div>
                     </div>
                     
-                    <div>
-                        <label class="text-sm font-bold text-slate-700 mb-1 block">Email</label>
-                        <input type="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition" placeholder="email@exemple.com">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold text-steel">Email</label>
+                        <input type="email" name="email" required class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" placeholder="email@exemple.com">
                     </div>
 
-                    <div>
-                        <label class="text-sm font-bold text-slate-700 mb-1 block" data-i18n="form_msg">Message</label>
-                        <textarea name="message" required rows="4" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition" data-i18n-placeholder="form_msg_ph" placeholder="Votre message..."></textarea>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold text-steel" data-i18n="form_msg">Description du projet</label>
+                        <textarea name="message" required rows="4" class="w-full bg-darkbg/50 border border-white/10 rounded-lg p-3 focus:border-accent focus:outline-none transition text-white" data-i18n-placeholder="form_msg_ph" placeholder="Parlez-nous de vos besoins..."></textarea>
                     </div>
 
-                    <button type="submit" id="submitBtn" class="w-full py-4 bg-secondary text-white font-bold rounded-lg hover:bg-primary transition duration-300 shadow-lg flex items-center justify-center gap-2">
+                    <button type="submit" id="submitBtn" class="w-full py-4 bg-accent text-black font-bold rounded-lg hover:bg-white transition duration-300 shadow-lg flex items-center justify-center gap-2">
                         <span data-i18n="form_btn">Envoyer Message</span> <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
             </form>
-            
-             <div id="successMessage" class="hidden text-center py-10">
-                <div class="text-green-500 text-5xl mb-4"><i class="fas fa-check-circle"></i></div>
-                <h3 class="text-2xl font-bold mb-2">Message Envoyé</h3>
-                <p class="text-slate-500 mb-6">Merci, nous vous répondrons sous 24h.</p>
-                <button onclick="location.reload()" class="text-secondary font-bold underline">Retour</button>
+
+            <div id="successMessage" class="hidden absolute inset-0 bg-darkbg/95 rounded-3xl flex flex-col items-center justify-center text-center p-8 backdrop-blur-xl z-20">
+                <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center text-black text-4xl mb-6 shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2" data-i18n="msg_sent_title">Message Envoyé !</h3>
+                <p class="text-steel text-lg mb-6" data-i18n="msg_sent_desc">Merci de nous avoir contactés. Notre équipe technique reviendra vers vous sous 24h.</p>
+                <button onclick="resetForm()" class="px-8 py-3 border border-white/20 rounded-full hover:bg-white/10 transition text-sm font-bold" data-i18n="msg_sent_btn">
+                    Envoyer un autre message
+                </button>
             </div>
         </div>
       </div>
+
+      <div class="w-full h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group">
+          <div class="absolute top-4 right-4 z-10 bg-darkbg/90 backdrop-blur px-5 py-2 rounded-full border border-accent/20 text-accent font-bold text-sm shadow-lg">
+             <i class="fas fa-location-dot mr-2"></i> Les Amicales, Agadir
+          </div>
+
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d517.4530825231976!2d-9.57524473087159!3d30.429639619896253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3b669c5777b5f%3A0x64b217c4efbf6d7a!2sEntree%20Najah!5e1!3m2!1sen!2sma!4v1764582147423!5m2!1sen!2sma" 
+            width="100%" 
+            height="100%" 
+            style="border:0; " 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+      </div>
+
     </div>
   </section>
 
-  <footer class="bg-white border-t border-slate-200 pt-16 pb-8 text-slate-600">
+  <footer class="bg-black pt-20 pb-10 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="grid md:grid-cols-4 gap-12 mb-12">
-        <div>
-          <h5 class="text-xl font-bold text-primary mb-4">EXPERTRONICS</h5>
-          <p class="text-sm leading-relaxed mb-6" data-i18n="footer_about">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="col-span-1 md:col-span-1">
+          <a href="#" class="text-2xl font-bold text-white mb-6 block">EXPERTRONICS</a>
+          <p class="text-steel text-sm leading-relaxed mb-6" data-i18n="footer_about">
             Votre partenaire en maintenance industrielle, électronique et automatisation.
           </p>
-          <div class="flex gap-3">
-            <a href="#" class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center hover:bg-secondary hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center hover:bg-secondary hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
         <div>
-          <h4 class="font-bold text-primary mb-4" data-i18n="footer_company">Entreprise</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#" class="hover:text-secondary" data-i18n="nav_about">À propos</a></li>
-            <li><a href="#contact" class="hover:text-secondary" data-i18n="nav_contact">Contact</a></li>
+          <h4 class="text-white font-bold mb-6" data-i18n="footer_company">Entreprise</h4>
+          <ul class="space-y-3 text-steel text-sm">
+            <li><a href="#" class="hover:text-accent transition" data-i18n="nav_about">À propos</a></li>
+            <li><a href="#" class="hover:text-accent transition" data-i18n="footer_careers">Carrières</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="font-bold text-primary mb-4" data-i18n="footer_solutions">Solutions</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#" class="hover:text-secondary" data-i18n="footer_link_maint">Maintenance</a></li>
-            <li><a href="#" class="hover:text-secondary" data-i18n="footer_link_auto">Automatisation</a></li>
-            <li><a href="#" class="hover:text-secondary" data-i18n="nav_prod_checkweigher">Pesage</a></li>
+          <h4 class="text-white font-bold mb-6" data-i18n="footer_solutions">Solutions</h4>
+          <ul class="space-y-3 text-steel text-sm">
+            <li><a href="#" class="hover:text-accent transition" data-i18n="footer_link_maint">Maintenance industrielle</a></li>
+            <li><a href="#" class="hover:text-accent transition" data-i18n="footer_link_repair">Réparation électronique</a></li>
+            <li><a href="#" class="hover:text-accent transition" data-i18n="footer_link_auto">Automatisation</a></li>
+            <li><a href="#" class="hover:text-accent transition" data-i18n="footer_link_weigh">Machine de pesage</a></li>
           </ul>
         </div>
 
         <div>
-            <h4 class="font-bold text-primary mb-4" data-i18n="footer_update">Newsletter</h4>
-            <div class="flex">
-                <input type="text" placeholder="Email" class="bg-slate-50 border border-slate-200 px-3 py-2 rounded-l w-full text-sm focus:outline-none">
-                <button class="bg-primary text-white px-3 rounded-r hover:bg-secondary transition"><i class="fas fa-arrow-right"></i></button>
-            </div>
+          <h4 class="text-white font-bold mb-6" data-i18n="footer_update">Restez Informé</h4>
+          <p class="text-steel text-sm mb-4" data-i18n="footer_newsletter">Les dernières tendances industrielles dans votre boîte mail.</p>
+          <div class="flex">
+            <input type="text" placeholder="Email" class="bg-white/5 border border-white/10 px-4 py-2 rounded-l-lg w-full focus:outline-none focus:border-accent text-sm">
+            <button class="bg-accent text-black px-4 py-2 rounded-r-lg font-bold hover:bg-white transition">Go</button>
+          </div>
         </div>
       </div>
 
-      <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400">
+      <div class="border-t border-white/10 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-steel text-xs">
         <p>© 2024 Expertronics Industrial. All rights reserved.</p>
-        <div class="flex gap-4 mt-2 md:mt-0">
-           <a href="#">Privacy</a>
-           <a href="#">Terms</a>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-white" data-i18n="footer_privacy">Privacy Policy</a>
+          <a href="#" class="hover:text-white" data-i18n="footer_terms">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // --- TRANSLATION DATA (Identical to original) ---
     const translations = {
       fr: {
-        nav_home: "Accueil", nav_about: "À propos", nav_services: "Services", nav_products: "Produits", nav_projects: "Projets", nav_contact: "Contact",
-        hero_title_1: "Conçu pour une", hero_title_2: "Production Sans Arrêt",
+        nav_home: "Accueil",
+        nav_about: "À propos",
+        nav_services: "Services",
+        nav_products: "Produits",
+        nav_projects: "Projets",
+        nav_contact: "Contact",
+        hero_title_1: "Conçu pour une",
+        hero_title_2: "Production Sans Arrêt",
         hero_desc: "Solutions de maintenance industrielle, automatisation, réparation électronique et assistance technique 24/7.",
-        hero_btn_quote: "Obtenir un Devis", hero_btn_explore: "Explorer Services",
-        why_title: "Pourquoi choisir", why_subtitle: "Nous améliorons et optimisons votre performance industrielle.",
-        feat_1_title: "Expertise Confirmée", feat_1_desc: "Plus de 10 ans d’expérience en maintenance, diagnostic, réparation électronique et automatisation.",
-        feat_2_title: "Haute Performance", feat_2_desc: "Optimisation des machines, réduction des temps d’arrêt et amélioration de l’efficacité globale.",
-        feat_3_title: "24/7 Support", feat_3_desc: "Support technique rapide, interventions urgentes et diagnostic à distance.",
-        feat_4_title: "Sécurité & Fiabilité", feat_4_desc: "Méthodes de travail rigoureuses et projets livrés avec précision et conformité industrielle.",
-        about_h2_1: "Construit pour", about_h2_2: "l’Industrie de Demain",
-        about_desc: "Depuis 10 ans, Expertronics développe des solutions industrielles complètes : maintenance, automatisation, programmation API, modernisation des installations. De la mise à niveau de machines à la création de solutions sur mesure.",
-        stat_projects: "Projets Achevés", stat_reliability: "Satisfaction Client",
-        services_title_1: "Nos", services_title_2: "Services",
-        serv_1_title: "Réparation Électronique", serv_1_desc: "Diagnostic, réparation et remise à neuf de cartes électroniques industrielles.",
-        serv_2_title: "Automatisation", serv_2_desc: "Développement API, intégration de capteurs, optimisation de ligne.",
-        serv_3_title: "Conception de Machines", serv_3_desc: "Conception et fabrication sur mesure pour répondre à des besoins spécifiques.",
+        hero_btn_quote: "Obtenir un Devis",
+        hero_btn_explore: "Explorer Services",
+        why_title: "Pourquoi choisir",
+        why_subtitle: "Nous améliorons et optimisons votre performance industrielle.",
+        feat_1_title: "Expertise Confirmée",
+        feat_1_desc: "Plus de 10 ans d’expérience en maintenance, diagnostic, réparation électronique et automatisation.",
+        feat_2_title: "Haute Performance",
+        feat_2_desc: "Optimisation des machines, réduction des temps d’arrêt et amélioration de l’efficacité globale.",
+        feat_3_title: "24/7 Support",
+        feat_3_desc: "Support technique rapide, interventions urgentes et diagnostic à distance.",
+        feat_4_title: "Sécurité & Fiabilité",
+        feat_4_desc: "Méthodes de travail rigoureuses et projets livrés avec précision et conformité industrielle.",
+        about_h2_1: "Construit pour",
+        about_h2_2: "l’Industrie de Demain",
+        about_desc: "Depuis 10 ans, Expertronics développe des solutions industrielles complètes : maintenance, automatisation, programmation API, modernisation des installations et réparation électronique de cartes complexes. De la mise à niveau de machines à la création de solutions sur mesure, nous accompagnons les entreprises vers une production plus performante et durable.",
+        stat_projects: "Projets Qui Ont Été Achevés",
+        stat_reliability: "Taux de Fiabilité Après Intervention",
+        services_title_1: "Nos",
+        services_title_2: "Services",
+        serv_1_title: "Réparation Électronique",
+        serv_1_desc: "Diagnostic, réparation et remise à neuf de cartes électroniques industrielles (alimentation, commande, moteurs, I/O).",
+        serv_2_title: "Automatisation & Programmation",
+        serv_2_desc: "Développement API (Siemens, Schneider…), intégration de capteurs, optimisation de ligne, modification de programmes.",
+        serv_3_title: "Conception de Machines",
+        serv_3_desc: "Conception et fabrication sur mesure pour répondre à des besoins spécifiques de production.",
         see_more: "Voir plus",
-        products_title_1: "Nos", products_title_2: "Produits", products_subtitle: "Solutions matérielles conçues et assemblées par Expertronics.",
-        prod_badge: "Nouvelle Série", prod_name: "Trieuse Pondérale",
-        prod_desc: "Système de pesage industriel haute précision conçu pour fonctionner en toute fiabilité. Interface tactile intuitive et connectivité IIoT.",
-        prod_feat_1: "Précision +/- 0.5g", prod_feat_2: "Détecteur de métaux", prod_feat_3: "Intégration SIEMENS",
-        prod2_name: "Convoyeurs Industriels", prod2_sub: "Fabrication & Conception", prod2_desc: "Systèmes de convoyage adaptés à votre ligne. Structure Inox ou Alu.",
-        prod2_feat_1: "Structure Modulaire", prod2_feat_2: "Vitesse variable",
-        nav_prod_checkweigher: "Trieuse Pondérale", nav_prod_conveyor: "Convoyeurs", prod_badge_custom: "Sur Mesure",
-        proj_title_1: "Projets", proj_title_2: "Réalisés", see_all_proj: "Voir tous les projets →",
-        cat_automation: "Automotisation", proj_1_title: "Renouvellement Armoire", proj_1_desc: "Modernisation complète d'armoire.",
-        cat_wiring: "Cablage", proj_2_title: "Installation Automates", proj_2_desc: "Câblage et mise en service.",
-        cat_electronic: "Electronique", proj_3_title: "Réparation HMI", proj_3_desc: "Réparation carte électronique.",
-        clients_title: "ILS NOUS FONT CONFIANCE",
-        dir_tag: "Gérant et Fondateur", dir_name: "Rachid Balla", dir_btn_contact: "Contacter l'Expert",
-        contact_h2_1: "Boostez votre", contact_h2_2: "productivité", contact_desc: "Expertise technique disponible. Contactez-nous.",
-        contact_address_label: "Adresse", contact_address: "Rue 465 N°39 - Les Amicales, Agadir, Maroc",
-        contact_support_label: "Support",
-        form_name: "Nom", form_name_ph: "Votre nom", form_company: "Entreprise", form_company_ph: "Société",
-        form_msg: "Message", form_msg_ph: "Votre message...", form_btn: "Envoyer Message",
-        footer_about: "Votre partenaire en maintenance industrielle.", footer_company: "Entreprise", footer_solutions: "Solutions",
-        footer_link_maint: "Maintenance", footer_link_auto: "Automatisation", footer_update: "Newsletter",
+        products_title_1: "Nos",
+        products_title_2: "Produits",
+        products_subtitle: "Solutions matérielles conçues et assemblées par Expertronics.",
+        prod_badge: "Nouvelle Série",
+        prod_name: "Trieuse Pondérale",
+        prod_desc: "Système de pesage industriel haute précision conçu pour fonctionner en toute fiabilité dans les environnements difficiles. Avec son interface tactile intuitive et sa connectivité IIoT, la X1 améliore votre contrôle qualité et réduit les pertes de matière.",
+        prod_feat_1: "Précision de pesage +/- 0.5g",
+        prod_feat_2: "Détecteur de métaux (option)",
+        prod_feat_3: "Intégration SIEMENS native",
+        proj_title_1: "Projets",
+        proj_title_2: "Réalisés",
+        see_all_proj: "Voir tous les projets →",
+        cat_automation: "Automotisation",
+        proj_1_title: "Renouvellement Armoire Industrielle",
+        proj_1_desc: "Modernisation complète d'une armoire de contrôle industriel avec mise à niveau des systèmes d'automatisation et interface opérateur.",
+        cat_wiring: "Cablage",
+        proj_2_title: "Câblage et Installation Armoire Automates",
+        proj_2_desc: "Câblage, installation et mise en service complète d'une armoire d'automates industriels avec intégration des systèmes de contrôle.",
+        cat_electronic: "Electronique",
+        proj_3_title: "Réparation Carte Électronique HMI",
+        proj_3_desc: "Réparation spécialisée d'une carte électronique d'interface homme-machine, restaurant les fonctionnalités d'affichage et de contrôle tactile.",
+        clients_title: "NOS CLIENTS",
+        // DIRECTOR SECTION TRANSLATIONS
+        dir_tag: "Gérant et Fondateur, Expertronics",
+        dir_title_1: "Notre Mission :",
+        dir_title_2: "Zéro Compromis",
+        dir_quote: "\"Chez Expertronics, nous croyons qu'une performance industrielle optimale ne doit jamais être un objectif, mais une **norme**. Notre engagement est de vous fournir la fiabilité et la précision nécessaires pour atteindre une production sans effort et sans arrêt.\"",
+        dir_name: "Rachid Balla",
+        dir_role: "Directeur Général, Fondateur",
+        dir_btn_contact: "Contacter Rachid",
+        // END DIRECTOR SECTION TRANSLATIONS
+        contact_h2_1: "Boostez votre",
+        contact_h2_2: "productivité",
+        contact_desc: "Nous sommes prêts à intervenir, diagnostiquer ou moderniser vos machines.",
+        contact_address_label: "Adresse",
+        contact_address: "Rue 465 N°39 - Les Amicales, Agadir, Maroc",
+        contact_support_label: "Assistance & Support",
+        form_name: "Nom",
+        form_name_ph: "Votre nom",
+        form_company: "Entreprise",
+        form_company_ph: "Votre société",
+        form_msg: "Description du projet",
+        form_msg_ph: "Parlez-nous de vos besoins...",
+        form_btn: "Envoyer Message",
+        msg_sent_title: "Message Envoyé !",
+        msg_sent_desc: "Merci de nous avoir contactés. Notre équipe technique reviendra vers vous sous 24h.",
+        msg_sent_btn: "Envoyer un autre message",
+        footer_about: "Votre partenaire en maintenance industrielle, électronique et automatisation.",
+        footer_company: "Entreprise",
+        footer_careers: "Carrières",
+        footer_solutions: "Solutions",
+        footer_link_maint: "Maintenance industrielle",
+        footer_link_repair: "Réparation électronique",
+        footer_link_auto: "Automatisation",
+        footer_link_weigh: "Machine de pesage",
+        footer_update: "Restez Informé",
+        footer_newsletter: "Les dernières tendances industrielles dans votre boîte mail.",
+        footer_privacy: "Politique de confidentialité",
+        footer_terms: "Conditions d'utilisation",
+        nav_prod_checkweigher: "Trieuse Pondérale",
+        nav_prod_conveyor: "Conception Convoyeurs",
+        prod_badge_custom: "Sur Mesure",
+        prod2_name: "Convoyeurs Industriels",
+        prod2_sub: "Fabrication & Conception",
+        prod2_desc: "Nous concevons et fabriquons des systèmes de convoyage adaptés à votre ligne de production. Du convoyeur à bande PVC alimentaire au convoyeur à rouleaux motorisés, nos solutions garantissent un flux de produits fluide et optimisé.",
+        prod2_feat_1: "Structure Inox ou Aluminium Modulaire",
+        prod2_feat_2: "Vitesse variable & Synchronisation",
+        prod2_feat_3: "Dimensions et courbures personnalisées",
+        btn_quote_req: "Demander un Devis",
       },
       en: {
-        nav_home: "Home", nav_about: "About", nav_services: "Services", nav_products: "Products", nav_projects: "Projects", nav_contact: "Contact",
-        hero_title_1: "Engineered for", hero_title_2: "Non-Stop Production",
+        nav_home: "Home",
+        nav_about: "About",
+        nav_services: "Services",
+        nav_products: "Products",
+        nav_projects: "Projects",
+        nav_contact: "Contact",
+        hero_title_1: "Engineered for",
+        hero_title_2: "Non-Stop Production",
         hero_desc: "Industrial maintenance solutions, automation, electronic repair, and 24/7 technical support.",
-        hero_btn_quote: "Get Quote", hero_btn_explore: "Explore Services",
-        why_title: "Why Choose", why_subtitle: "We optimize your industrial performance.",
-        feat_1_title: "Confirmed Expertise", feat_1_desc: "Over 10 years of experience in maintenance, diagnostics, and automation.",
-        feat_2_title: "High Performance", feat_2_desc: "Machine optimization and efficiency improvement.",
-        feat_3_title: "24/7 Support", feat_3_desc: "Rapid technical support and urgent interventions.",
-        feat_4_title: "Safety & Reliability", feat_4_desc: "Rigorous work methods and precision delivery.",
-        about_h2_1: "Built for", about_h2_2: "Tomorrow's Industry",
-        about_desc: "For 10 years, Expertronics has developed complete industrial solutions: maintenance, automation, PLC programming. From machine upgrades to custom solutions.",
-        stat_projects: "Projects Done", stat_reliability: "Client Satisfaction",
-        services_title_1: "Our", services_title_2: "Services",
-        serv_1_title: "Electronic Repair", serv_1_desc: "Diagnosis and repair of industrial electronic cards.",
-        serv_2_title: "Automation", serv_2_desc: "PLC Development, sensor integration, line optimization.",
-        serv_3_title: "Machine Design", serv_3_desc: "Custom design and manufacturing to meet specific needs.",
+        hero_btn_quote: "Get Instant Quote",
+        hero_btn_explore: "Explore Services",
+        why_title: "Why Choose",
+        why_subtitle: "We improve and optimize your industrial performance.",
+        feat_1_title: "Confirmed Expertise",
+        feat_1_desc: "Over 10 years of experience in maintenance, diagnostics, electronic repair, and automation.",
+        feat_2_title: "High Performance",
+        feat_2_desc: "Machine optimization, downtime reduction, and overall efficiency improvement.",
+        feat_3_title: "24/7 Support",
+        feat_3_desc: "Rapid technical support, urgent interventions, and remote diagnostics.",
+        feat_4_title: "Safety & Reliability",
+        feat_4_desc: "Rigorous work methods and projects delivered with precision and industrial compliance.",
+        about_h2_1: "Built for",
+        about_h2_2: "Tomorrow's Industry",
+        about_desc: "For 10 years, Expertronics has developed complete industrial solutions: maintenance, automation, PLC programming, facility modernization, and complex electronic card repair. From machine upgrades to custom solutions, we guide companies towards more efficient and sustainable production.",
+        stat_projects: "Projects Completed",
+        stat_reliability: "Reliability Rate After Intervention",
+        services_title_1: "Our",
+        services_title_2: "Services",
+        serv_1_title: "Electronic Repair",
+        serv_1_desc: "Diagnosis, repair, and refurbishment of industrial electronic cards (power, control, motors, I/O).",
+        serv_2_title: "Automation & Programming",
+        serv_2_desc: "PLC Development (Siemens, Schneider…), sensor integration, line optimization, program modification.",
+        serv_3_title: "Machine Design",
+        serv_3_desc: "Custom design and manufacturing to meet specific production needs.",
         see_more: "See more",
-        products_title_1: "Our", products_title_2: "Products", products_subtitle: "Hardware solutions by Expertronics.",
-        prod_badge: "New Series", prod_name: "Checkweigher",
-        prod_desc: "High-precision industrial weighing system. Intuitive touch interface and IIoT connectivity.",
-        prod_feat_1: "Accuracy +/- 0.5g", prod_feat_2: "Metal detector", prod_feat_3: "SIEMENS Integration",
-        prod2_name: "Industrial Conveyors", prod2_sub: "Design & Build", prod2_desc: "Conveyor systems tailored to your line.",
-        prod2_feat_1: "Modular Structure", prod2_feat_2: "Variable Speed",
-        nav_prod_checkweigher: "Checkweigher", nav_prod_conveyor: "Conveyors", prod_badge_custom: "Custom Made",
-        proj_title_1: "Completed", proj_title_2: "Projects", see_all_proj: "See all projects →",
-        cat_automation: "Automation", proj_1_title: "Cabinet Renewal", proj_1_desc: "Complete modernization.",
-        cat_wiring: "Wiring", proj_2_title: "PLC Installation", proj_2_desc: "Wiring and commissioning.",
-        cat_electronic: "Electronics", proj_3_title: "HMI Repair", proj_3_desc: "Specialized board repair.",
+        products_title_1: "Our",
+        products_title_2: "Products",
+        products_subtitle: "Hardware solutions designed and assembled by Expertronics.",
+        prod_badge: "New Series",
+        prod_name: "Checkweigher",
+        prod_desc: "High-precision industrial weighing system designed to operate reliably in harsh environments. With its intuitive touch interface and IIoT connectivity, the X1 improves your quality control and reduces material loss.",
+        prod_feat_1: "Weighing accuracy +/- 0.5g",
+        prod_feat_2: "Metal detector (optional)",
+        prod_feat_3: "Native SIEMENS integration",
+        proj_title_1: "Completed",
+        proj_title_2: "Projects",
+        see_all_proj: "See all projects →",
+        cat_automation: "Automation",
+        proj_1_title: "Industrial Cabinet Renewal",
+        proj_1_desc: "Complete modernization of an industrial control cabinet with upgrades to automation systems and operator interface.",
+        cat_wiring: "Wiring",
+        proj_2_title: "PLC Cabinet Wiring & Installation",
+        proj_2_desc: "Wiring, installation, and complete commissioning of an industrial PLC cabinet with control system integration.",
+        cat_electronic: "Electronics",
+        proj_3_title: "HMI Electronic Board Repair",
+        proj_3_desc: "Specialized repair of a human-machine interface electronic board, restoring display and touch control functionalities.",
         clients_title: "OUR CLIENTS",
-        dir_tag: "Founder", dir_name: "Rachid Balla", dir_btn_contact: "Contact Expert",
-        contact_h2_1: "Boost your", contact_h2_2: "Productivity", contact_desc: "Technical expertise available. Contact us.",
-        contact_address_label: "Address", contact_address: "Rue 465 N°39 - Les Amicales, Agadir, Morocco",
-        contact_support_label: "Support",
-        form_name: "Name", form_name_ph: "Your Name", form_company: "Company", form_company_ph: "Company Name",
-        form_msg: "Message", form_msg_ph: "Your message...", form_btn: "Send Message",
-        footer_about: "Your partner in industrial maintenance.", footer_company: "Company", footer_solutions: "Solutions",
-        footer_link_maint: "Maintenance", footer_link_auto: "Automation", footer_update: "Newsletter",
+        // DIRECTOR SECTION TRANSLATIONS
+        dir_tag: "Director's Word",
+        dir_title_1: "Our Mission:",
+        dir_title_2: "Zero Compromise",
+        dir_quote: "\"At Expertronics, we believe that optimal industrial performance should never be a goal, but a **standard**. Our commitment is to provide you with the reliability and precision needed to achieve effortless and non-stop production.\"",
+        dir_name: "Rachid Balla",
+        dir_role: "General Manager, Founder",
+        dir_btn_contact: "Contact Rachid",
+        // END DIRECTOR SECTION TRANSLATIONS
+        contact_h2_1: "Boost your",
+        contact_h2_2: "Productivity",
+        contact_desc: "We are ready to intervene, diagnose, or modernize your machines.",
+        contact_address_label: "Address",
+        contact_address: "Rue 465 N°39 - Les Amicales, Agadir, Morocco",
+        contact_support_label: "Assistance & Support",
+        form_name: "Name",
+        form_name_ph: "Your name",
+        form_company: "Company",
+        form_company_ph: "Your company",
+        form_msg: "Project Description",
+        form_msg_ph: "Tell us about your needs...",
+        form_btn: "Send Message",
+        msg_sent_title: "Message Sent!",
+        msg_sent_desc: "Thank you for contacting us. Our technical team will get back to you within 24h.",
+        msg_sent_btn: "Send another message",
+        footer_about: "Your partner in industrial maintenance, electronics, and automation.",
+        footer_company: "Company",
+        footer_careers: "Careers",
+        footer_solutions: "Solutions",
+        footer_link_maint: "Industrial Maintenance",
+        footer_link_repair: "Electronic Repair",
+        footer_link_auto: "Automation",
+        footer_link_weigh: "Weighing Machine",
+        footer_update: "Stay Updated",
+        footer_newsletter: "Latest industrial trends delivered to your inbox.",
+        footer_privacy: "Privacy Policy",
+        footer_terms: "Terms of Service",
+        nav_prod_checkweigher: "Checkweigher",
+        nav_prod_conveyor: "Conveyor Design",
+        prod_badge_custom: "Custom Made",
+        prod2_name: "Industrial Conveyors",
+        prod2_sub: "Design & Manufacturing",
+        prod2_desc: "We design and manufacture conveyor systems tailored to your production line. From food-grade PVC belt conveyors to motorized roller conveyors, our solutions ensure a smooth and optimized product flow.",
+        prod2_feat_1: "Modular Stainless Steel or Aluminum Structure",
+        prod2_feat_2: "Variable Speed & Synchronization",
+        prod2_feat_3: "Custom Dimensions and Curvatures",
+        btn_quote_req: "Request Quote",
       },
       ar: {
-        nav_home: "الرئيسية", nav_about: "من نحن", nav_services: "خدماتنا", nav_products: "منتجاتنا", nav_projects: "مشاريعنا", nav_contact: "اتصل بنا",
-        hero_title_1: "مصممة لإنتاج", hero_title_2: "بدون توقف",
-        hero_desc: "حلول الصيانة الصناعية، الأنظمة الآلية، إصلاح الإلكترونيات والدعم الفني 24/7.",
-        hero_btn_quote: "احصل على عرض", hero_btn_explore: "خدماتنا",
-        why_title: "لماذا تختار", why_subtitle: "نحسن أداءك الصناعي.",
-        feat_1_title: "خبرة مؤكدة", feat_1_desc: "أكثر من 10 سنوات من الخبرة في الصيانة والتشخيص.",
-        feat_2_title: "أداء عالي", feat_2_desc: "تحسين الآلات وتقليل وقت التوقف.",
-        feat_3_title: "دعم 24/7", feat_3_desc: "دعم فني سريع وتدخلات عاجلة.",
-        feat_4_title: "الأمان والموثوقية", feat_4_desc: "طرق عمل صارمة ودقة في التسليم.",
-        about_h2_1: "بنيت من أجل", about_h2_2: "صناعة الغد",
-        about_desc: "تطور إكسبيرترونيكس حلولًا صناعية متكاملة: الصيانة، الأنظمة الآلية، وتحديث المنشآت.",
-        stat_projects: "مشاريع منجزة", stat_reliability: "رضا العملاء",
-        services_title_1: "أهم", services_title_2: "خدماتنا",
-        serv_1_title: "إصلاح الإلكترونيات", serv_1_desc: "تشخيص وإصلاح البطاقات الإلكترونية الصناعية.",
-        serv_2_title: "الأنظمة الآلية", serv_2_desc: "تطوير API وتحسين خطوط الإنتاج.",
-        serv_3_title: "تصميم الآلات", serv_3_desc: "تصميم وتصنيع مخصص.",
+        nav_home: "الرئيسية",
+        nav_about: "من نحن",
+        nav_services: "خدماتنا",
+        nav_products: "منتجاتنا",
+        nav_projects: "مشاريعنا",
+        nav_contact: "اتصل بنا",
+        hero_title_1: "مصممة لإنتاج",
+        hero_title_2: "بدون توقف",
+        hero_desc: "حلول الصيانة الصناعية، الأنظمة الآلية، إصلاح الإلكترونيات والدعم الفني على مدار 24/7.",
+        hero_btn_quote: "احصل على عرض سعر",
+        hero_btn_explore: "استكشف الخدمات",
+        why_title: "لماذا تختار",
+        why_subtitle: "نقوم بتحسين وتحسين أدائك الصناعي.",
+        feat_1_title: "خبرة مؤكدة",
+        feat_1_desc: "أكثر من 10 سنوات من الخبرة في الصيانة، التشخيص، إصلاح الإلكترونيات والأنظمة الآلية.",
+        feat_2_title: "أداء عالي",
+        feat_2_desc: "تحسين الآلات، تقليل وقت التوقف، وتحسين الكفاءة العامة.",
+        feat_3_title: "دعم 24/7",
+        feat_3_desc: "دعم فني سريع، تدخلات عاجلة وتشخيص عن بعد.",
+        feat_4_title: "الأمان والموثوقية",
+        feat_4_desc: "طرق عمل صارمة ومشاريع يتم تسليمها بدقة وامتثال صناعي.",
+        about_h2_1: "بنيت من أجل",
+        about_h2_2: "صناعة الغد",
+        about_desc: "منذ 10 سنوات، تطور إكسبيرترونيكس حلولًا صناعية متكاملة: الصيانة، الأنظمة الآلية، برمجة API، تحديث المنشآت وإصلاح البطاقات الإلكترونية المعقدة. من ترقية الآلات إلى إنشاء حلول مخصصة، نرافق الشركات نحو إنتاج أكثر كفاءة واستدامة.",
+        stat_projects: "مشاريع مكتملة",
+        stat_reliability: "معدل الموثوقية بعد التدخل",
+        services_title_1: "أهم",
+        services_title_2: "خدماتنا",
+        serv_1_title: "الإصلاح الإلكتروني",
+        serv_1_desc: "تشخيص وإصلاح وتجديد البطاقات الإلكترونية الصناعية (الطاقة، التحكم، المحركات، الإدخال/الإخراج).",
+        serv_2_title: "الأنظمة الآلية والبرمجة",
+        serv_2_desc: "تطوير API (سيمنز، شنايدر...)، دمج أجهزة الاستشعار، تحسين خطوط الإنتاج، تعديل البرامج.",
+        serv_3_title: "تصميم الآلات",
+        serv_3_desc: "تصميم وتصنيع مخصص لتلبية احتياجات الإنتاج المحددة.",
         see_more: "المزيد",
-        products_title_1: "أهم", products_title_2: "منتجاتنا", products_subtitle: "حلول الأجهزة من إكسبيرترونيكس.",
-        prod_badge: "جديد", prod_name: "آلة الوزن",
-        prod_desc: "نظام وزن صناعي عالي الدقة. واجهة لمس بديهية.",
-        prod_feat_1: "دقة +/- 0.5g", prod_feat_2: "كاشف معادن", prod_feat_3: "تكامل SIEMENS",
-        prod2_name: "أحزمة ناقلة", prod2_sub: "تصميم وتصنيع", prod2_desc: "أنظمة نقل تتناسب مع خط الإنتاج.",
-        prod2_feat_1: "هيكل معدني", prod2_feat_2: "سرعة متغيرة",
-        nav_prod_checkweigher: "آلة وزن", nav_prod_conveyor: "أحزمة ناقلة", prod_badge_custom: "حسب الطلب",
-        proj_title_1: "مشاريع", proj_title_2: "مُنجزة", see_all_proj: "كل المشاريع ←",
-        cat_automation: "أتمتة", proj_1_title: "تجديد خزانة", proj_1_desc: "تحديث كامل لخزانة تحكم.",
-        cat_wiring: "أسلاك", proj_2_title: "تركيب تحكم", proj_2_desc: "توصيل وتركيب.",
-        cat_electronic: "إلكترونيات", proj_3_title: "إصلاح HMI", proj_3_desc: "إصلاح بطاقة إلكترونية.",
+        products_title_1: "أهم",
+        products_title_2: "منتجاتنا",
+        products_subtitle: "حلول الأجهزة المصممة والمجمعة بواسطة إكسبيرترونيكس.",
+        prod_badge: "سلسلة جديدة",
+        prod_name: "آلة الوزن والفرز",
+        prod_desc: "نظام وزن صناعي عالي الدقة مصمم للعمل بموثوقية تامة في البيئات الصعبة. مع واجهة لمس بديهية واتصال IIoT، تحسن X1 مراقبة الجودة لديك وتقلل من هدر المواد.",
+        prod_feat_1: "دقة الوزن +/- 0.5 جرام",
+        prod_feat_2: "كاشف معادن (اختياري)",
+        prod_feat_3: "تكامل أصلي مع SIEMENS",
+        proj_title_1: "مشاريع",
+        proj_title_2: "مُنجزة",
+        see_all_proj: "عرض كل المشاريع ←",
+        cat_automation: "أتمتة",
+        proj_1_title: "تجديد خزانة صناعية",
+        proj_1_desc: "تحديث كامل لخزانة تحكم صناعية مع ترقية أنظمة الأنظمة الآلية وواجهة المشغل.",
+        cat_wiring: "توصيل الأسلاك",
+        proj_2_title: "توصيل وتركيب خزانة التحكم",
+        proj_2_desc: "توصيل وتركيب وتشغيل كامل لخزانة التحكم الصناعية مع تكامل أنظمة التحكم.",
+        cat_electronic: "إلكترونيات",
+        proj_3_title: "إصلاح بطاقة إلكترونية HMI",
+        proj_3_desc: "إصلاح متخصص لبطاقة إلكترونية لواجهة الإنسان والآلة، واستعادة وظائف العرض والتحكم باللمس.",
         clients_title: "عملاؤنا",
-        dir_tag: "المؤسس", dir_name: "رشيد بالا", dir_btn_contact: "اتصل بالخبير",
-        contact_h2_1: "عزز", contact_h2_2: "إنتاجيتك", contact_desc: "نحن مستعدون للتدخل.",
-        contact_address_label: "العنوان", contact_address: "شارع 465 رقم 39 - الودادية، أغادير",
-        contact_support_label: "دعم",
-        form_name: "الاسم", form_name_ph: "الاسم", form_company: "الشركة", form_company_ph: "الشركة",
-        form_msg: "الرسالة", form_msg_ph: "رسالتك...", form_btn: "إرسال",
-        footer_about: "شريكك في الصيانة الصناعية.", footer_company: "الشركة", footer_solutions: "الحلول",
-        footer_link_maint: "الصيانة", footer_link_auto: "أتمتة", footer_update: "النشرة",
+        // DIRECTOR SECTION TRANSLATIONS
+        dir_tag: "كلمة المدير",
+        dir_title_1: "مهمتنا:",
+        dir_title_2: "لا مساومة على الجودة",
+        dir_quote: "\"في إكسبيرترونيكس، نؤمن بأن الأداء الصناعي الأمثل يجب ألا يكون هدفًا، بل **معيارًا**. التزامنا هو تزويدكم بالموثوقية والدقة اللازمة لتحقيق إنتاج سلس وبدون توقف.\"",
+        dir_name: "رشيد بالا",
+        dir_role: "المدير العام، المؤسس",
+        dir_btn_contact: "اتصل برشيد",
+        // END DIRECTOR SECTION TRANSLATIONS
+        contact_h2_1: "عزز",
+        contact_h2_2: "إنتاجيتك",
+        contact_desc: "نحن مستعدون للتدخل، التشخيص أو تحديث أجهزتك.",
+        contact_address_label: "العنوان",
+        contact_address: "شارع 465 رقم 39 - الودادية، أغادير، المغرب",
+        contact_support_label: "المساعدة والدعم",
+        form_name: "الاسم",
+        form_name_ph: "اسمك",
+        form_company: "الشركة",
+        form_company_ph: "شركتك",
+        form_msg: "وصف المشروع",
+        form_msg_ph: "أخبرنا عن احتياجاتك...",
+        form_btn: "إرسال الرسالة",
+        msg_sent_title: "تم الإرسال!",
+        msg_sent_desc: "شكراً لتواصلك معنا. سيعود فريقنا الفني إليك خلال 24 ساعة.",
+        msg_sent_btn: "إرسال رسالة أخرى",
+        footer_about: "شريكك في الصيانة الصناعية والإلكترونيات والأنظمة الآلية.",
+        footer_company: "الشركة",
+        footer_careers: "الوظائف",
+        footer_solutions: "الحلول",
+        footer_link_maint: "الصيانة الصناعية",
+        footer_link_repair: "الإصلاح الإلكتروني",
+        footer_link_auto: "الأنظمة الآلية",
+        footer_link_weigh: "آلات الوزن",
+        footer_update: "ابق على اطلاع",
+        footer_newsletter: "أحدث الاتجاهات الصناعية تصل إلى بريدك الوارد.",
+        footer_privacy: "سياسة الخصوصية",
+        footer_terms: "شروط الخدمة",
+        nav_prod_checkweigher: "آلة الوزن والفرز",
+        nav_prod_conveyor: "تصميم الأحزمة الناقلة",
+        prod_badge_custom: "تصنيع حسب الطلب",
+        prod2_name: "الأحزمة الناقلة الصناعية",
+        prod2_sub: "تصميم وتصنيع",
+        prod2_desc: "نقوم بتصميم وتصنيع أنظمة نقل تتناسب مع خط الإنتاج الخاص بك. من أحزمة PVC الغذائية إلى الناقلات الأسطوانية المزودة بمحركات، تضمن حلولنا تدفقًا سلسًا ومثاليًا للمنتجات.",
+        prod2_feat_1: "هيكل من الفولاذ المقاوم للصدأ أو الألمنيوم",
+        prod2_feat_2: "سرعة متغيرة وتزامن آلي",
+        prod2_feat_3: "أبعاد وانحناءات مخصصة",
+        btn_quote_req: "طلب عرض سعر",
       }
     };
 
     function changeLanguage(lang) {
+      // 1. Set HTML Lang & Dir
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-      
+
+      // 2. Update all text elements with data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) el.innerText = translations[lang][key];
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
       });
 
+      // 3. Update placeholders
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
-        if (translations[lang] && translations[lang][key]) el.placeholder = translations[lang][key];
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
       });
 
+      // 4. Update Active State of Buttons
       document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
+        btn.classList.remove('active', 'text-accent');
       });
+      // Try to find the button (handling duplicate IDs in mobile/desktop isn't valid HTML, so we use classes or select carefully)
+      // Since IDs must be unique, the mobile ones don't have IDs in my code above, just onclick.
+      // Let's highlight based on text content for simplicity in this script
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+         if(btn.innerText.toLowerCase() === lang) {
+             btn.classList.add('active', 'text-accent');
+         }
+      });
+
+      // 5. Save preference
       localStorage.setItem('expertronics_lang', lang);
     }
+
+    // Initialize Language
     document.addEventListener('DOMContentLoaded', () => {
-        changeLanguage(localStorage.getItem('expertronics_lang') || 'fr');
+        const savedLang = localStorage.getItem('expertronics_lang') || 'fr';
+        changeLanguage(savedLang);
+    });
+  </script>
+
+  <script>
+    // Mobile Menu Toggle
+    const btn = document.getElementById('mobile-btn');
+    const menu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('navbar');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      // Change icon
+      const icon = btn.querySelector('i');
+      if (menu.classList.contains('flex')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
     });
 
-    // --- ANIMATIONS ---
+    // Close mobile menu when link clicked
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+        btn.querySelector('i').classList.add('fa-bars');
+        btn.querySelector('i').classList.remove('fa-times');
+      });
+    });
+
+    // Navbar Glass Effect on Scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('py-2');
+        navbar.classList.remove('py-4');
+        navbar.classList.add('shadow-xl');
+      } else {
+        navbar.classList.add('py-4');
+        navbar.classList.remove('py-2');
+        navbar.classList.remove('shadow-xl');
+      }
+    });
+
+    // Theme Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const icon = document.querySelector('#theme-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    });
+
+    // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade in text
-    gsap.from("#home h1", { opacity: 0, y: 50, duration: 1, delay: 0.2 });
-    gsap.from("#home p", { opacity: 0, y: 30, duration: 1, delay: 0.4 });
-    gsap.from("#home a", { opacity: 0, scale: 0.9, duration: 0.8, delay: 0.6, stagger: 0.1 });
+    // Hero
+    const tl = gsap.timeline();
+    tl.from("#home h1", { opacity: 0, y: 100, duration: 1, ease: "power4.out", delay: 0.5 })
+      .from("#home p", { opacity: 0, y: 50, duration: 1, ease: "power3.out" }, "-=0.5")
+      .from("#home a", { opacity: 0, scale: 0.8, duration: 0.8, stagger: 0.2, ease: "back.out(1.7)" }, "-=0.5");
 
-    // Section reveal
+    // Sections Fade Up
     gsap.utils.toArray('section').forEach((section, i) => {
       if(section.id !== 'home') {
         gsap.from(section, {
-          scrollTrigger: { trigger: section, start: "top 90%" },
-          opacity: 0, y: 40, duration: 0.8
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          },
+          opacity: 0,
+          y: 60,
+          duration: 1,
+          ease: "power2.out"
         });
       }
     });
 
-    // --- MOBILE MENU ---
-    const btn = document.getElementById('mobile-btn');
-    const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        menu.classList.toggle('flex');
+    // Stagger cards in services and why us
+    gsap.utils.toArray('.glass-card, #services .group').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: i * 0.1
+      });
     });
-    menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-        menu.classList.add('hidden'); menu.classList.remove('flex');
-    }));
 
-    // --- FORM HANDLING ---
+  </script>
+
+  <script>
     const contactForm = document.getElementById('contactForm');
     const successMessage = document.getElementById('successMessage');
     const submitBtn = document.getElementById('submitBtn');
-
+    // Store original content to restore it properly after translation changes
+    // But since the button text changes via translation, we will rely on icons or handle text carefully.
+    
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); 
+        
+        // Save current text to restore if failed, or just use loading spinner
+        const originalText = submitBtn.innerText; 
+
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
-        fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm) })
-        .then(r => {
-            if(r.ok) {
-                contactForm.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-            } else alert("Error");
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
         })
-        .finally(() => submitBtn.disabled = false);
+        .then(response => {
+            if (response.ok) {
+                successMessage.classList.remove('hidden');
+                successMessage.classList.add('flex');
+                contactForm.reset(); 
+            } else {
+                alert("Erreur / Error / خطأ");
+            }
+        })
+        .catch(error => {
+            alert("Erreur de connexion / Connection Error");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            // Re-apply translation key to restore text
+            const key = submitBtn.getAttribute('data-i18n');
+            const currentLang = document.documentElement.lang;
+            if(translations[currentLang][key]) {
+                submitBtn.innerHTML = translations[currentLang][key] + ' <i class="fas fa-paper-plane"></i>';
+            } else {
+                submitBtn.innerHTML = 'Send <i class="fas fa-paper-plane"></i>';
+            }
+        });
     });
-  </script>
+
+    function resetForm() {
+        successMessage.classList.add('hidden');
+        successMessage.classList.remove('flex');
+    }
+</script>
 </body>
 </html>
