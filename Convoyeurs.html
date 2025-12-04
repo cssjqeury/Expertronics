@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" data-i18n="meta_desc" content="Conception et fabrication de convoyeurs industriels sur mesure. Bande, rouleaux, modulaire. Solutions Expertronics." />
+  <title data-i18n="page_title">Convoyeurs Industriels Sur Mesure | Expertronics</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a1d56',
+            accent: '#00f5ff',
+            steel: '#94a3b8',
+            darkbg: '#0f172a',
+            surface: '#1e293b',
+          },
+          fontFamily: { 
+             display: ['"Space Grotesk"', 'sans-serif'], 
+             sans: ['Inter', 'sans-serif'],
+             arabic: ['Cairo', 'sans-serif']
+          },
+          animation: { 
+             'float': 'float 6s ease-in-out infinite', 
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
+    html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { font-family: 'Cairo', sans-serif; }
+    
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+    
+    /* Lightbox Styles */
+    #lightbox { transition: opacity 0.3s ease; }
+    #lightbox.hidden { display: none; }
+    #lightbox.visible { display: flex; opacity: 1; }
+    
+    .lang-btn {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 0.9rem;
+        padding: 0 5px;
+        opacity: 0.7;
+        transition: all 0.3s;
+    }
+    .lang-btn:hover, .lang-btn.active {
+        opacity: 1;
+        color: #00f5ff;
+        text-shadow: 0 0 10px rgba(0,245,255,0.5);
+    }
+
+    .tab-btn.active { 
+        border-color: #00f5ff;
+        background-color: #172033;
+        color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
+
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center opacity-0 backdrop-blur-sm p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-accent transition text-4xl z-50 focus:outline-none">
+        <i class="fas fa-times"></i>
+    </button>
+    <div id="lightbox-content" class="max-w-6xl max-h-[90vh] w-full flex items-center justify-center relative">
+    </div>
+  </div>
+
+  <nav class="fixed top-0 w-full z-40 glass border-b border-white/5" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="logo text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+         <img src="C:\Users\VIET\Documents\Programming\Expertronics\assets\img\logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain logo">
+      </a>
+      
+      <div class="flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="index.html" class="text-accent hover:text-white transition" data-i18n="nav_return"><i class="fas fa-arrow-left mr-2"></i> Retour à l'accueil</a>
+        
+        <div class="flex items-center gap-3 border-l border-white/20 pl-4">
+            <span class="lang-btn" onclick="changeLanguage('fr')" id="btn-fr">FR</span>
+            <span class="lang-btn" onclick="changeLanguage('en')" id="btn-en">EN</span>
+            <span class="lang-btn" onclick="changeLanguage('ar')" id="btn-ar">AR</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="relative pt-32 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-darkbg to-darkbg"></div>
+    <div class="absolute top-20 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs uppercase tracking-widest" data-i18n="badge_custom">
+          <i class="fas fa-tools"></i> Conception Sur Mesure
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+          <span data-i18n="h1_title_1">Convoyeurs</span> <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-steel" data-i18n="h1_title_2">INDUSTRIELS</span>
+        </h1>
+        <p class="text-xl text-steel leading-relaxed" data-i18n="hero_desc">
+          Systèmes de manutention automatisés conçus pour optimiser votre flux de production. Du standard au sur-mesure, robuste et évolutif.
+        </p>
+        
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#contact" class="px-8 py-3 bg-accent text-black font-bold rounded-lg hover:bg-white transition shadow-[0_0_20px_rgba(0,245,255,0.3)]" data-i18n="hero_btn_quote">
+            Demander un Devis
+          </a>
+          <a href="#specs" class="px-8 py-3 border border-white/20 hover:bg-white/10 rounded-lg transition" data-i18n="hero_btn_specs">
+            Configurations
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl aspect-[4/3] group cursor-pointer" onclick="openLightbox('image', document.getElementById('main-image').src)">
+            <img id="main-image" 
+                 src="https://images.unsplash.com/photo-1565514020176-7c229e061b4c?q=80&w=1000&auto=format&fit=crop" 
+                 onerror="this.src='assets/img/conveyor-placeholder.jpg'"
+                 class="object-cover w-full h-full transition duration-500 group-hover:scale-105"
+                 alt="Convoyeur Industriel Expertronics"
+                 loading="eager">
+            
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                <i class="fas fa-expand text-accent text-4xl drop-shadow-lg transform scale-50 group-hover:scale-100 transition duration-300"></i>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 border-b border-white/5 bg-surface/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-sm text-steel mb-4 uppercase tracking-widest font-bold" data-i18n="gallery_title">Réalisations & Types</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG289.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG534.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/mach2.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG231.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 bg-accent/10 flex items-center justify-center h-24 md:h-32 group hover:bg-accent hover:text-black transition text-white col-span-2 md:col-span-1" 
+                 onclick="openLightbox('video', 'file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/videos/NEW/Conv01.mp4')">
+                <div class="text-center group-hover:scale-110 transition">
+                    <i class="fas fa-play-circle text-3xl mb-1"></i>
+                    <p class="text-xs font-bold" data-i18n="gallery_video">Voir en action</p>
+                </div>
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG933.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG929.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG538.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 hover:border-accent transition h-24 md:h-32 relative group" 
+                 onmouseover="swapMainImage(this)"
+                 onclick="openLightbox('image', this.querySelector('img').src)">
+                <img src="file:///C:/Users/VIET/Documents/Programming/Programming/Expertronics/assets/img/NEW/IMG534.jpg" class="w-full h-full object-cover">
+            </div>
+
+            <div class="cursor-pointer rounded-xl overflow-hidden border border-white/10 bg-accent/10 flex items-center justify-center h-24 md:h-32 group hover:bg-accent hover:text-black transition text-white col-span-2 md:col-span-1" 
+                 onclick="openLightbox('video', 'assets/videos/conveyor-demo.mp4')">
+                <div class="text-center group-hover:scale-110 transition">
+                    <i class="fas fa-play-circle text-3xl mb-1"></i>
+                    <p class="text-xs font-bold" data-i18n="gallery_video">Voir en action</p>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+  </section>
+
+  <section class="py-20 bg-darkbg">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-16">
+        
+        <div class="lg:col-span-2 space-y-8">
+            <h2 class="text-3xl font-bold border-l-4 border-accent pl-4" data-i18n="desc_title">Solutions de Manutention</h2>
+            
+            <div class="text-steel space-y-6 text-lg leading-relaxed">
+                <p data-i18n="desc_p1">
+                    Chez Expertronics, nous comprenons que chaque ligne de production est unique. C'est pourquoi nous ne vendons pas simplement des convoyeurs, nous concevons des **solutions de flux**. Que vous ayez besoin de transporter des cartons, des produits alimentaires nus, ou des charges lourdes, notre bureau d'études dimensionne l'équipement parfait pour votre contrainte d'espace et de cadence.
+                </p>
+
+                <p data-i18n="desc_p2">
+                    Nous travaillons avec des matériaux de haute qualité : **Inox 304/316L** pour l'agroalimentaire et la pharmaceutique (conception hygiénique facilitant le nettoyage), ou **Aluminium anodisé** pour l'emballage et l'industrie générale. Nos bandes (PVC, PU, Modulaire) sont sélectionnées pour leur résistance à l'usure et leur conformité aux normes.
+                </p>
+
+                <p data-i18n="desc_p3">
+                    L'intelligence embarquée est notre force. Nos convoyeurs peuvent être livrés avec **armoire de commande intégrée**, variateurs de vitesse, cellules de détection, et s'interfacent directement avec vos automates existants (Siemens, Schneider, Omron) pour une gestion de ligne automatisée (accumulation, tri, indexage).
+                </p>
+
+                <p><strong data-i18n="desc_list_title">Types de convoyeurs disponibles :</strong></p>
+                <ul class="list-disc ml-5 space-y-2 marker:text-accent">
+                    <li data-i18n="feat_1"><strong>Convoyeur à Bande :</strong> Idéal pour le transport de vrac ou petites pièces.</li>
+                    <li data-i18n="feat_2"><strong>Convoyeur à Rouleaux :</strong> (Motorisés ou gravitaires) Pour cartons et bacs.</li>
+                    <li data-i18n="feat_3"><strong>Convoyeur à Chaîne Modulaire :</strong> Robuste, drainant, permet les courbes.</li>
+                    <li data-i18n="feat_4"><strong>Convoyeur Courbe & Élévateur :</strong> Pour les changements de direction et de niveau.</li>
+                    <li data-i18n="feat_5"><strong>Systèmes d'accumulation :</strong> Gestion du flux sans pression.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-2xl font-bold mt-10 mb-6" data-i18n="points_forts">Points Forts</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-ruler-combined"></i></div>
+                    <div><h4 class="font-bold text-white" data-i18n="pt_1_title">100% Sur Mesure</h4><p class="text-sm text-steel" data-i18n="pt_1_desc">Longueur, largeur et hauteur adaptées.</p></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-tint"></i></div>
+                    <div><h4 class="font-bold text-white" data-i18n="pt_2_title">Hygiène & Propreté</h4><p class="text-sm text-steel" data-i18n="pt_2_desc">Design ouvert pour nettoyage facile (Agro).</p></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-tachometer-alt"></i></div>
+                    <div><h4 class="font-bold text-white" data-i18n="pt_3_title">Vitesse Variable</h4><p class="text-sm text-steel" data-i18n="pt_3_desc">Contrôle précis par variateur de fréquence.</p></div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-white/10 flex items-center justify-center text-accent text-xl shrink-0"><i class="fas fa-cogs"></i></div>
+                    <div><h4 class="font-bold text-white" data-i18n="pt_4_title">Composants Premium</h4><p class="text-sm text-steel" data-i18n="pt_4_desc">Moteurs SEW/Nord, Roulements SKF.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="specs" class="lg:col-span-1">
+            <div class="glass p-8 rounded-2xl border border-white/10 sticky top-24">
+                <h3 class="text-2xl font-bold mb-6" data-i18n="specs_title">Configuration Technique</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel" data-i18n="spec_struct">Structure</span><span class="font-mono text-accent text-right">Inox 304L / Alu</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel" data-i18n="spec_bande">Type de Bande</span><span class="font-mono text-white text-right">PVC / PU / Modulaire</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel" data-i18n="spec_width">Largeur Utile</span><span class="font-mono text-white text-right">50mm à 1500mm</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel" data-i18n="spec_speed">Vitesse</span><span class="font-mono text-white text-right">Fixe ou Variable</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel" data-i18n="spec_load">Charge Max</span><span class="font-mono text-white text-right">Jusqu'à 500kg/m</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-steel" data-i18n="spec_motor">Motorisation</span><span class="font-mono text-white text-right">Asynchrone / Brushless</span></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-xs text-steel mb-4" data-i18n="specs_note">* Étude 3D préalable pour validation.</p>
+                    <a href="#contact" class="block w-full text-center py-3 bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg transition text-sm font-bold" data-i18n="btn_consult">
+                        <i class="fas fa-calculator mr-2 text-accent"></i> Dimensionner mon projet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="details" class="py-24 bg-darkest scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6">
+          <h2 class="text-4xl font-bold mb-12 text-center" data-i18n="specs_title">Détails Techniques & Applications</h2>
+
+          <div class="grid lg:grid-cols-3 gap-12">
+              
+              <div class="lg:col-span-1">
+                  <div class="flex flex-col gap-3 sticky top-24">
+                      <button class="tab-btn p-5 rounded-xl border border-white/10 text-left active" data-tab="bande" onclick="openTab(this, 'bande')">
+                          <h3 class="font-bold text-xl mb-1" data-i18n="feat_1_title">Convoyeur à Bande</h3>
+                          <p class="text-sm text-steel" data-i18n="feat_1">Transport de vrac ou petites pièces. Idéal pour l'agro.</p>
+                      </button>
+                      <button class="tab-btn p-5 rounded-xl border border-white/10 text-left" data-tab="rouleaux" onclick="openTab(this, 'rouleaux')">
+                          <h3 class="font-bold text-xl mb-1" data-i18n="feat_2_title">Convoyeur à Rouleaux</h3>
+                          <p class="text-sm text-steel" data-i18n="feat_2">Pour cartons et bacs. Motorisés ou à accumulation par gravité.</p>
+                      </button>
+                      <button class="tab-btn p-5 rounded-xl border border-white/10 text-left" data-tab="modulaire" onclick="openTab(this, 'modulaire')">
+                          <h3 class="font-bold text-xl mb-1" data-i18n="feat_3_title">Chaîne Modulaire</h3>
+                          <p class="text-sm text-steel" data-i18n="feat_3">Permet les changements d'angles et la robustesse des charges.</p>
+                      </button>
+                  </div>
+              </div>
+
+              <div class="lg:col-span-2 bg-lightsurface p-8 rounded-2xl border border-accent/20 shadow-xl">
+                  
+                  <div id="bande" class="tab-content block">
+                      <h3 class="text-3xl font-bold mb-4 text-accent" data-i18n="feat_1_title">Convoyeur à Bande</h3>
+                      <p class="text-lg text-steel mb-8" data-i18n="desc_p1">
+                          Le cœur de la manutention alimentaire et pharmaceutique. Notre design garantit une tension parfaite de la bande et une hygiène maximale.
+                      </p>
+                      <div class="grid md:grid-cols-2 gap-6">
+                          <div class="space-y-3">
+                              <h4 class="font-bold text-white uppercase text-sm tracking-wider border-b border-white/10 pb-2 mb-2" data-i18n="specs_title">Spécifications Clés</h4>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_struct">Structure</span><span class="font-mono text-white">Inox 304L/Alu</span></div>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_bande">Type de Bande</span><span class="font-mono text-white">PVC / PU Alimentaire</span></div>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_speed">Vitesse Max</span><span class="font-mono text-white">60 m/min</span></div>
+                          </div>
+                          <div>
+                              <h4 class="font-bold text-white uppercase text-sm tracking-wider border-b border-white/10 pb-2 mb-2" data-i18n="desc_list_title">Applications</h4>
+                              <ul class="space-y-2 text-steel list-disc ml-5 marker:text-accent">
+                                  <li data-i18n="app_1">Lignes de conditionnement alimentaire</li>
+                                  <li data-i18n="app_2">Postes d'inspection visuelle</li>
+                                  <li data-i18n="app_3">Transfert de petits produits fragiles</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div id="rouleaux" class="tab-content hidden">
+                      <h3 class="text-3xl font-bold mb-4 text-accent" data-i18n="feat_2_title">Convoyeur à Rouleaux</h3>
+                      <p class="text-lg text-steel mb-8" data-i18n="desc_p2">
+                          Parfait pour les charges unitaires (cartons, palettes légères). Nous proposons des solutions gravitaires ou motorisées (24V ou 400V) pour une gestion d'accumulation sans pression.
+                      </p>
+                       <div class="grid md:grid-cols-2 gap-6">
+                          <div class="space-y-3">
+                              <h4 class="font-bold text-white uppercase text-sm tracking-wider border-b border-white/10 pb-2 mb-2" data-i18n="specs_title">Spécifications Clés</h4>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_struct">Structure</span><span class="font-mono text-white">Alu Anodisé</span></div>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_rouleau_diam">Diamètre Rouleau</span><span class="font-mono text-white">Ø 30mm - 89mm</span></div>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_load">Charge Max</span><span class="font-mono text-white">Jusqu'à 500kg/m</span></div>
+                          </div>
+                          <div>
+                              <h4 class="font-bold text-white uppercase text-sm tracking-wider border-b border-white/10 pb-2 mb-2" data-i18n="desc_list_title">Applications</h4>
+                              <ul class="space-y-2 text-steel list-disc ml-5 marker:text-accent">
+                                  <li data-i18n="app_4">Logistique et centres de distribution</li>
+                                  <li data-i18n="app_5">Transport de boîtes et de bacs</li>
+                                  <li data-i18n="app_6">Stations de palettisation automatiques</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div id="modulaire" class="tab-content hidden">
+                      <h3 class="text-3xl font-bold mb-4 text-accent" data-i18n="feat_3_title">Convoyeur à Chaîne Modulaire</h3>
+                      <p class="text-lg text-steel mb-8" data-i18n="desc_p3">
+                          La solution la plus robuste pour les environnements extrêmes ou les produits chauds/humides. La modularité permet des chemins complexes et des courbes serrées sans risque.
+                      </p>
+                       <div class="grid md:grid-cols-2 gap-6">
+                          <div class="space-y-3">
+                              <h4 class="font-bold text-white uppercase text-sm tracking-wider border-b border-white/10 pb-2 mb-2" data-i18n="specs_title">Spécifications Clés</h4>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_bande">Type de Chaîne</span><span class="font-mono text-white">Acétal / Polypropylène</span></div>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_width">Largeur Utile</span><span class="font-mono text-white">Jusqu'à 2000mm</span></div>
+                              <div class="flex justify-between"><span class="text-steel" data-i18n="spec_inclin">Inclinaison Max</span><span class="font-mono text-white">30 Degrés (avec tasseaux)</span></div>
+                          </div>
+                          <div>
+                              <h4 class="font-bold text-white uppercase text-sm tracking-wider border-b border-white/10 pb-2 mb-2" data-i18n="desc_list_title">Applications</h4>
+                              <ul class="space-y-2 text-steel list-disc ml-5 marker:text-accent">
+                                  <li data-i18n="app_7">Environnements humides ou chauds</li>
+                                  <li data-i18n="app_8">Produits nécessitant un drainage</li>
+                                  <li data-i18n="app_9">Liaison entre plusieurs niveaux</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <p class="text-xs text-steel mt-8 border-t border-white/10 pt-4" data-i18n="specs_note">* Toutes nos configurations sont précédées d'une étude 3D et d'un dimensionnement moteur précis.</p>
+              </div>
+
+          </div>
+      </div>
+  </section>
+
+  <section id="contact" class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-accent/5"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <h2 class="text-4xl font-bold mb-6" data-i18n="contact_h2">Besoin d'un système de convoyage ?</h2>
+        <p class="text-steel mb-8" data-i18n="contact_desc">Décrivez votre besoin (produit à transporter, dimensions, cadence) et recevez une étude technique.</p>
+        
+        <div class="relative max-w-2xl mx-auto">
+            
+            <form id="contactForm" action="https://formsubmit.co/ajax/expertronics.maroc@gmail.com" method="POST" class="glass p-8 rounded-2xl text-left">
+                <input type="hidden" name="_subject" value="Nouvelle demande : CONVOYEURS INDUSTRIELS">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <input type="text" name="nom" required data-i18n-placeholder="form_name_ph" placeholder="Nom complet" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 text-white focus:border-accent outline-none transition">
+                    </div>
+                    <div>
+                        <input type="text" name="entreprise" data-i18n-placeholder="form_company_ph" placeholder="Entreprise" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 text-white focus:border-accent outline-none transition">
+                    </div>
+                </div>
+                
+                <input type="email" name="email" required data-i18n-placeholder="form_email_ph" placeholder="Email" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 mb-4 text-white focus:border-accent outline-none transition">
+                
+                <textarea name="message" rows="3" data-i18n-placeholder="form_msg_ph" placeholder="Détails (Longueur, largeur, produit...)" class="w-full bg-darkbg/50 border border-white/10 rounded p-3 mb-4 text-white focus:border-accent outline-none transition"></textarea>
+
+                <button type="submit" id="submitBtn" class="w-full bg-accent text-black font-bold py-4 rounded hover:bg-white transition flex justify-center items-center gap-2">
+                    <span data-i18n="form_btn_send">Envoyer la demande</span> <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <div id="successMessage" class="hidden absolute inset-0 bg-surface/95 backdrop-blur-xl rounded-2xl flex-col items-center justify-center z-20 border border-accent/20 p-6">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-black text-3xl mb-4 shadow-[0_0_15px_rgba(34,197,94,0.5)]">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2" data-i18n="msg_sent_title">Demande Reçue !</h3>
+                <p class="text-steel text-sm mb-6" data-i18n="msg_sent_desc">Notre bureau d'études analysera votre demande et reviendra vers vous sous 24h.</p>
+                <button onclick="resetForm()" class="px-6 py-2 border border-white/20 rounded-lg hover:bg-white/10 transition text-sm text-white" data-i18n="msg_sent_btn">
+                    Fermer
+                </button>
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+  <footer class="bg-black py-8 border-t border-white/10 text-center text-steel text-sm">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+        <p data-i18n="footer_rights">&copy; 2024 Expertronics Industrial. Tous droits réservés.</p>
+        <div class="mt-4 md:mt-0 space-x-6">
+            <a href="index.html" class="hover:text-white" data-i18n="footer_home">Accueil</a>
+            <a href="index.html#contact" class="hover:text-white" data-i18n="footer_contact">Contact</a>
+        </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    const translations = {
+      fr: {
+        meta_desc: "Conception et fabrication de convoyeurs industriels sur mesure. Bande, rouleaux, modulaire. Solutions Expertronics.",
+        page_title: "Convoyeurs Industriels Sur Mesure | Expertronics",
+        nav_return: "Retour à l'accueil",
+        badge_custom: "Conception Sur Mesure",
+        h1_title_1: "Convoyeurs",
+        h1_title_2: "INDUSTRIELS",
+        hero_desc: "Systèmes de manutention automatisés conçus pour optimiser votre flux de production. Du standard au sur-mesure, robuste et évolutif.",
+        hero_btn_quote: "Demander un Devis",
+        hero_btn_specs: "Configurations",
+        gallery_title: "Réalisations & Types",
+        gallery_video: "Voir en action",
+        desc_title: "Solutions de Manutention",
+        desc_p1: "Chez Expertronics, nous comprenons que chaque ligne de production est unique. C'est pourquoi nous ne vendons pas simplement des convoyeurs, nous concevons des solutions de flux. Que vous ayez besoin de transporter des cartons, des produits alimentaires nus, ou des charges lourdes, notre bureau d'études dimensionne l'équipement parfait pour votre contrainte d'espace et de cadence.",
+        desc_p2: "Nous travaillons avec des matériaux de haute qualité : Inox 304/316L pour l'agroalimentaire et la pharmaceutique (conception hygiénique facilitant le nettoyage), ou Aluminium anodisé pour l'emballage et l'industrie générale. Nos bandes (PVC, PU, Modulaire) sont sélectionnées pour leur résistance à l'usure et leur conformité aux normes.",
+        desc_p3: "L'intelligence embarquée est notre force. Nos convoyeurs peuvent être livrés avec armoire de commande intégrée, variateurs de vitesse, cellules de détection, et s'interfacent directement avec vos automates existants (Siemens, Schneider, Omron) pour une gestion de ligne automatisée (accumulation, tri, indexage).",
+        desc_list_title: "Types de convoyeurs disponibles :",
+        feat_1: "Convoyeur à Bande : Idéal pour le transport de vrac ou petites pièces.",
+        feat_2: "Convoyeur à Rouleaux : (Motorisés ou gravitaires) Pour cartons et bacs.",
+        feat_3: "Convoyeur à Chaîne Modulaire : Robuste, drainant, permet les courbes.",
+        feat_4: "Convoyeur Courbe & Élévateur : Pour les changements de direction et de niveau.",
+        feat_5: "Systèmes d'accumulation : Gestion du flux sans pression.",
+        points_forts: "Points Forts",
+        pt_1_title: "100% Sur Mesure",
+        pt_1_desc: "Longueur, largeur et hauteur adaptées.",
+        pt_2_title: "Hygiène & Propreté",
+        pt_2_desc: "Design ouvert pour nettoyage facile (Agro).",
+        pt_3_title: "Vitesse Variable",
+        pt_3_desc: "Contrôle précis par variateur de fréquence.",
+        pt_4_title: "Composants Premium",
+        pt_4_desc: "Moteurs SEW/Nord, Roulements SKF.",
+        specs_title: "Configuration Technique",
+        spec_struct: "Structure",
+        spec_bande: "Type de Bande",
+        spec_width: "Largeur Utile",
+        spec_speed: "Vitesse",
+        spec_load: "Charge Max",
+        spec_motor: "Motorisation",
+        specs_note: "* Étude 3D préalable pour validation.",
+        btn_consult: "Dimensionner mon projet",
+        contact_h2: "Besoin d'un système de convoyage ?",
+        contact_desc: "Décrivez votre besoin (produit à transporter, dimensions, cadence) et recevez une étude technique.",
+        form_name_ph: "Nom complet",
+        form_company_ph: "Entreprise",
+        form_email_ph: "Email",
+        form_msg_ph: "Détails (Longueur, largeur, produit...)",
+        form_btn_send: "Envoyer la demande",
+        form_btn_sending: "Envoi...",
+        msg_sent_title: "Demande Reçue !",
+        msg_sent_desc: "Notre bureau d'études analysera votre demande et reviendra vers vous sous 24h.",
+        msg_sent_btn: "Fermer",
+        footer_rights: "© 2024 Expertronics Industrial. Tous droits réservés.",
+        footer_home: "Accueil",
+        footer_contact: "Contact",
+        specs_title: "Spécifications Clés",
+        desc_list_title: "Applications",
+        spec_struct: "Structure",
+        spec_bande: "Type de Bande",
+        spec_speed: "Vitesse Max",
+        spec_rouleau_diam: "Diamètre Rouleau",
+        spec_load: "Charge Max",
+        spec_inclin: "Inclinaison Max",
+        app_1: "Lignes de conditionnement alimentaire",
+        app_2: "Postes d'inspection visuelle",
+        app_3: "Transfert de petits produits fragiles",
+        app_4: "Logistique et centres de distribution",
+        app_5: "Transport de boîtes et de bacs",
+        app_6: "Stations de palettisation automatiques",
+        app_7: "Environnements humides ou chauds",
+        app_8: "Produits nécessitant un drainage",
+        app_9: "Liaison entre plusieurs niveaux",
+        specs_note: "* Toutes nos configurations sont précédées d'une étude 3D et d'un dimensionnement moteur précis.",
+        
+      },
+      en: {
+        meta_desc: "Design and manufacturing of custom industrial conveyors. Belt, roller, modular. Expertronics Solutions.",
+        page_title: "Custom Industrial Conveyors | Expertronics",
+        nav_return: "Back to Home",
+        badge_custom: "Custom Design",
+        h1_title_1: "Industrial",
+        h1_title_2: "CONVEYORS",
+        hero_desc: "Automated handling systems designed to optimize your production flow. From standard to custom-made, robust and scalable.",
+        hero_btn_quote: "Get a Quote",
+        hero_btn_specs: "Configurations",
+        gallery_title: "Projects & Types",
+        gallery_video: "Watch in Action",
+        desc_title: "Handling Solutions",
+        desc_p1: "At Expertronics, we understand that every production line is unique. That's why we don't just sell conveyors, we design flow solutions. Whether you need to transport cartons, raw food products, or heavy loads, our engineering office dimensions the perfect equipment for your space and speed constraints.",
+        desc_p2: "We work with high-quality materials: Stainless Steel 304/316L for food and pharma (hygienic design for easy cleaning), or Anodized Aluminum for packaging and general industry. Our belts (PVC, PU, Modular) are selected for wear resistance and compliance.",
+        desc_p3: "Embedded intelligence is our strength. Our conveyors can be delivered with integrated control cabinets, variable frequency drives, sensors, and interface directly with your existing PLCs (Siemens, Schneider, Omron) for automated line management (accumulation, sorting, indexing).",
+        desc_list_title: "Available Conveyor Types:",
+        feat_1: "Belt Conveyor: Ideal for bulk transport or small parts.",
+        feat_2: "Roller Conveyor: (Motorized or gravity) For cartons and totes.",
+        feat_3: "Modular Chain Conveyor: Robust, drainage-friendly, allows curves.",
+        feat_4: "Curved & Elevator Conveyor: For changes in direction and level.",
+        feat_5: "Accumulation Systems: Zero-pressure flow management.",
+        points_forts: "Key Strengths",
+        pt_1_title: "100% Custom Made",
+        pt_1_desc: "Length, width, and height adapted.",
+        pt_2_title: "Hygiene & Cleanliness",
+        pt_2_desc: "Open design for easy cleaning (Food grade).",
+        pt_3_title: "Variable Speed",
+        pt_3_desc: "Precise control via frequency drive.",
+        pt_4_title: "Premium Components",
+        pt_4_desc: "SEW/Nord motors, SKF bearings.",
+        specs_title: "Technical Configuration",
+        spec_struct: "Structure",
+        spec_bande: "Belt Type",
+        spec_width: "Useful Width",
+        spec_speed: "Speed",
+        spec_load: "Max Load",
+        spec_motor: "Motorization",
+        specs_note: "* 3D study prior to validation.",
+        btn_consult: "Size my project",
+        contact_h2: "Need a conveying system?",
+        contact_desc: "Describe your need (product to transport, dimensions, rate) and receive a technical study.",
+        form_name_ph: "Full name",
+        form_company_ph: "Company",
+        form_email_ph: "Email",
+        form_msg_ph: "Details (Length, width, product...)",
+        form_btn_send: "Send Request",
+        form_btn_sending: "Sending...",
+        msg_sent_title: "Request Received!",
+        msg_sent_desc: "Our engineering office will analyze your request and get back to you within 24h.",
+        msg_sent_btn: "Close",
+        footer_rights: "© 2024 Expertronics Industrial. All rights reserved.",
+        footer_home: "Home",
+        footer_contact: "Contact",
+        specs_title: "Technical Details & Applications",
+        desc_list_title: "Applications",
+        spec_struct: "Structure",
+        spec_bande: "Belt Type",
+        spec_speed: "Max Speed",
+        spec_rouleau_diam: "Roller Diameter",
+        spec_load: "Max Load",
+        spec_inclin: "Max Inclination",
+        app_1: "Food packaging lines",
+        app_2: "Visual inspection stations",
+        app_3: "Transfer of small, fragile products",
+        app_4: "Logistics and distribution centers",
+        app_5: "Transport of boxes and totes",
+        app_6: "Automatic palletizing stations",
+        app_7: "Wet or hot environments",
+        app_8: "Products requiring drainage",
+        app_9: "Liaison between multiple levels",
+        specs_note: "* All our configurations are preceded by a 3D study and precise motor sizing.",
+      },
+      ar: {
+        meta_desc: "تصميم وتصنيع الأحزمة الناقلة الصناعية. أحزمة، بكرات، معيارية. حلول إكسبيرترونيكس.",
+        page_title: "أحزمة ناقلة صناعية حسب الطلب | إكسبيرترونيكس",
+        nav_return: "العودة إلى الرئيسية",
+        badge_custom: "تصميم حسب الطلب",
+        h1_title_1: "أحزمة ناقلة",
+        h1_title_2: "صناعية",
+        hero_desc: "أنظمة مناولة آلية مصممة لتحسين تدفق الإنتاج لديك. من القياسية إلى المصممة حسب الطلب، قوية وقابلة للتطوير.",
+        hero_btn_quote: "طلب عرض سعر",
+        hero_btn_specs: "التكوينات",
+        gallery_title: "المشاريع والأنواع",
+        gallery_video: "شاهد أثناء العمل",
+        desc_title: "حلول المناولة",
+        desc_p1: "في إكسبيرترونيكس، ندرك أن كل خط إنتاج فريد من نوعه. لهذا السبب لا نبيع الأحزمة الناقلة فحسب، بل نصمم حلول التدفق. سواء كنت بحاجة لنقل الكراتين، المنتجات الغذائية الخام، أو الأحمال الثقيلة، يقوم مكتبنا الهندسي بتحديد المعدات المثالية لقيود المساحة والسرعة لديك.",
+        desc_p2: "نحن نعمل بمواد عالية الجودة: الفولاذ المقاوم للصدأ 304/316L للصناعات الغذائية والدوائية (تصميم صحي يسهل التنظيف)، أو الألمنيوم المؤكسد للتغليف والصناعة العامة. يتم اختيار أحزمتنا (PVC، PU، Modular) لمقاومتها للتآكل ومطابقتها للمعايير.",
+        desc_p3: "الذكاء المدمج هو قوتنا. يمكن تسليم أنظمة النقل الخاصة بنا مع خزانات تحكم مدمجة، محولات سرعة، أجهزة استشعار، وربطها مباشرة بأنظمة التحكم الحالية (سيمنز، شنايدر، عمرون) لإدارة الخط الآلي (التراكم، الفرز، الفهرسة).",
+        desc_list_title: "أنواع الأحزمة المتوفرة:",
+        feat_1: "حزام ناقل (Tapis): مثالي لنقل المواد السائبة أو القطع الصغيرة.",
+        feat_2: "ناقل أسطواني (Rouleaux): (بمحرك أو بالجاذبية) للكرتون والصناديق.",
+        feat_3: "ناقل بسلسلة معيارية: قوي، يسمح بالتصريف، ويدعم المنحنيات.",
+        feat_4: "ناقل منحني ورافع: لتغيير الاتجاه والمستوى.",
+        feat_5: "أنظمة التراكم: إدارة التدفق بدون ضغط.",
+        points_forts: "نقاط القوة",
+        pt_1_title: "100% حسب الطلب",
+        pt_1_desc: "الطول، العرض والارتفاع مكيف حسب الحاجة.",
+        pt_2_title: "النظافة والصحة",
+        pt_2_desc: "تصميم مفتوح لسهولة التنظيف (غذائي).",
+        pt_3_title: "سرعة متغيرة",
+        pt_3_desc: "تحكم دقيق بواسطة محول التردد.",
+        pt_4_title: "مكونات ممتازة",
+        pt_4_desc: "محركات SEW/Nord، محامل SKF.",
+        specs_title: "التكوين الفني",
+        spec_struct: "الهيكل",
+        spec_bande: "نوع الحزام",
+        spec_width: "العرض المفيد",
+        spec_speed: "السرعة",
+        spec_load: "الحمل الأقصى",
+        spec_motor: "المحركات",
+        specs_note: "* دراسة ثلاثية الأبعاد قبل التنفيذ.",
+        btn_consult: "تحديد حجم مشروعي",
+        contact_h2: "هل تحتاج نظام نقل؟",
+        contact_desc: "صف احتياجاتك (المنتج المراد نقله، الأبعاد، السرعة) واحصل على دراسة فنية.",
+        form_name_ph: "الاسم الكامل",
+        form_company_ph: "الشركة",
+        form_email_ph: "البريد الإلكتروني",
+        form_msg_ph: "التفاصيل (الطول، العرض، المنتج...)",
+        form_btn_send: "إرسال الطلب",
+        form_btn_sending: "جاري الإرسال...",
+        msg_sent_title: "تم استلام الطلب!",
+        msg_sent_desc: "سيقوم مكتبنا الهندسي بتحليل طلبك والرد عليك خلال 24 ساعة.",
+        msg_sent_btn: "إغلاق",
+        footer_rights: "© 2024 إكسبيرترونيكس الصناعية. جميع الحقوق محفوظة.",
+        footer_home: "الرئيسية",
+        footer_contact: "اتصل بنا",
+        specs_title: "المواصفات الرئيسية",
+        desc_list_title: "التطبيقات",
+        spec_struct: "الهيكل",
+        spec_bande: "نوع الحزام",
+        spec_speed: "أقصى سرعة",
+        spec_rouleau_diam: "قطر البكرة",
+        spec_load: "أقصى حمولة",
+        spec_inclin: "أقصى ميلان",
+        app_1: "خطوط التعبئة الغذائية",
+        app_2: "محطات الفحص البصري",
+        app_3: "نقل المنتجات الهشة الصغيرة",
+        app_4: "المراكز اللوجستية والتوزيع",
+        app_5: "نقل الصناديق والصواني",
+        app_6: "محطات البلتة الآلية",
+        app_7: "البيئات الرطبة أو الساخنة",
+        app_8: "المنتجات التي تتطلب تصريفًا",
+        app_9: "الربط بين مستويات متعددة",
+        specs_note: "* تسبق جميع تكويناتنا دراسة ثلاثية الأبعاد وتحديد دقيق لحجم المحرك.",
+      }
+    };
+
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+      
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+      
+      // Update Meta
+      if (translations[lang]['page_title']) document.title = translations[lang]['page_title'];
+      if (translations[lang]['meta_desc']) document.querySelector('meta[name="description"]').content = translations[lang]['meta_desc'];
+
+      // Update Buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active', 'text-accent'));
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+         if(btn.innerText.toLowerCase() === lang) btn.classList.add('active', 'text-accent');
+      });
+
+      localStorage.setItem('expertronics_lang', lang);
+
+      // Restore button state
+      const formBtnKey = submitBtn.querySelector('span') ? submitBtn.querySelector('span').getAttribute('data-i18n') : 'form_btn_send';
+      if(translations[lang][formBtnKey]) {
+          submitBtn.innerHTML = `<span>${translations[lang][formBtnKey]}</span> <i class="fas fa-paper-plane"></i>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('expertronics_lang') || 'fr';
+        changeLanguage(savedLang);
+    });
+
+    /* --- Tabbed Content Logic --- */
+    function openTab(tabButton, tabName) {
+        // Hide all tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+            content.classList.remove('block');
+        });
+
+        // Deactivate all tab buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Show the current tab and activate the button
+        document.getElementById(tabName).classList.add('block');
+        document.getElementById(tabName).classList.remove('hidden');
+        tabButton.classList.add('active');
+    }
+
+    // Initialize first tab on load (if not already done by HTML)
+    document.addEventListener('DOMContentLoaded', () => {
+        const firstTab = document.querySelector('.tab-btn');
+        if (firstTab) {
+            openTab(firstTab, firstTab.getAttribute('data-tab'));
+        }
+    });
+
+    /* --- Lightbox & Form Logic --- */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const mainImage = document.getElementById('main-image');
+
+    function swapMainImage(element) {
+        const newSrc = element.querySelector('img').src;
+        mainImage.style.opacity = '0.7';
+        setTimeout(() => {
+            mainImage.src = newSrc;
+            mainImage.style.opacity = '1';
+        }, 150);
+    }
+
+    function openLightbox(type, src) {
+        lightbox.classList.remove('hidden');
+        setTimeout(() => {
+            lightbox.classList.add('visible');
+            lightbox.classList.remove('opacity-0');
+        }, 10);
+        lightboxContent.innerHTML = ''; 
+        if (type === 'video') {
+            lightboxContent.innerHTML = `<video controls autoplay class="max-w-full max-h-[85vh] rounded-lg shadow-2xl border border-white/20"><source src="${src}" type="video/mp4"></video>`;
+        } else {
+            lightboxContent.innerHTML = `<img src="${src}" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">`;
+        }
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('visible');
+        lightbox.classList.add('opacity-0');
+        setTimeout(() => lightbox.classList.add('hidden'), 300); 
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const currentLang = document.documentElement.lang;
+        const sendingText = translations[currentLang]['form_btn_sending'] || '...';
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${sendingText}`;
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                successMessage.classList.remove('hidden');
+                successMessage.classList.add('flex');
+                contactForm.reset();
+            } else {
+                alert("Erreur / Error");
+            }
+        })
+        .catch(error => alert("Erreur de connexion"))
+        .finally(() => {
+            submitBtn.disabled = false;
+            const key = 'form_btn_send';
+            submitBtn.innerHTML = `<span data-i18n="${key}">${translations[currentLang][key]}</span> <i class="fas fa-paper-plane"></i>`;
+        });
+    });
+
+    function resetForm() {
+        successMessage.classList.add('hidden');
+        successMessage.classList.remove('flex');
+    }
+
+    /* GSAP */
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from("h1", { opacity: 0, y: 50, duration: 1, ease: "power4.out", delay: 0.2 });
+    gsap.from(".glass", { scrollTrigger: { trigger: "#specs", start: "top 80%" }, opacity: 0, x: 50, duration: 0.8 });
+  </script>
+</body>
+</html>
