@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.expertronics.ma/sitemap.xml
+
+# Block unnecessary
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /*?*# This file governs search engine access for https://expertronics.ma
+
+# === Global Rules (Applies to all search engines) ===
+User-agent: *
+
+# Allow all files to be crawled by default (no "Disallow: /")
+Disallow:
+
+# === Exclusions (Common files to hide from indexing) ===
+
+# Developer/Internal files (e.g., source maps, configuration)
+Disallow: /assets/css/*.map
+Disallow: /_config.yml 
+Disallow: /wp-admin/ 
+Disallow: /.git/
+
+# === Sitemap Location (Crucial for SEO) ===
+# This tells search engines where to find your sitemap, which lists
+# all three language pages: /, /en/, and /ar/
+Sitemap: https://expertronics.ma/sitemap.xml
