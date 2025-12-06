@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>Rachid Balla | Fondateur Expertronics - Expert Industriel</title>
+  <meta name="description" content="Profil de Rachid Balla, fondateur d'Expertronics. Expert en ingénierie industrielle, automatisme Siemens et maintenance haute précision au Maroc." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a1d56',
+            accent: '#00f5ff',
+            steel: '#94a3b8',
+            darkbg: '#0f172a',
+            surface: '#1e293b',
+          },
+          fontFamily: { 
+            display: ['"Space Grotesk"', 'sans-serif'], 
+            sans: ['Inter', 'sans-serif'],
+            arabic: ['Cairo', 'sans-serif'] /* Added for Arabic */
+          },
+          animation: { 
+             'float': 'float 6s ease-in-out infinite', 
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    /* Arabic Font Class */
+    body.lang-ar { font-family: 'Cairo', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+    body.lang-ar h1, body.lang-ar h2, body.lang-ar h3, body.lang-ar h4 { font-family: 'Cairo', sans-serif; }
+
+    .glass { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(0, 245, 255, 0.1); }
+    .magnetic-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .magnetic-btn:hover { transform: scale(1.05) translateY(-4px); box-shadow: 0 10px 30px -10px rgba(0, 245, 255, 0.5); }
+    
+    /* Language Link Styles */
+    .lang-link { cursor: pointer; font-weight: bold; font-size: 0.9rem; padding: 0 5px; opacity: 0.7; transition: all 0.3s; color: white; }
+    .lang-link:hover, .lang-link.active { opacity: 1; color: #00f5ff; text-shadow: 0 0 10px rgba(0,245,255,0.5); }
+  </style>
+</head>
+<body class="bg-darkbg text-white overflow-x-hidden selection:bg-accent selection:text-black">
+
+  <nav class="fixed top-0 w-full z-40 glass border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="logo text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-white bg-clip-text text-transparent tracking-wider">
+        <img src="assets/img/logo.png" alt="Expertronics Logo" class="h-10 md:h-12 w-auto object-contain logo">
+      </a>
+      
+      <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="index.html" class="hover:text-accent transition">
+            <i class="fas fa-arrow-left mr-2 rtl:rotate-180"></i> 
+            <span data-i18n="nav_back">Retour à l'accueil</span>
+        </a>
+        <a href="index.html#services" class="hover:text-accent transition" data-i18n="nav_services">Services</a>
+        <a href="index.html#contact" class="px-6 py-2 border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition" data-i18n="nav_contact">Contact</a>
+        
+        <div class="flex items-center gap-3 border-l border-white/20 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
+            <span class="lang-link active" onclick="changeLanguage('fr')">FR</span>
+            <span class="lang-link" onclick="changeLanguage('en')">EN</span>
+            <span class="lang-link" onclick="changeLanguage('ar')">AR</span>
+        </div>
+      </div>
+
+      <button id="mobile-btn" class="md:hidden text-2xl text-accent focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="absolute top-full left-0 w-full bg-darkbg/95 backdrop-blur-xl border-b border-accent/20 p-6 hidden flex-col space-y-4 text-center md:hidden">
+      <a href="index.html" class="block text-lg py-2 hover:text-accent" data-i18n="nav_back">Retour à l'accueil</a>
+      <a href="index.html#contact" class="block text-lg py-2 text-accent font-bold" data-i18n="nav_contact">Contact</a>
+      <div class="flex justify-center gap-6 pt-4 border-t border-white/10">
+        <span class="lang-link text-lg" onclick="changeLanguage('fr')">FR</span>
+        <span class="lang-link text-lg" onclick="changeLanguage('en')">EN</span>
+        <span class="lang-link text-lg" onclick="changeLanguage('ar')">AR</span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="relative pt-40 pb-20 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+      
+      <div class="order-2 lg:order-1 relative z-10 rtl:text-right">
+        <div class="inline-block px-4 py-2 rounded-full border border-accent/30 bg-accent/10 text-accent text-sm font-bold mb-6 tracking-widest" data-i18n="hero_badge">
+          GÉRANT & FONDATEUR
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          Rachid <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-steel">Balla</span>
+        </h1>
+        
+        <h2 class="text-xl md:text-2xl text-accent font-light mb-8" data-i18n="hero_subtitle">
+          Expert en Ingénierie Industrielle & Automatisation
+        </h2>
+
+        <p class="text-lg text-steel leading-relaxed mb-8 border-l-4 border-accent pl-6 rtl:border-l-0 rtl:border-r-4 rtl:pl-0 rtl:pr-6" data-i18n="hero_quote">
+          "L'excellence industrielle ne se résume pas à faire fonctionner des machines. Il s'agit de concevoir des systèmes intelligents qui anticipent les pannes avant qu'elles ne surviennent."
+        </p>
+
+        <div class="flex flex-wrap gap-4 rtl:justify-start">
+            <div class="flex items-center gap-2 bg-surface px-4 py-2 rounded-lg border border-white/5">
+                <i class="fas fa-graduation-cap text-accent"></i>
+                <span class="text-sm font-bold" data-i18n="stat_1">Master Génie Électrique</span>
+            </div>
+            <div class="flex items-center gap-2 bg-surface px-4 py-2 rounded-lg border border-white/5">
+                <i class="fas fa-calendar-check text-accent"></i>
+                <span class="text-sm font-bold" data-i18n="stat_2">20+ Ans d'Expérience</span>
+            </div>
+            <div class="flex items-center gap-2 bg-surface px-4 py-2 rounded-lg border border-white/5">
+                <i class="fas fa-microchip text-accent"></i>
+                <span class="text-sm font-bold" data-i18n="stat_3">Expert Siemens</span>
+            </div>
+        </div>
+      </div>
+      
+      <div class="order-1 lg:order-2 relative group flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-md">
+            <div class="absolute inset-0 border-2 border-accent/30 translate-x-4 translate-y-4 rounded-3xl rtl:-translate-x-4"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-accent/20 to-primary/20 rounded-3xl transform -rotate-3 transition group-hover:rotate-0 duration-500"></div>
+            
+            <img src="assets/img/img6.JPG" 
+                onerror="this.src='assets/img/img6.JPG'"
+                alt="Rachid Balla - Expertronics" 
+                class="relative rounded-3xl shadow-2xl z-10 border border-white/10 object-cover h-[500px] w-full transition duration-700">
+            
+            <div class="absolute -bottom-6 -left-6 rtl:left-auto rtl:-right-6 z-20 glass p-4 rounded-xl shadow-lg animate-float hidden md:block">
+                <p class="text-accent font-bold text-2xl">100%</p>
+                <p class="text-xs text-white" data-i18n="quality_badge">Engagement Qualité</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-surface/50 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-6">
+      
+      <div class="glass-card p-8 md:p-12 rounded-3xl shadow-xl">
+        <h3 class="text-3xl font-bold mb-8 flex items-center gap-3 rtl:flex-row-reverse">
+          <i class="fas fa-user-tie text-accent"></i> 
+          <span data-i18n="bio_title">Parcours Professionnel</span>
+        </h3>
+        
+        <div class="space-y-6 text-gray-300 leading-relaxed text-lg rtl:text-right">
+          <p data-i18n="bio_p1">
+            Rachid Balla a bâti Expertronics sur une vision simple mais ambitieuse : apporter au marché marocain une expertise technique de niveau international.
+          </p>
+          <p data-i18n="bio_p2">
+            Titulaire d’un <b>Master en génie électrique</b> et d'une spécialisation poussée en <b>Automatisation Siemens</b>, il a forgé son expérience sur le terrain. Pendant plus de 20 ans, il a piloté des projets de maintenance de haute précision et d'intégration de systèmes complexes dans divers secteurs industriels (agroalimentaire, cimenterie, packaging).
+          </p>
+          <p data-i18n="bio_p3">
+            Cette expertise technique approfondie est le socle de la méthodologie Expertronics. Rachid ne se contente pas de diriger ; il s'implique dans le diagnostic des pannes les plus critiques, garantissant que chaque solution proposée est non seulement fonctionnelle, mais optimisée pour la durabilité.
+          </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-white/10 rtl:text-right">
+            <h4 class="text-xl font-bold text-white mb-6" data-i18n="skills_title">Domaines d'Intervention</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-center gap-3 p-3 bg-darkbg rounded-lg border border-white/5 rtl:flex-row-reverse">
+                    <i class="fas fa-check-circle text-accent"></i>
+                    <span data-i18n="skill_1">Programmation API Avancée (Tia Portal)</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-darkbg rounded-lg border border-white/5 rtl:flex-row-reverse">
+                    <i class="fas fa-check-circle text-accent"></i>
+                    <span data-i18n="skill_2">Diagnostic Électronique Profond</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-darkbg rounded-lg border border-white/5 rtl:flex-row-reverse">
+                    <i class="fas fa-check-circle text-accent"></i>
+                    <span data-i18n="skill_3">Optimisation de Lignes de Production</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-darkbg rounded-lg border border-white/5 rtl:flex-row-reverse">
+                    <i class="fas fa-check-circle text-accent"></i>
+                    <span data-i18n="skill_4">Gestion de Projets Industriels</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-20 bg-darkbg relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+        <h2 class="text-4xl md:text-5xl font-bold mb-8" data-i18n="cta_title">Besoin d'une expertise technique ?</h2>
+        <p class="text-xl text-steel mb-10 max-w-2xl mx-auto" data-i18n="cta_desc">Discutez directement de vos enjeux industriels avec Rachid et l'équipe Expertronics.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="index.html#contact" class="magnetic-btn px-10 py-4 bg-accent text-black font-bold rounded-full text-lg shadow-[0_0_20px_rgba(0,245,255,0.4)]" data-i18n="cta_btn_contact">
+              Contacter Expertronics
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" class="px-10 py-4 border border-white/20 bg-white/5 backdrop-blur text-white font-bold rounded-full text-lg hover:bg-[#0077b5] hover:border-[#0077b5] transition flex items-center justify-center gap-3">
+              <i class="fab fa-linkedin"></i> <span data-i18n="cta_btn_linkedin">Profil LinkedIn</span>
+            </a>
+        </div>
+    </div>
+  </section>
+
+  <footer class="bg-black py-10 border-t border-white/10 text-center">
+    <p class="text-steel text-sm">© 2024 Expertronics Industrial. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Animation Init
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.from("h1", { opacity: 0, y: 50, duration: 1, ease: "power4.out", delay: 0.2 });
+    gsap.from(".glass-card", {
+      scrollTrigger: { trigger: ".glass-card", start: "top 85%" },
+      opacity: 0, y: 40, duration: 1
+    });
+
+    // Mobile Menu Toggle
+    const btn = document.getElementById('mobile-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      const icon = btn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // ==========================================
+    // INTERNATIONALIZATION (i18n) LOGIC
+    // ==========================================
+    
+    const translations = {
+      fr: {
+        nav_back: "Retour à l'accueil",
+        nav_services: "Services",
+        nav_contact: "Contact",
+        hero_badge: "GÉRANT & FONDATEUR",
+        hero_subtitle: "Expert en Ingénierie Industrielle & Automatisation",
+        hero_quote: "\"L'excellence industrielle ne se résume pas à faire fonctionner des machines. Il s'agit de concevoir des systèmes intelligents qui anticipent les pannes avant qu'elles ne surviennent.\"",
+        stat_1: "Master Génie Électrique",
+        stat_2: "20+ Ans d'Expérience",
+        stat_3: "Expert Siemens",
+        quality_badge: "Engagement Qualité",
+        bio_title: "Parcours Professionnel",
+        bio_p1: "Rachid Balla a bâti Expertronics sur une vision simple mais ambitieuse : apporter au marché marocain une expertise technique de niveau international.",
+        bio_p2: "Titulaire d’un <b>Master en génie électrique</b> et d'une spécialisation poussée en <b>Automatisation Siemens</b>, il a forgé son expérience sur le terrain. Pendant plus de 20 ans, il a piloté des projets de maintenance de haute précision et d'intégration de systèmes complexes dans divers secteurs industriels (agroalimentaire, cimenterie, packaging).",
+        bio_p3: "Cette expertise technique approfondie est le socle de la méthodologie Expertronics. Rachid ne se contente pas de diriger ; il s'implique dans le diagnostic des pannes les plus critiques, garantissant que chaque solution proposée est non seulement fonctionnelle, mais optimisée pour la durabilité.",
+        skills_title: "Domaines d'Intervention",
+        skill_1: "Programmation API Avancée (Tia Portal)",
+        skill_2: "Diagnostic Électronique Profond",
+        skill_3: "Optimisation de Lignes de Production",
+        skill_4: "Gestion de Projets Industriels",
+        cta_title: "Besoin d'une expertise technique ?",
+        cta_desc: "Discutez directement de vos enjeux industriels avec Rachid et l'équipe Expertronics.",
+        cta_btn_contact: "Contacter Expertronics",
+        cta_btn_linkedin: "Profil LinkedIn"
+      },
+      en: {
+        nav_back: "Back to Home",
+        nav_services: "Services",
+        nav_contact: "Contact",
+        hero_badge: "MANAGER & FOUNDER",
+        hero_subtitle: "Expert in Industrial Engineering & Automation",
+        hero_quote: "\"Industrial excellence isn't just about keeping machines running. It's about designing intelligent systems that anticipate failures before they happen.\"",
+        stat_1: "Master's in Electrical Eng.",
+        stat_2: "20+ Years Experience",
+        stat_3: "Siemens Expert",
+        quality_badge: "Quality Commitment",
+        bio_title: "Professional Background",
+        bio_p1: "Rachid Balla built Expertronics on a simple but ambitious vision: to bring world-class technical expertise to the Moroccan market.",
+        bio_p2: "Holding a <b>Master's in Electrical Engineering</b> and specialized training in <b>Siemens Automation</b>, he forged his experience in the field. For over 20 years, he has led high-precision maintenance projects and complex system integrations across various industrial sectors (food processing, cement, packaging).",
+        bio_p3: "This deep technical expertise is the foundation of the Expertronics methodology. Rachid doesn't just manage; he gets involved in diagnosing critical failures, ensuring every solution is not only functional but optimized for durability.",
+        skills_title: "Key Areas of Expertise",
+        skill_1: "Advanced PLC Programming (Tia Portal)",
+        skill_2: "Deep Electronic Diagnostics",
+        skill_3: "Production Line Optimization",
+        skill_4: "Industrial Project Management",
+        cta_title: "Need technical expertise?",
+        cta_desc: "Discuss your industrial challenges directly with Rachid and the Expertronics team.",
+        cta_btn_contact: "Contact Expertronics",
+        cta_btn_linkedin: "LinkedIn Profile"
+      },
+      ar: {
+        nav_back: "العودة للرئيسية",
+        nav_services: "خدماتنا",
+        nav_contact: "اتصل بنا",
+        hero_badge: "المؤسس والمدير",
+        hero_subtitle: "خبير في الهندسة الصناعية والأنظمة الآلية",
+        hero_quote: "\"التميز الصناعي لا يقتصر فقط على تشغيل الآلات، بل يكمن في تصميم أنظمة ذكية تتنبأ بالأعطال قبل حدوثها.\"",
+        stat_1: "ماجستير هندسة كهربائية",
+        stat_2: "أكثر من 20 عاماً من الخبرة",
+        stat_3: "خبير سيمنز (Siemens)",
+        quality_badge: "التزام بالجودة",
+        bio_title: "المسار المهني",
+        bio_p1: "أسس رشيد بلا شركة إكسبرترونيكس برؤية طموحة: جلب الخبرة التقنية ذات المعايير العالمية إلى السوق المغربي.",
+        bio_p2: "بصفته حاصلاً على <b>ماجستير في الهندسة الكهربائية</b> وتخصص دقيق في <b>أتمتة سيمنز</b>، صقل خبرته في الميدان. لأكثر من 20 عاماً، قاد مشاريع صيانة عالية الدقة ودمج أنظمة معقدة في قطاعات صناعية متنوعة (الصناعات الغذائية، الأسمنت، التغليف).",
+        bio_p3: "هذه الخبرة التقنية العميقة هي أساس منهجية إكسبرترونيكس. رشيد لا يكتفي بالإدارة فحسب؛ بل يشارك في تشخيص الأعطال الحرجة، مما يضمن أن كل حل مقدم ليس فقط فعالاً، بل مستداماً.",
+        skills_title: "مجالات الخبرة",
+        skill_1: "برمجة PLC المتقدمة (Tia Portal)",
+        skill_2: "التشخيص الإلكتروني الدقيق",
+        skill_3: "تحسين خطوط الإنتاج",
+        skill_4: "إدارة المشاريع الصناعية",
+        cta_title: "هل تحتاج لخبرة تقنية؟",
+        cta_desc: "ناقش تحدياتك الصناعية مباشرة مع رشيد وفريق إكسبرترونيكس.",
+        cta_btn_contact: "اتصل بـ Expertronics",
+        cta_btn_linkedin: "ملف LinkedIn"
+      }
+    };
+
+    function changeLanguage(lang) {
+      // 1. Update active class on buttons
+      document.querySelectorAll('.lang-link').forEach(link => {
+        link.classList.remove('active');
+        if(link.innerText.toLowerCase() === lang) link.classList.add('active');
+      });
+
+      // 2. Handle Direction (RTL for Arabic) & Font
+      const html = document.documentElement;
+      const body = document.body;
+      
+      if (lang === 'ar') {
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+        body.classList.add('lang-ar');
+      } else {
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', lang);
+        body.classList.remove('lang-ar');
+      }
+
+      // 3. Update Text Content
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          // Use innerHTML to preserve bold tags <b> in bio
+          element.innerHTML = translations[lang][key]; 
+        }
+      });
+    }
+  </script>
+</body>
+</html>
