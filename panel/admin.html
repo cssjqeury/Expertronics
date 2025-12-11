@@ -1224,13 +1224,13 @@
         const firebaseConfig = {
         apiKey: "AIzaSyAA9gEqcDrboT9BCEHGQvzXIR1saebCwvI",
         authDomain: "expertronics-83591.firebaseapp.com",
+        databaseURL: "https://expertronics-83591-default-rtdb.firebaseio.com",
         projectId: "expertronics-83591",
         storageBucket: "expertronics-83591.firebasestorage.app",
         messagingSenderId: "532552848280",
         appId: "1:532552848280:web:f713d7c535d08ac6e011ed",
         measurementId: "G-W5H65KRBKD"
         };
-
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
@@ -1247,50 +1247,6 @@
         let uniqueDomains = new Set();
         let uniqueCountries = new Set();
 
-                // Pre-computed SHA-256 hash of 'admin'
-        // This is the SHA-256 hash of 'admin': 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-        const ADMIN_CREDENTIALS = {
-            username: 'admin',
-            passwordHash: 'c646725d3b3e50c4870a9e2217d4651d3532c244d03d14917262ba1b882a4500'
-        };
-
-        // Function to hash passwords using SHA-256
-        async function hashPassword(password) {
-            try {
-                const encoder = new TextEncoder();
-                const data = encoder.encode(password);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-                return hashHex;
-            } catch (error) {
-                console.error('Error hashing password:', error);
-                throw error;
-            }
-        }
-
-        // Constant time string comparison to prevent timing attacks
-        function constantTimeCompare(a, b) {
-            if (a.length !== b.length) {
-                return false;
-            }
-            let result = 0;
-            for (let i = 0; i < a.length; i++) {
-                result |= a.charCodeAt(i) ^ b.charCodeAt(i);
-            }
-            return result === 0;
-        }
-
-        // Function to show login error
-        function showLoginError(message) {
-            const errorElement = document.getElementById('loginError');
-            errorElement.textContent = message;
-            errorElement.classList.remove('d-none');
-            setTimeout(() => {
-                errorElement.classList.add('d-none');
-            }, 5000);
-        }
-
         // DOM Ready
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved login
@@ -1306,34 +1262,13 @@
             loadFirebaseData();
         });
 
-        async function checkRememberedLogin() {
+        function checkRememberedLogin() {
             const rememberedLogin = localStorage.getItem('analyticsProLogin');
             if (rememberedLogin) {
-                try {
-                    const { username, password } = JSON.parse(rememberedLogin);
-                    
-                    // Pre-fill the form
-                    document.getElementById('username').value = username;
-                    document.getElementById('password').value = password;
-                    document.getElementById('rememberMe').checked = true;
-                    
-                    // Try to auto-login if the user wants
-                    if (username === ADMIN_CREDENTIALS.username) {
-                        const hashedPassword = await hashPassword(password);
-                        const isValid = constantTimeCompare(hashedPassword, ADMIN_CREDENTIALS.passwordHash);
-                        if (isValid) {
-                            // Auto-login
-                            isLoggedIn = true;
-                            document.getElementById('loginPage').classList.add('d-none');
-                            document.getElementById('dashboardPage').classList.remove('d-none');
-                            loadFirebaseData();
-                            updateUI();
-                        }
-                    }
-                } catch (error) {
-                    // Clear invalid remembered login
-                    localStorage.removeItem('analyticsProLogin');
-                }
+                const { username, password } = JSON.parse(rememberedLogin);
+                document.getElementById('username').value = username;
+                document.getElementById('password').value = password;
+                document.getElementById('rememberMe').checked = true;
             }
         }
 
@@ -1523,63 +1458,34 @@
 
         function setupEventListeners() {
             // Login Form
-            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
                 const rememberMe = document.getElementById('rememberMe').checked;
                 
-                // Disable login button during verification
-                const loginBtn = this.querySelector('button[type="submit"]');
-                const originalText = loginBtn.innerHTML;
-                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-                loginBtn.disabled = true;
-                
-                try {
-                    // Check username
-                    if (username !== ADMIN_CREDENTIALS.username) {
-                        showLoginError('Invalid username or password');
-                        return;
-                    }
+                if (username === 'admin' && password === 'admin') {
+                    // Successful login
+                    isLoggedIn = true;
                     
-                    // Hash the provided password
-                    const hashedPassword = await hashPassword(password);
-                    
-                    // Compare with stored hash
-                    const isValid = constantTimeCompare(hashedPassword, ADMIN_CREDENTIALS.passwordHash);
-                    
-                    if (isValid) {
-                        // Successful login
-                        isLoggedIn = true;
-                        
-                        // Remember login if checked
-                        if (rememberMe) {
-                            localStorage.setItem('analyticsProLogin', JSON.stringify({ 
-                                username, 
-                                password // Store the actual password for auto-login
-                            }));
-                        } else {
-                            localStorage.removeItem('analyticsProLogin');
-                        }
-                        
-                        // Show dashboard
-                        document.getElementById('loginPage').classList.add('d-none');
-                        document.getElementById('dashboardPage').classList.remove('d-none');
-                        
-                        // Load data and update UI
-                        loadFirebaseData();
-                        updateUI();
+                    // Remember login if checked
+                    if (rememberMe) {
+                        localStorage.setItem('analyticsProLogin', JSON.stringify({ username, password }));
                     } else {
-                        // Failed login
-                        showLoginError('Invalid username or password');
+                        localStorage.removeItem('analyticsProLogin');
                     }
-                } catch (error) {
-                    console.error('Login error:', error);
-                    showLoginError('Login failed. Please try again.');
-                } finally {
-                    // Re-enable login button
-                    loginBtn.innerHTML = originalText;
-                    loginBtn.disabled = false;
+                    
+                    // Show dashboard
+                    document.getElementById('loginPage').classList.add('d-none');
+                    document.getElementById('dashboardPage').classList.remove('d-none');
+                    
+                    // Update UI
+                    updateUI();
+                } else {
+                    // Failed login
+                    const errorElement = document.getElementById('loginError');
+                    errorElement.textContent = 'Invalid username or password';
+                    errorElement.classList.remove('d-none');
                 }
             });
             
@@ -1590,10 +1496,6 @@
                 document.getElementById('dashboardPage').classList.add('d-none');
                 document.getElementById('loginPage').classList.remove('d-none');
                 document.getElementById('loginError').classList.add('d-none');
-                
-                // Clear any sensitive data from memory
-                visitorData = [];
-                filteredVisitorData = [];
             });
             
             // Sidebar Toggle (Desktop)
@@ -1700,12 +1602,6 @@
         }
 
         function loadFirebaseData() {
-            // Only load data if user is logged in
-            if (!isLoggedIn) {
-                console.warn('User not logged in, skipping data load');
-                return;
-            }
-            
             const visitorsRef = ref(database, 'visitors');
             
             // Show loading state
@@ -2591,6 +2487,5 @@
             // Update any other UI elements as needed
         }
     </script>
-    <script src="https://expertronics.ma/assets/js/jquery.min.js"></script>
 </body>
 </html>
