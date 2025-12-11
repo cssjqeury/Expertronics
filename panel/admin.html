@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1215,7 +1214,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0/dist/chartjs-adapter-luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0/dist/chartjs-adapter-moment.min.js"></script>
 
-    <!-- Firebase & Application Code -->
+    <!-- Firebase -->
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
@@ -1248,41 +1247,25 @@
         let uniqueDomains = new Set();
         let uniqueCountries = new Set();
 
+                // Pre-computed SHA-256 hash of 'admin'
+        // This is the SHA-256 hash of 'admin': 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
         const ADMIN_CREDENTIALS = {
             username: 'admin',
-            password: 'c646725d3b3e50c4870a9e2217d4651d3532c244d03d14917262ba1b882a4500'
+            passwordHash: 'c646725d3b3e50c4870a9e2217d4651d3532c244d03d14917262ba1b882a4500'
         };
 
-        async function hPassword(password) {
+        // Function to hash passwords using SHA-256
+        async function hashPassword(password) {
             try {
                 const encoder = new TextEncoder();
                 const data = encoder.encode(password);
-                
-                const hBuffer = await crypto.subtle.digest('SHA-256', data);
-                
-                const hArray = Array.from(new Uint8Array(hBuffer));
-                const hHex = hArray.map(b => b.toString(16).padStart(2, '0')).join('');
-                
-                return hHex;
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                return hashHex;
             } catch (error) {
-                console.error('Error password:', error);
+                console.error('Error hashing password:', error);
                 throw error;
-            }
-        }
-
-        // Function to verify login credentials
-        async function verifyCredentials(username, password) {
-            try {
-                if (username !== ADMIN_CREDENTIALS.username) {
-                    return false;
-                }
-  
-                const hdPassword = await hPassword(password);
-                
-                return constantTimeCompare(hdPassword, ADMIN_CREDENTIALS.password);
-            } catch (error) {
-                console.error('Error verifying credentials:', error);
-                return false;
             }
         }
 
@@ -1291,7 +1274,6 @@
             if (a.length !== b.length) {
                 return false;
             }
-            
             let result = 0;
             for (let i = 0; i < a.length; i++) {
                 result |= a.charCodeAt(i) ^ b.charCodeAt(i);
@@ -1304,8 +1286,6 @@
             const errorElement = document.getElementById('loginError');
             errorElement.textContent = message;
             errorElement.classList.remove('d-none');
-            
-            // Clear error after 5 seconds
             setTimeout(() => {
                 errorElement.classList.add('d-none');
             }, 5000);
@@ -1322,10 +1302,8 @@
             // Setup event listeners
             setupEventListeners();
             
-            // Load data from Firebase (only if logged in)
-            if (isLoggedIn) {
-                loadFirebaseData();
-            }
+            // Load data from Firebase
+            loadFirebaseData();
         });
 
         async function checkRememberedLogin() {
@@ -1340,14 +1318,17 @@
                     document.getElementById('rememberMe').checked = true;
                     
                     // Try to auto-login if the user wants
-                    const isValid = await verifyCredentials(username, password);
-                    if (isValid) {
-                        // Auto-login
-                        isLoggedIn = true;
-                        document.getElementById('loginPage').classList.add('d-none');
-                        document.getElementById('dashboardPage').classList.remove('d-none');
-                        loadFirebaseData();
-                        updateUI();
+                    if (username === ADMIN_CREDENTIALS.username) {
+                        const hashedPassword = await hashPassword(password);
+                        const isValid = constantTimeCompare(hashedPassword, ADMIN_CREDENTIALS.passwordHash);
+                        if (isValid) {
+                            // Auto-login
+                            isLoggedIn = true;
+                            document.getElementById('loginPage').classList.add('d-none');
+                            document.getElementById('dashboardPage').classList.remove('d-none');
+                            loadFirebaseData();
+                            updateUI();
+                        }
                     }
                 } catch (error) {
                     // Clear invalid remembered login
@@ -1357,7 +1338,6 @@
         }
 
         function initCharts() {
-            // ... (keep all chart initialization code exactly as it is) ...
             // Main Trend Chart
             const trendCtx = document.getElementById('trendChart').getContext('2d');
             trendChart = new Chart(trendCtx, {
@@ -1556,7 +1536,17 @@
                 loginBtn.disabled = true;
                 
                 try {
-                    const isValid = await verifyCredentials(username, password);
+                    // Check username
+                    if (username !== ADMIN_CREDENTIALS.username) {
+                        showLoginError('Invalid username or password');
+                        return;
+                    }
+                    
+                    // Hash the provided password
+                    const hashedPassword = await hashPassword(password);
+                    
+                    // Compare with stored hash
+                    const isValid = constantTimeCompare(hashedPassword, ADMIN_CREDENTIALS.passwordHash);
                     
                     if (isValid) {
                         // Successful login
@@ -2601,6 +2591,6 @@
             // Update any other UI elements as needed
         }
     </script>
-  <script src="https://expertronics.ma/assets/js/jquery.min.js"></script>
+    <script src="https://expertronics.ma/assets/js/jquery.min.js"></script>
 </body>
 </html>
