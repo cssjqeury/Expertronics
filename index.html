@@ -854,8 +854,10 @@
         successMessage.classList.add('hidden');
         successMessage.classList.remove('flex');
     }
-
-    
+  </script>
+  
+  <script type="module">
+// Firebase configuration - Replace with your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAA9gEqcDrboT9BCEHGQvzXIR1saebCwvI",
   authDomain: "expertronics-83591.firebaseapp.com",
@@ -867,111 +869,45 @@ const firebaseConfig = {
   measurementId: "G-W5H65KRBKD"
 };
 
-let firebaseReady = false;
-let hasTracked = false;
+// Initialize Firebase
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+import { getDatabase, ref, push, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js';
 
-function loadFirebase() {
-    return new Promise(resolve => {
-        if (typeof firebase !== 'undefined') return resolve();
-        
-        const s1 = document.createElement('script');
-        s1.src = 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js';
-        s1.onload = () => {
-            const s2 = document.createElement('script');
-            s2.src = 'https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js';
-            s2.onload = resolve;
-            document.head.appendChild(s2);
-        };
-        document.head.appendChild(s1);
-    });
+let app, database;
+
+try {
+    app = initializeApp(firebaseConfig);
+    database = getDatabase(app);
+} catch (error) {
+    console.error('Firebase initialization failed:', error);
 }
 
-function getReferrerSource(referrer) {
-    if (!referrer) return 'Direct';
-    
-    try {
-        const hostname = new URL(referrer).hostname;
-        
-        const socialDomains = [
-            'facebook.com', 'twitter.com', 'instagram.com', 
-            'linkedin.com', 'tiktok.com', 'pinterest.com',
-            'reddit.com', 'youtube.com'
-        ];
-        
-        const searchEngines = [
-            'google.', 'bing.com', 'yahoo.com', 'duckduckgo.com',
-            'baidu.com', 'yandex.com'
-        ];
-        
-        if (socialDomains.some(domain => hostname.includes(domain))) return hostname;
-        if (searchEngines.some(engine => hostname.includes(engine))) return hostname;
-        
-        return hostname;
-    } catch (e) {
-        return referrer;
-    }
-}
-
-function generateVisitorId() {
-    const fingerprint = [
-        navigator.userAgent,
-        navigator.language,
-        screen.width + 'x' + screen.height,
-        new Date().getTimezoneOffset(),
-        window.location.hostname
-    ].join('|');
-    
-    let hash = 0;
-    for (let i = 0; i < fingerprint.length; i++) {
-        const char = fingerprint.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    return Math.abs(hash).toString(36);
-}
-
-function hasVisitedToday() {
-    const visitorId = generateVisitorId();
-    const today = new Date().toDateString();
-    const lastVisit = localStorage.getItem('lastVisit_' + visitorId);
-    
-    return lastVisit === today;
-}
-
-function markAsVisited() {
-    const visitorId = generateVisitorId();
-    const today = new Date().toDateString();
-    localStorage.setItem('lastVisit_' + visitorId, today);
-}
-
+// Stealth analytics tracking function
 async function trackVisitor() {
     try {
-        if (hasTracked) return;
-        
-        if (hasVisitedToday()) return;
-        
-        if (!firebaseReady) {
-            await loadFirebase();
-            firebase.initializeApp(firebaseConfig);
-            firebaseReady = true;
-        }
-
+        // Get visitor information
         const visitorData = {
             domain: window.location.hostname,
             url: window.location.href,
             referrer: getReferrerSource(document.referrer),
             userAgent: navigator.userAgent,
-            timestamp: firebase.database.ServerValue.TIMESTAMP,
-            sessionId: 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
-            visitorId: generateVisitorId(), // Add unique visitor ID
-            screenResolution: `${screen.width}x${screen.height}`,
-            viewportSize: `${window.innerWidth}x${window.innerHeight}`,
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            deviceType: /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
+            timestamp: serverTimestamp(),
+            sessionId: generateSessionId(),
+            screenResolution: \`\${screen.width}x\${screen.height}\`,
+            viewportSize: \`\${window.innerWidth}x\${window.innerHeight}\`,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         };
 
+        // Detect device type
+        visitorData.deviceType = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+
+        // Get IP and location data
         try {
-            const response = await fetch('https://ipapi.co/json/');
+            const response = await fetch('https://ipapi.co/json/', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            
             if (response.ok) {
                 const locationData = await response.json();
                 visitorData.ip = locationData.ip;
@@ -985,36 +921,92 @@ async function trackVisitor() {
                 visitorData.isp = locationData.org;
             }
         } catch (geoError) {
+            // Silently handle geolocation errors
             visitorData.ip = 'Unknown';
             visitorData.country = 'Unknown';
             visitorData.city = 'Unknown';
         }
 
-        await firebase.database().ref('visitors').push(visitorData);
-        
-        hasTracked = true;
-        markAsVisited();
+        // Send data to Firebase
+        if (database) {
+            const visitorsRef = ref(database, 'visitors');
+            await push(visitorsRef, visitorData);
+        }
 
     } catch (error) {
+        // Fail silently - no console logs or visible errors
     }
 }
 
+// Extract referrer source from URL
+function getReferrerSource(referrer) {
+    if (!referrer || referrer === '') return 'Direct';
+    
+    try {
+        const url = new URL(referrer);
+        const hostname = url.hostname;
+        
+        // Check for social media domains
+        const socialDomains = [
+            'facebook.com', 'twitter.com', 'instagram.com', 
+            'linkedin.com', 'tiktok.com', 'pinterest.com',
+            'reddit.com', 'youtube.com'
+        ];
+        
+        if (socialDomains.some(domain => hostname.includes(domain))) {
+            return hostname;
+        }
+        
+        // Check for search engines
+        const searchEngines = [
+            'google.', 'bing.com', 'yahoo.com', 'duckduckgo.com',
+            'baidu.com', 'yandex.com'
+        ];
+        
+        if (searchEngines.some(engine => hostname.includes(engine))) {
+            return hostname;
+        }
+        
+        // Return the hostname for other referrers
+        return hostname;
+    } catch (e) {
+        return referrer;
+    }
+}
+
+// Generate unique session ID
+function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// Check if visitor should be tracked (avoid tracking bots)
 function shouldTrack() {
     const botPatterns = [
         /bot/i, /spider/i, /crawler/i, /curl/i, /wget/i,
         /googlebot/i, /bingbot/i, /slurp/i, /duckduckbot/i
     ];
-    return !botPatterns.some(pattern => pattern.test(navigator.userAgent));
+    
+    const userAgent = navigator.userAgent;
+    return !botPatterns.some(pattern => pattern.test(userAgent));
 }
 
+// Initialize tracking when page loads
 if (shouldTrack()) {
+    // Add slight delay to avoid blocking page load
     setTimeout(trackVisitor, 1000);
     
+    // Track page visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            setTimeout(trackVisitor, 500);
+        }
+    });
 }
-
-  </script>
+</script>
+  
 </body>
 </html>
+
 
 
 
