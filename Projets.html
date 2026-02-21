@@ -737,8 +737,29 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <script>
+    /* --- Handle URL Hash for Category Filtering --- */
+    function handleHashNavigation() {
+        const hash = window.location.hash.substring(1); // Remove '#'
+        if (hash && ['all', 'auto', 'repair', 'electro', 'desin'].includes(hash)) {
+            filterProjects(hash);
+        }
+    }
+
+    // Load filter from hash on page load
+    window.addEventListener('load', handleHashNavigation);
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashNavigation);
+
     /* --- Filter Logic --- */
     function filterProjects(category) {
+        // Update URL hash
+        if (category !== 'all') {
+            window.location.hash = category;
+        } else {
+            window.location.hash = '';
+        }
+
         // Update Buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
