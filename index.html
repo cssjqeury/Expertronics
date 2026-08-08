@@ -7,7 +7,7 @@
 
   <title>Expertronics | Automatisme Industriel, Maintenance & Pesage - Maroc (Agadir)</title>
   <meta name="description"
-    content="Expertronics (Agadir, Maroc) : Expert en automatisme industriel, réparation électronique, maintenance 24/7 et trieuses pondérales. Solutions Siemens & API." />
+    content="Expertronics (Agadir, Maroc) : automatisme industriel, réparation électronique, maintenance marine à bord des navires (automates, IHM) et trieuses pondérales." />
   <meta name="keywords"
     content="Automatisme Maroc, Maintenance Industrielle Agadir, Reparation Carte Electronique, Trieuse Pondérale, Siemens PLC, Convoyeur Industriel, Maintenance Navire Maroc, Automates Marine, IHM Navire, Rachid Balla">
 
@@ -24,7 +24,8 @@
   <link rel="manifest" href="https://expertronics.ma/Favicon/site.webmanifest" />
 
   <meta property="og:title" content="Expertronics | L'Avenir de l'Automatisme Industriel au Maroc" />
-  <meta property="og:description" content="Maintenance, Réparation Électronique et Solutions de Pesage à Agadir." />
+  <meta property="og:description"
+    content="Maintenance industrielle, réparation électronique, maintenance marine à bord des navires et solutions de pesage à Agadir." />
   <meta property="og:image" content="https://expertronics.ma/assets/img/logo.png" />
   <script type="application/ld+json">
 {
@@ -148,6 +149,7 @@
     {
       "@type": "Service",
       "name": "Marine & Naval",
+      "url": "https://expertronics.ma/Marine.html",
       "description": "Réparation et mise à niveau des systèmes embarqués à bord des navires : automates, interfaces IHM, armoires de contrôle et maintenance des équipements.",
       "provider": {
         "@type": "LocalBusiness",
@@ -164,6 +166,8 @@
   ]
 }
 </script>
+
+
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -302,6 +306,11 @@
       color: #00f5ff;
       text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
     }
+
+    /* FAQ accordion (Marine section) */
+    summary::-webkit-details-marker {
+      display: none;
+    }
   </style>
 </head>
 
@@ -318,7 +327,7 @@
         <a href="#home" class="hover:text-accent transition">Accueil</a>
         <a href="#about" class="hover:text-accent transition">À propos</a>
         <a href="#services" class="hover:text-accent transition">Services</a>
-        <a href="#marine" class="hover:text-accent transition flex items-center gap-2"><i
+        <a href="Marine.html" class="hover:text-accent transition flex items-center gap-2"><i
             class="fas fa-anchor text-[11px] text-accent"></i> Marine</a>
 
         <div class="relative group h-full flex items-center">
@@ -333,7 +342,8 @@
               class="block px-6 py-4 hover:bg-white/5 hover:text-accent border-b border-white/5 transition">
               <i class="fas fa-scale-balanced mr-2 text-accent"></i> Trieuse Pondérale
             </a>
-            <a href="#product-conveyor" class="block px-6 py-4 hover:bg-white/5 hover:text-accent border-b border-white/5 transition">
+            <a href="#product-conveyor"
+              class="block px-6 py-4 hover:bg-white/5 hover:text-accent border-b border-white/5 transition">
               <i class="fas fa-industry mr-2 text-accent"></i> Conception Convoyeurs
             </a>
             <a href="HyperBar.html" class="block px-6 py-4 hover:bg-white/5 hover:text-accent transition">
@@ -363,7 +373,8 @@
       <a href="#home" class="block text-lg py-2 hover:text-accent">Accueil</a>
       <a href="#about" class="block text-lg py-2 hover:text-accent">À propos</a>
       <a href="#services" class="block text-lg py-2 hover:text-accent">Services</a>
-      <a href="#marine" class="block text-lg py-2 hover:text-accent"><i class="fas fa-anchor text-sm text-accent mr-2"></i>Marine</a>
+      <a href="Marine.html" class="block text-lg py-2 hover:text-accent"><i
+          class="fas fa-anchor text-sm text-accent mr-2"></i>Marine</a>
       <a href="#products" class="block text-lg py-2 hover:text-accent font-bold bg-white/5 rounded-lg">Produits</a>
       <div class="flex flex-col gap-2 pl-4 text-sm text-gray-300">
         <a href="#product-checkweigher">- Trieuse Pondérale</a>
@@ -544,10 +555,16 @@
             →</span>
         </a>
 
-        <a href="#marine"
+        <a href="Marine.html"
           class="group relative md:col-span-2 lg:col-span-3 rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/50 transition-all duration-500 block no-underline">
-          <img src="assets/img/Marine/34.jpg" alt="Navire vraquier en opération au port de Casablanca" loading="lazy"
-            class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-35 group-hover:scale-105 transition duration-700">
+          <picture class="absolute inset-0 block w-full h-full">
+            <source srcset="assets/img/Marine/web/portique-dechargement-navire-vraquier-port-maroc.webp"
+              type="image/webp">
+            <img src="assets/img/Marine/web/portique-dechargement-navire-vraquier-port-maroc.jpg" width="1600"
+              height="600" loading="lazy" decoding="async"
+              alt="Portique de déchargement et navire vraquier à quai dans un port marocain"
+              class="w-full h-full object-cover opacity-25 group-hover:opacity-35 group-hover:scale-105 transition duration-700">
+          </picture>
           <div class="absolute inset-0 bg-gradient-to-r from-darkbg via-darkbg/90 to-primary/40"></div>
 
           <div class="relative p-8 md:p-12 flex flex-col md:flex-row md:items-center gap-8">
@@ -556,23 +573,28 @@
                 class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
                 <i class="fas fa-anchor"></i> Nouveau service
               </span>
-              <h3 class="text-3xl md:text-4xl font-bold mt-5 mb-4">Marine &amp; Naval</h3>
+              <h3 class="text-3xl md:text-4xl font-bold mt-5 mb-4">Maintenance Marine &amp; Naval au Maroc</h3>
               <p class="text-steel max-w-2xl mb-6">Réparation et mise à niveau des systèmes embarqués à bord des
-                navires : automates, interfaces IHM, armoires de contrôle et maintenance des équipements.</p>
+                navires : automates programmables (API/PLC), interfaces IHM, armoires de contrôle et maintenance des
+                équipements de bord.</p>
               <span class="text-accent font-bold group-hover:translate-x-2 transition-transform inline-block">Découvrir
                 notre expertise marine →</span>
             </div>
-            <i class="fas fa-ship text-7xl md:text-8xl text-accent/30 group-hover:text-accent/50 transition duration-500"></i>
+            <i
+              class="fas fa-ship text-7xl md:text-8xl text-accent/30 group-hover:text-accent/50 transition duration-500"></i>
           </div>
         </a>
       </div>
     </div>
   </section>
 
-  <section id="marine" class="relative bg-gradient-to-b from-darkbg via-primary/10 to-darkbg overflow-hidden">
-    <div class="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none">
+  <section id="marine" aria-labelledby="marine-title"
+    class="relative bg-gradient-to-b from-darkbg via-primary/10 to-darkbg overflow-hidden">
+    <div
+      class="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none">
     </div>
-    <div class="absolute bottom-0 -right-40 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none">
+    <div
+      class="absolute bottom-0 -right-40 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none">
     </div>
 
     <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -581,94 +603,132 @@
           class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent bg-accent/10 border border-accent/20 px-4 py-2 rounded-full mb-6">
           <i class="fas fa-anchor"></i> Expertise à bord
         </span>
-        <h2 class="text-5xl md:text-7xl font-bold mb-6">Marine <span
+        <h2 id="marine-title" class="text-5xl md:text-7xl font-bold mb-6">Maintenance Marine <span
             class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">&amp; Naval</span></h2>
-        <p class="text-steel text-xl max-w-3xl mx-auto">Nous intervenons à bord des navires pour réparer et moderniser
-          les systèmes embarqués : automates, interfaces IHM, armoires de contrôle et maintenance des équipements — à
-          quai, en escale ou en cale sèche.</p>
+        <p class="text-steel text-xl max-w-3xl mx-auto">Expertronics intervient à bord des navires pour la
+          <strong class="text-white font-semibold">réparation et la modernisation des systèmes embarqués</strong> :
+          automates programmables (API/PLC), interfaces IHM, armoires de contrôle et maintenance des équipements de
+          bord — à quai, pendant l'escale ou en cale sèche, dans les ports du Maroc.
+        </p>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
         <div class="order-2 lg:order-1 grid sm:grid-cols-2 gap-6">
           <div class="glass-card p-8 rounded-3xl hover:border-accent/40 transition-all duration-500">
             <i class="fas fa-microchip text-4xl text-accent mb-5"></i>
-            <h3 class="text-xl font-bold mb-3">Automates de bord</h3>
+            <h3 class="text-xl font-bold mb-3">Réparation d'automates de bord (API / PLC)</h3>
             <p class="text-steel text-sm leading-relaxed">Diagnostic, réparation et reprogrammation des automates
-              (Siemens, Schneider…), mise à niveau des cycles et des sécurités.</p>
+              programmables Siemens SIMATIC et Schneider à bord des navires, mise à niveau des cycles et des sécurités.
+            </p>
           </div>
 
           <div class="glass-card p-8 rounded-3xl hover:border-accent/40 transition-all duration-500">
             <i class="fas fa-display text-4xl text-accent mb-5"></i>
-            <h3 class="text-xl font-bold mb-3">Interfaces IHM</h3>
-            <p class="text-steel text-sm leading-relaxed">Remplacement et migration des pupitres IHM, refonte des
-              synoptiques, restauration de l'affichage et du contrôle tactile.</p>
+            <h3 class="text-xl font-bold mb-3">Réparation &amp; migration des IHM</h3>
+            <p class="text-steel text-sm leading-relaxed">Remplacement et migration des pupitres IHM (Siemens Smart
+              Line, écrans tactiles), refonte des synoptiques, restauration de l'affichage et du contrôle tactile.</p>
           </div>
 
           <div class="glass-card p-8 rounded-3xl hover:border-accent/40 transition-all duration-500">
             <i class="fas fa-bolt text-4xl text-accent mb-5"></i>
-            <h3 class="text-xl font-bold mb-3">Armoires &amp; électricité</h3>
+            <h3 class="text-xl font-bold mb-3">Armoires électriques de bord</h3>
             <p class="text-steel text-sm leading-relaxed">Réparation des armoires de commande, câblage, capteurs et
-              variateurs, remise en conformité des installations électriques du bord.</p>
+              variateurs de vitesse, remise en conformité des installations électriques du navire.</p>
           </div>
 
           <div class="glass-card p-8 rounded-3xl hover:border-accent/40 transition-all duration-500">
             <i class="fas fa-screwdriver-wrench text-4xl text-accent mb-5"></i>
-            <h3 class="text-xl font-bold mb-3">Maintenance équipements</h3>
-            <p class="text-steel text-sm leading-relaxed">Maintenance préventive et corrective des équipements
-              embarqués : pompes, séparateurs, ventilation, groupes et auxiliaires.</p>
+            <h3 class="text-xl font-bold mb-3">Maintenance des équipements de bord</h3>
+            <p class="text-steel text-sm leading-relaxed">Maintenance préventive et corrective en salle des machines :
+              pompes, séparateurs, ventilation, groupes électrogènes et auxiliaires.</p>
           </div>
         </div>
 
         <div class="order-1 lg:order-2 grid grid-cols-2 gap-4">
-          <div class="row-span-2 relative rounded-3xl overflow-hidden border border-white/5 group">
-            <img src="assets/img/Marine/27.jpg" loading="lazy"
-              alt="Armoire de contrôle équipée d'une interface IHM Siemens à bord d'un navire"
-              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <figure class="row-span-2 relative rounded-3xl overflow-hidden border border-white/5 group m-0">
+            <picture class="block w-full h-full">
+              <source srcset="assets/img/Marine/web/maintenance-ihm-siemens-armoire-controle-navire.webp"
+                type="image/webp">
+              <img src="assets/img/Marine/web/maintenance-ihm-siemens-armoire-controle-navire.jpg" width="1000"
+                height="1333" loading="lazy" decoding="async"
+                alt="Maintenance d'une armoire de contrôle équipée d'une interface IHM Siemens Smart Line à bord d'un navire"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            </picture>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <span class="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-wider text-accent">Armoire &amp;
-              IHM</span>
-          </div>
+            <figcaption class="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-wider text-accent">Armoire
+              &amp; IHM</figcaption>
+          </figure>
 
-          <div class="relative rounded-3xl overflow-hidden border border-white/5 group h-[190px] md:h-[240px]">
-            <img src="assets/img/Marine/12.jpg" loading="lazy"
-              alt="Automate Siemens SIMATIC S7-200 en service dans une armoire de bord"
-              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <figure class="relative rounded-3xl overflow-hidden border border-white/5 group h-[190px] md:h-[240px] m-0">
+            <picture class="block w-full h-full">
+              <source srcset="assets/img/Marine/web/reparation-automate-siemens-s7-200-navire.webp" type="image/webp">
+              <img src="assets/img/Marine/web/reparation-automate-siemens-s7-200-navire.jpg" width="1000" height="1333"
+                loading="lazy" decoding="async"
+                alt="Réparation d'un automate programmable Siemens SIMATIC S7-200 dans une armoire de bord de navire"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            </picture>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <span class="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-wider text-accent">Automates</span>
-          </div>
+            <figcaption
+              class="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-wider text-accent">Automates
+            </figcaption>
+          </figure>
 
-          <div class="relative rounded-3xl overflow-hidden border border-white/5 group h-[190px] md:h-[240px]">
-            <img src="assets/img/Marine/1.jpg" loading="lazy"
-              alt="Salle des machines d'un navire avec moteur principal et auxiliaires"
-              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <figure class="relative rounded-3xl overflow-hidden border border-white/5 group h-[190px] md:h-[240px] m-0">
+            <picture class="block w-full h-full">
+              <source srcset="assets/img/Marine/web/salle-des-machines-navire-maintenance-equipements.webp"
+                type="image/webp">
+              <img src="assets/img/Marine/web/salle-des-machines-navire-maintenance-equipements.jpg" width="1000"
+                height="1333" loading="lazy" decoding="async"
+                alt="Salle des machines d'un navire : moteur principal et équipements auxiliaires en maintenance"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            </picture>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <span class="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-wider text-accent">Salle des
-              machines</span>
-          </div>
+            <figcaption class="absolute bottom-5 left-5 text-xs font-bold uppercase tracking-wider text-accent">Salle
+              des machines</figcaption>
+          </figure>
         </div>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         <div class="relative h-56 rounded-2xl overflow-hidden border border-white/5 group">
-          <img src="assets/img/Marine/23.jpg" loading="lazy"
-            alt="Armoire de commande avec pupitre tactile dans la salle des machines"
-            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <picture class="block w-full h-full">
+            <source srcset="assets/img/Marine/web/armoire-commande-pupitre-tactile-navire.webp" type="image/webp">
+            <img src="assets/img/Marine/web/armoire-commande-pupitre-tactile-navire.jpg" width="900" height="1200"
+              loading="lazy" decoding="async"
+              alt="Armoire de commande et pupitre tactile en salle des machines d'un navire"
+              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          </picture>
           <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition duration-500"></div>
         </div>
         <div class="relative h-56 rounded-2xl overflow-hidden border border-white/5 group">
-          <img src="assets/img/Marine/5.jpg" loading="lazy" alt="Navire vraquier à quai avec grues de pont"
-            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <picture class="block w-full h-full">
+            <source srcset="assets/img/Marine/web/navire-vraquier-a-quai-port-maroc.webp" type="image/webp">
+            <img src="assets/img/Marine/web/navire-vraquier-a-quai-port-maroc.jpg" width="900" height="1200"
+              loading="lazy" decoding="async"
+              alt="Navire vraquier à quai avec ses grues de pont dans un port marocain"
+              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          </picture>
           <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition duration-500"></div>
         </div>
         <div class="relative h-56 rounded-2xl overflow-hidden border border-white/5 group">
-          <img src="assets/img/Marine/15.jpg" loading="lazy" alt="Installations et tuyauteries d'un terminal portuaire"
-            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <picture class="block w-full h-full">
+            <source srcset="assets/img/Marine/web/installations-tuyauteries-terminal-portuaire.webp" type="image/webp">
+            <img src="assets/img/Marine/web/installations-tuyauteries-terminal-portuaire.jpg" width="900" height="1200"
+              loading="lazy" decoding="async"
+              alt="Installations, tuyauteries et chemins de câbles d'un terminal portuaire"
+              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          </picture>
           <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition duration-500"></div>
         </div>
         <div class="relative h-56 rounded-2xl overflow-hidden border border-white/5 group">
-          <img src="assets/img/Marine/34.jpg" loading="lazy"
-            alt="Portique de déchargement et navire vraquier au port de Casablanca"
-            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          <picture class="block w-full h-full">
+            <source srcset="assets/img/Marine/web/portique-dechargement-navire-vraquier-port-maroc.webp"
+              type="image/webp">
+            <img src="assets/img/Marine/web/portique-dechargement-navire-vraquier-port-maroc.jpg" width="1600"
+              height="600" loading="lazy" decoding="async"
+              alt="Portique de déchargement en opération sur un navire vraquier à quai"
+              class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+          </picture>
           <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition duration-500"></div>
         </div>
       </div>
@@ -676,12 +736,12 @@
       <div class="glass-card rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <div>
           <h3 class="text-2xl md:text-3xl font-bold mb-3">Un navire immobilisé ?</h3>
-          <p class="text-steel">Nos techniciens se déplacent à bord pour diagnostiquer et remettre en service vos
-            systèmes dans les meilleurs délais.</p>
+          <p class="text-steel">Prestations détaillées, déroulement d'une intervention, ports couverts et questions
+            fréquentes : tout est sur notre page dédiée à la maintenance marine.</p>
         </div>
-        <a href="#contact"
+        <a href="Marine.html"
           class="magnetic-btn shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-accent text-black font-bold rounded-full text-lg group">
-          Demander une intervention <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          Découvrir la page Marine <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
     </div>
@@ -710,9 +770,12 @@
                 class="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500">
               </div>
               <div class="relative rounded-2xl overflow-hidden h-[400px] w-full border border-white/10 bg-darkbg/50">
-                <img src="assets/img/machine_photo.jpg" onerror="this.src='assets/img/IMG-3024.JPG'"
-                  alt="Trieuse Pondérale Agadir"
-                  class="object-cover w-full h-full transform transition duration-700 group-hover:scale-105">
+                <picture class="block w-full h-full">
+                  <source srcset="assets/img/web/trieuse-ponderale-expertronics-controle-poids.webp" type="image/webp">
+                  <img src="assets/img/web/trieuse-ponderale-expertronics-controle-poids.jpg" width="1400" height="1050" loading="lazy"
+                    decoding="async" alt="Trieuse pondérale dynamique Expertronics en contrôle de poids, Agadir"
+                    class="object-cover w-full h-full transform transition duration-700 group-hover:scale-105">
+                </picture>
               </div>
               <div
                 class="absolute top-4 right-4 bg-accent text-black font-bold px-4 py-1 rounded-full text-sm shadow-lg">
@@ -815,8 +878,7 @@
                 class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-primary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500">
               </div>
               <div class="relative rounded-2xl overflow-hidden h-[400px] w-full border border-white/10 bg-darkbg/50">
-                <img src="assets/img/HyperBar/4.jpg"
-                  alt="Chambre Hyperbare Expertronics"
+                <img src="assets/img/HyperBar/4.jpg" alt="Chambre Hyperbare Expertronics"
                   class="object-cover w-full h-full transform transition duration-700 group-hover:scale-105">
               </div>
               <div
